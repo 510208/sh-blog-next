@@ -1,62 +1,154 @@
 ---
+import { Button } from '@/components/ui/button';
+import { Music, Globe, Github, Youtube, MessageSquare } from 'lucide-react';
+
 const today = new Date();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} Your name here. All rights reserved.
-	<div class="social-links">
-		<a href="https://m.webtoo.ls/@astro" target="_blank">
-			<span class="sr-only">Follow Astro on Mastodon</span>
-			<svg
-				viewBox="0 0 16 16"
-				aria-hidden="true"
-				width="32"
-				height="32"
-				astro-icon="social/mastodon"
-				><path
-					fill="currentColor"
-					d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
-				></path></svg
-			>
-		</a>
-		<a href="https://twitter.com/astrodotbuild" target="_blank">
-			<span class="sr-only">Follow Astro on Twitter</span>
-			<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter"
-				><path
-					fill="currentColor"
-					d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-				></path></svg
-			>
-		</a>
-		<a href="https://github.com/withastro/astro" target="_blank">
-			<span class="sr-only">Go to Astro's GitHub repo</span>
-			<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github"
-				><path
-					fill="currentColor"
-					d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-				></path></svg
-			>
-		</a>
+<footer class="relative h-[400px] px-4 py-10 overflow-hidden flex justify-center">
+	<!-- Background gradients -->
+	<div class="absolute inset-0 pointer-events-none">
+		<img
+			src="/assets/layouts/footer/footer_background_gradient.png"
+			alt=""
+			class="w-full h-full object-cover"
+		/>
+	</div>
+
+	<!-- Center text overlay -->
+	<div class="absolute left-1/2 top-[69%] -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
+		<h2 class="font-bold text-7xl md:text-[128px] leading-tight md:leading-none text-white/5 whitespace-nowrap">
+			DESIGNED BY
+			<br />
+			SAMHACKER
+		</h2>
+	</div>
+
+	<!-- Content container -->
+	<div class="relative backdrop-blur-sm bg-white/10 border border-white/10 rounded-[20px] p-6 md:p-10 h-full overflow-auto w-full md:w-[80vw] md:min-w-[768px] md:max-w-[1214px]">
+		<div class="flex flex-col md:flex-row md:justify-between gap-8 h-full">
+			<!-- Left side -->
+			<div class="w-full md:w-[567px]">
+				<!-- Logo -->
+				<div class="mb-4">
+					<h3 class="text-white font-display text-xl font-black">
+						SamHacker Blog
+					</h3>
+				</div>
+
+				<div class="h-px bg-white/20 w-full md:w-[260px] my-4"></div>
+
+				<!-- Description -->
+				<div class="text-white/60 text-sm leading-6 tracking-[0.7px] mb-6">
+					<p>你好！歡迎來到我的部落格</p>
+					<p>這裡是我分享自己的生活與 Coding 日常的地方</p>
+					<p>我是個自學程式語言的高中生，有時也會寫寫文章什麼的</p>
+					<p>如果你也對這些東西有些興趣，歡迎關注我喔！</p>
+				</div>
+
+				<!-- Now playing -->
+				<div class="flex items-center gap-2.5">
+					<Button
+						client:load
+						size="icon-sm"
+						variant="ghost"
+						className="w-6 h-6 rounded-full bg-white hover:bg-white/90 shrink-0"
+					>
+						<Music className="w-3.5 h-3.5 text-black" />
+					</Button>
+					<p class="text-white text-xs leading-6">
+						正在聆聽：Alone - Alan Walker
+					</p>
+				</div>
+			</div>
+
+			<!-- Right side -->
+			<div class="w-full md:w-[567px] flex flex-col justify-between text-left md:text-right gap-6">
+				<!-- Top section -->
+				<div class="space-y-2">
+					<p class="text-white text-sm leading-normal">
+						歡迎非商業性轉載，轉載時請務必註明原文作者與原文連結
+						<br />
+						如需商業合作授權,請來信洽談：
+						<span class="underline decoration-solid">
+							samhacker@samhacker.xyz
+						</span>
+					</p>
+				</div>
+
+				<!-- Middle section - Copyright -->
+				<div class="text-white text-[10px] leading-normal">
+					<p>
+						<a
+							href="https://samhacker.xyz/"
+							class="underline decoration-solid hover:text-white/80 transition-colors"
+						>
+							SamHacker Blog
+						</a>
+						© {today.getFullYear()} by
+						<a
+							href="https://510208.github.io/"
+							class="underline decoration-solid hover:text-white/80 transition-colors"
+						>
+							SamHacker
+						</a>
+						is licensed under
+						<a
+							href="https://creativecommons.org/licenses/by-nc/4.0/"
+							class="underline decoration-solid hover:text-white/80 transition-colors"
+						>
+							CC BY-NC 4.0
+						</a>
+					</p>
+				</div>
+
+				<!-- Bottom section -->
+				<div class="space-y-2">
+					<p class="text-white/40 text-[10px] leading-normal">
+						🇹🇼 © {today.getFullYear()} SamHacker
+					</p>
+
+					<!-- Social links -->
+					<div class="flex items-center justify-start md:justify-end gap-4 flex-wrap">
+						<a
+							href="https://discord.gg/yourserver"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="Discord"
+							class="w-6 h-6 hover:opacity-70 text-white"
+						>
+							<MessageSquare className="w-6 h-6" />
+						</a>
+						<a
+							href="https://youtube.com/@penguinbrother_xux"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="YouTube"
+							class="w-6 h-6 hover:opacity-70 text-white"
+						>
+							<Youtube className="w-6 h-6" />
+						</a>
+						<a
+							href="https://samhacker.xyz/"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="Website"
+							class="w-6 h-6 hover:opacity-70 text-white"
+						>
+							<Globe className="w-6 h-6" />
+						</a>
+						<a
+							href="https://github.com/510208"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="GitHub"
+							class="w-6 h-6 hover:opacity-70 text-white"
+						>
+							<Github className="w-6 h-6" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </footer>
-<style>
-	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
-</style>

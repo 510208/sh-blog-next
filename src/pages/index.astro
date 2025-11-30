@@ -1,49 +1,122 @@
 ---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import AuthorCard from '../components/AuthorCard';
+import DiscordCard from '../components/DiscordCard';
+import BlogList from '../components/BlogList.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Greeting from '@/components/Greeting.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+).slice(0, 6); // Get latest 6 posts
+
+const featuredPost = posts[0];
+const currentPage = Number(Astro.url.searchParams.get('page')) || 1;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-TW">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body>
+	<body class="min-h-screen flex flex-col">
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
+		
+		<!-- Hero Section -->
+		<section class="relative h-[700px] px-4 py-10 overflow-hidden">
+			<!-- Hero background image -->
+			<div class="absolute inset-0 pointer-events-none">
+				{featuredPost?.data.heroImage && (
+					<Image 
+						src="/assets/layouts/homepage/samhacker_homepage_background.png"
+						alt="" 
+						class="w-full h-full object-cover"
+						width={1920}
+						height={700}
+					/>
+				)}
+				<div class="absolute inset-0 bg-linear-to-b from-black/60 to-black"></div>
+			</div>
+
+			<!-- Hero content -->
+			<div class="relative h-full flex items-end justify-center">
+				<div class="w-full md:w-[80vw] md:min-w-3xl md:max-w-7xl">
+					<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+						<!-- Left: Main heading -->
+						<div class="lg:col-span-2">
+							<h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
+								正因為曾經淋過雨，<br />才會想為他人撐一把傘。
+							</h1>
+							<p class="text-2xl md:text-4xl text-white/40">
+								<Greeting />
+							</p>
+						</div>
+
+						<!-- Right: Featured article card -->
+						<div class="flex flex-col justify-end gap-5">
+							{featuredPost && (
+								<a 
+									href={`/blog/${featuredPost.id}/`}
+									class="border border-white/20 rounded-xl overflow-hidden backdrop-blur-sm bg-black/30 hover:bg-black/50 transition-all group h-[230px] flex flex-col justify-end p-6"
+									style={
+										{
+											backgroundImage: featuredPost.data.heroImage
+												? `url(${featuredPost.data.heroImage.src})`
+												: 'none',
+											backgroundSize: 'cover',
+											// Dark overlay
+											backgroundBlendMode: 'darken',
+											
+										}
+									}
+								>
+									<p class="text-white/60 text-xl tracking-[4px] mb-2.5">最近更新</p>
+									<h2 class="text-white text-4xl font-bold group-hover:text-white/90 transition-colors">
+										{featuredPost.data.title}
+									</h2>
+								</a>
+							)}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Main content section -->
+		<section class="px-4 py-10 flex-1 flex justify-center">
+			<div class="w-full md:w-[80vw] md:min-w-3xl md:max-w-7xl flex flex-col lg:flex-row gap-10">
+				<!-- Main column: Blog posts grid -->
+				<div class="flex-1">
+					<BlogList currentPage={currentPage} />
+				</div>
+
+				<!-- Sidebar -->
+				<aside class="w-full lg:w-[378px] flex flex-col gap-5">
+					<!-- Author card -->
+					<AuthorCard client:load />
+
+					<!-- Discord cards -->
+					<DiscordCard 
+						client:load
+						title="Discord"
+						subtitle="加入我的討論群組！"
+						description=`你遇到問題了嗎？&#10;加入我的群組「企鵝哥贛話中心」，和群裡的大神一起討論吧！`
+					/>
+
+					<DiscordCard 
+						client:load
+						title="社群動態"
+						subtitle="加入我的討論群組！"
+						description=`定期分享程式設計技巧、&#10;Minecraft 開服教學，還有更多實用資源等著你！`
+					/>
+				</aside>
+			</div>
+		</section>
+
 		<Footer />
 	</body>
 </html>
