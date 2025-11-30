@@ -1,3 +1,5 @@
+![Screenshot](/docs/assets/screenshot.png)
+
 # SamHacker Blog Next
 
 這是 SamHacker 的個人技術部落格，使用 [Astro](https://astro.build/) 與 [TailwindCSS](https://tailwindcss.com/) 所打造，搭配 [React](https://reactjs.org/)，結合了 MDX 作為文章內容的撰寫方式。
