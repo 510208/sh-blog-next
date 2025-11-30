@@ -1,4 +1,4 @@
-![Screenshot](/docs/assets/screenshot.png)
+<center><img src="/docs/assets/screenshot.png" alt="Screenshot" width="600px" /></center>
 
 # SamHacker Blog Next
 
