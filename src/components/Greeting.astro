@@ -1,0 +1,35 @@
+---
+// 依照當前時間變化問候語
+const hour = new Date().getHours();
+const TIME_GREETING = [
+  {
+    hour: 0,
+    text: "深夜好，該休息了喔！",
+  },
+  {
+    hour: 6,
+    text: "早安！新的一天開始了！",
+  },
+  {
+    hour: 12,
+    text: "午安！記得吃午餐喔！",
+  },
+  {
+    hour: 14,
+    text: "下午好！工作順利嗎？",
+  },
+  {
+    hour: 18,
+    text: "傍晚好！準備迎接夜晚了！",
+  },
+  {
+    hour: 21,
+    text: "晚安！祝你有個好夢！",
+  },
+]
+const greeting = TIME_GREETING.reduce((prev, curr) => {
+  return hour >= curr.hour ? curr.text : prev;
+}, TIME_GREETING[0].text);
+---
+
+{greeting}

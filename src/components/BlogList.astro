@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BlogListClient from './BlogListClient';
+
+const postsPerPage = 6;
+// `BlogList` now delegates pagination to the client component.
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const totalPages = Math.ceil(allPosts.length / postsPerPage);  // Calculate total pages based on posts per page
+
+// Serialize posts for client-side consumption (convert dates to ISO strings)
+const serializedPosts = allPosts.map((post) => ({
+  id: post.id,
+  data: {
+    title: post.data.title,
+    description: post.data.description,
+    pubDate: post.data.pubDate.toISOString(),
+    heroImage: post.data.heroImage ? { src: post.data.heroImage.src } : null,
+  },
+}));
+---
+
+<BlogListClient client:load posts={serializedPosts} postsPerPage={postsPerPage} />
