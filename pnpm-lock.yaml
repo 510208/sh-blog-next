@@ -26,6 +26,9 @@ importers:
       '@fontsource/noto-sans-tc':
         specifier: ^5.2.8
         version: 5.2.8
+      '@fontsource/noto-serif-tc':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@radix-ui/react-avatar':
         specifier: ^1.1.11
         version: 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -594,6 +597,9 @@ packages:
 
   '@fontsource/noto-sans-tc@5.2.8':
     resolution: {integrity: sha512-YGeoh/XCBJm9iSUuyDIpw0pd7I+XiO7HI3Tq+38j4fuIjykURHhUDRtjkIFkEzjg8BKZ6MNdyyXHXor1fdoGQg==}
+
+  '@fontsource/noto-serif-tc@5.2.8':
+    resolution: {integrity: sha512-GVduDMy/WyWd9MhITJcEJIb1ThsyfWRXTormNAOwgBsPsuguAvjfk5PJAj0mu0U9NK6s9DrB2acwKfRR3dO69g==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -3358,6 +3364,8 @@ snapshots:
   '@fontsource/inter@5.2.8': {}
 
   '@fontsource/noto-sans-tc@5.2.8': {}
+
+  '@fontsource/noto-serif-tc@5.2.8': {}
 
   '@img/colour@1.0.0': {}
 
