@@ -1,0 +1,61 @@
+---
+import { Button } from "@/components/ui/button.tsx";
+import { ArrowUp } from "lucide-react";
+---
+
+<Button
+  id="to-top-button"
+  aria-label="Back to top"
+  className="fixed bottom-6 right-6 rounded-lg w-12 h-12 shadow-lg opacity-0 invisible transition-all duration-300 data-[show=true]:opacity-100 data-[show=true]:visible flex items-center justify-center backdrop-blur-md bg-white/10 dark:bg-black/20 border border-white/20 hover:bg-white/20 dark:hover:bg-black/30 active:scale-95"
+>
+  <ArrowUp className="w-5 h-5 text-white" />
+</Button>
+
+<!-- Client-side JavaScript: Handles interaction -->
+<script>
+  const scrollToTopBtn = document.getElementById(
+    "to-top-button"
+  ) as HTMLButtonElement;
+
+  // Show/hide button based on scroll position
+  const handleScroll = () => {
+    const scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop > 300) {
+      scrollToTopBtn.setAttribute("data-show", "true");
+    } else {
+      scrollToTopBtn.setAttribute("data-show", "false");
+    }
+  };
+
+  // Smooth scroll to top with animation
+  const scrollToTop = () => {
+    const scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+
+    if (scrollTop > 0) {
+      // Request animation frame for smooth scrolling
+      requestAnimationFrame(() => {
+        window.scrollBy({
+          top: -scrollTop * 0.3,
+          behavior: "smooth",
+        });
+        scrollToTop(); // Recursive call for continuous smooth scroll
+      });
+    }
+  };
+
+  // Native smooth scroll (simpler alternative)
+  const scrollToTopSimple = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  scrollToTopBtn.addEventListener("click", scrollToTopSimple);
+
+  // Initialize button state on page load
+  handleScroll();
+</script>
