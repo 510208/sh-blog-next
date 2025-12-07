@@ -32,7 +32,8 @@
   /* Font families */
   --font-sans: "Inter", "Noto Sans TC", sans-serif;
   --font-mono: "Maple Font", "Fira Code", monospace;
-  --font-display: "ChenYuluoyan 2.0", "Noto Sans TC", sans-serif;
+  --font-display: "Inter", "Noto Sans TC", sans-serif;
+  --font-funny: "ChenYuluoyan 2.0", "Noto Sans TC", sans-serif;
 
   /* Design system breakpoints */
   --breakpoint-sm: 640px;
