@@ -130,3 +130,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Improve Scroll */
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* ::selected 效果 */
+::selection {
+  @apply bg-white/20 text-white;
+}

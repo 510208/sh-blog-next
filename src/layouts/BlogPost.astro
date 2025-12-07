@@ -7,6 +7,8 @@ import BaseLayout from "@/components/layouts/BaseLayout.astro";
 import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
 import Hero from "@/components/content/Home/Hero.astro";
 import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
+
+// @ts-ignore
 import Sidebar from "@/components/Sidebar.astro";
 
 import { CalendarDays, User } from "lucide-react";
@@ -14,9 +16,24 @@ import config from "shblog.config";
 import { Separator } from "@/components/ui/separator";
 import { DEFAULT_POST_IMAGE } from "@/consts";
 
-type Props = CollectionEntry<"blog">["data"];
+import Toc from "../components/Toc.astro";
+import "katex/dist/katex.min.css";
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: any;
+  headings: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+}
+
+const { title, description, pubDate, updatedDate, heroImage, headings } =
+  Astro.props;
 ---
 
 <BaseLayout title={`Blog - ${title}`} description={description}>
@@ -33,8 +50,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       </HeroSubtitle>
     </div>
   </Hero>
+
   <BaseMainContent>
-    <!-- Main column: Blog posts grid -->
+    <!-- Main column: Blog post content -->
     <article class="flex-1">
       <!-- 文章資訊 -->
       <div class="flex mb-4 gap-2">
@@ -70,7 +88,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       </div>
     </article>
 
-    <!-- Sidebar -->
-    <Sidebar />
+    <!-- TOC Sidebar -->
+    <div>
+      <Sidebar />
+      {headings?.length > 0 && <Toc {headings} />}
+    </div>
   </BaseMainContent>
 </BaseLayout>
