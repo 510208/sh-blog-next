@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import BlogCard from "./BlogCard";
+import BlogCard from "./BlogCard.tsx";
 import {
   Pagination,
   PaginationContent,
@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationPrevious,
   PaginationNext,
-} from "./ui/pagination";
+} from "../ui/pagination.tsx";
 
 type Post = {
   id: string;
@@ -76,7 +76,7 @@ export default function BlogListClient({
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-3">
         {paginated.map((post) => (
           <BlogCard
             key={post.id}

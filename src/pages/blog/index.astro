@@ -1,10 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
+import BaseHead from '../../components/core/BaseHead.js';
+import Footer from '../../components/core/Footer.js';
+import FormattedDate from '../../components/content/FormattedDate.js';
+import Header from '../../components/core/Header.js';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(

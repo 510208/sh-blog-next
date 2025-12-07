@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import BaseHead from "./BaseHead.js";
+import Footer from "./Footer.js";
+import Header from "./Header.js";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts.ts";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())

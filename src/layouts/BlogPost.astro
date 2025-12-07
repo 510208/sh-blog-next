@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import FormattedDate from "../components/FormattedDate.astro";
-import BaseLayout from "@/components/BaseLayout.astro";
+import FormattedDate from "../components/content/FormattedDate.js";
+import BaseLayout from "@/components/core/BaseLayout.js";
 
 type Props = CollectionEntry<"blog">["data"];
 
