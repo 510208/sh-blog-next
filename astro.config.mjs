@@ -21,13 +21,17 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
+import rehypeComponents from "rehype-components";
+import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
 
 import react from "@astrojs/react";
+
+import expressiveCode from "astro-expressive-code";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://samhacker.xyz",
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [expressiveCode(), mdx(), sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
   },
@@ -52,15 +56,19 @@ export default defineConfig({
       rehypeCodeTitles,
       // rehype-code-block 必須在其他處理代碼的插件之後
       rehypeCodeBlock,
-      // [
-      //   rehypeComponents,
-      //   {
-      //     components: {
-      //       // 例如你要讓 <Alert> 用自訂 React 組件呈現
-      //       alert: require("./src/components/Alert.jsx").default,
-      //     },
-      //   },
-      // ],
+      // rehypeComponents 必須在 rehypeSlug 之前，以便正確處理 admonition
+      [
+        rehypeComponents,
+        {
+          components: {
+            note: (x, y) => AdmonitionComponent(x, y, "note"),
+            tip: (x, y) => AdmonitionComponent(x, y, "tip"),
+            important: (x, y) => AdmonitionComponent(x, y, "important"),
+            caution: (x, y) => AdmonitionComponent(x, y, "caution"),
+            warning: (x, y) => AdmonitionComponent(x, y, "warning"),
+          },
+        },
+      ],
       rehypeSlug,
       [
         rehypeAutolinkHeadings,
