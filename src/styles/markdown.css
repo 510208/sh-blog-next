@@ -1,0 +1,195 @@
+/* Import Tailwind CSS v4 */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@/styles/global.css";
+
+/* Import fonts from FontSource */
+@import "@fontsource/noto-serif-tc/300.css";
+@import "@fontsource/noto-serif-tc/400.css";
+@import "@fontsource/noto-serif-tc/500.css";
+@import "@fontsource/noto-serif-tc/700.css";
+/* 設定預設 serif 字體 */
+@theme {
+  --font-serif: "Noto Serif TC", serif;
+}
+
+/* 預設 */
+#post-content *:not(:last-child, :only-child, li) {
+  @apply mb-4;
+}
+
+/* 段落樣式 */
+#post-content p,
+#post-content li,
+#post-content ol,
+#post-content ul {
+  @apply text-lg leading-relaxed text-neutral-400;
+}
+
+/* 標題樣式 */
+#post-content h1,
+#post-content h2,
+#post-content h3,
+#post-content h4,
+#post-content h5,
+#post-content h6 {
+  @apply font-display font-bold my-8!;
+}
+
+#post-content h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl;
+}
+
+#post-content h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+#post-content h3 {
+  @apply text-2xl md:text-3xl lg:text-4xl;
+}
+
+#post-content h4 {
+  @apply text-xl md:text-2xl lg:text-3xl;
+}
+
+#post-content h5 {
+  @apply text-lg md:text-xl lg:text-2xl;
+}
+
+#post-content h6 {
+  @apply text-lg md:text-lg lg:text-xl;
+}
+
+/* 列表樣式 */
+#post-content ul,
+#post-content ol {
+  @apply list-inside marker:text-white/30 pl-[30px];
+}
+
+#post-content li {
+  @apply my-1 mb-2;
+}
+
+#post-content ul {
+  @apply list-disc;
+}
+
+#post-content ol {
+  @apply list-decimal;
+}
+
+#post-content ul ul,
+#post-content ol ul,
+#post-content ul ol,
+#post-content ol ol {
+  @apply pl-2.5 mb-0!;
+}
+
+#post-content ul ul:first-child,
+#post-content ol ul:first-child,
+#post-content ul ol:first-child,
+#post-content ol ol:first-child {
+  @apply pl-6 mt-4 mb-0!;
+}
+
+/* 引言樣式 */
+#post-content blockquote {
+  @apply font-serif border-l-4 border-neutral-700 pl-4 italic text-neutral-400;
+}
+
+/* 程式碼區塊樣式 */
+#post-content pre {
+  @apply bg-neutral-900 rounded-lg p-4 overflow-x-auto border;
+}
+
+/* 表格樣式 */
+#post-content table {
+  @apply w-full border-collapse rounded-lg overflow-hidden;
+}
+
+#post-content th,
+#post-content td {
+  @apply p-2 border transition-colors duration-300;
+}
+
+#post-content th {
+  @apply text-left;
+}
+
+#post-content tbody tr {
+  @apply transition-colors duration-300;
+}
+
+#post-content tbody tr:nth-child(odd) {
+  /* 奇數行樣式 */
+  @apply bg-neutral-900;
+}
+
+#post-content tbody tr:nth-child(even) {
+  /* 偶數行樣式 */
+  @apply bg-neutral-950;
+}
+
+#post-content tbody tr:nth-child(odd):hover,
+#post-content tbody tr:nth-child(even):hover {
+  /* 滑鼠懸停樣式 */
+  @apply bg-neutral-800 transition-colors duration-300;
+}
+
+/* 列 hover 效果 */
+#post-content td:hover,
+#post-content th:hover {
+  @apply bg-neutral-700/50;
+}
+
+#post-content thead tr {
+  @apply bg-neutral-800;
+}
+
+/* 分隔線樣式 */
+#post-content hr {
+  @apply border-t border-2 border-neutral-700 my-8 max-w-2xl justify-center mx-auto;
+}
+
+/* 行內元素樣式 */
+#post-content a {
+  @apply text-primary hover:underline;
+}
+
+#post-content strong {
+  @apply font-semibold text-white;
+}
+
+#post-content code {
+  @apply bg-neutral-800 text-sm font-mono px-1.5 py-0.5 rounded transition-colors duration-300;
+}
+
+#post-content code:hover {
+  @apply bg-neutral-700 transition-colors duration-300;
+}
+
+#post-content img {
+  @apply rounded-lg my-6;
+}
+
+#post-content img:hover {
+  @apply scale-105 transition-transform duration-300;
+}
+
+/* 圖片置中 */
+#post-content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 音頻和視頻樣式 */
+#post-content audio,
+#post-content video {
+  @apply rounded-lg my-6;
+}
+
+#post-content audio:hover,
+#post-content video:hover {
+  @apply scale-105 transition-transform duration-300;
+}
