@@ -1,0 +1,48 @@
+---
+const startDate = new Date("2019-11-23");
+---
+
+<div id="site-runtime" class="text-sm opacity-75 dark:text-white text-black">
+  網站已運行：<span id="runtime-counter">計算中...</span>
+</div>
+
+<script>
+  function updateRuntime() {
+    const startDate = new Date("2019-11-23"); // 替換為您的網站實際上線日期
+    const currentDate = new Date();
+
+    const timeDiff = currentDate.getTime() - startDate.getTime();
+
+    let seconds = Math.floor(timeDiff / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    let days = Math.floor(hours / 24);
+
+    const years = Math.floor(days / 365);
+    const months = Math.floor((days % 365) / 30);
+    days = days % 30;
+    hours = hours % 24;
+    minutes = minutes % 60;
+    seconds = seconds % 60;
+
+    let runtimeText = "";
+
+    if (years > 0) {
+      runtimeText += `${years} 年 `;
+    }
+
+    if (months > 0 || years > 0) {
+      runtimeText += `${months} 個月 `;
+    }
+
+    runtimeText += `${days} 天 ${hours} 時 ${minutes} 分 ${seconds} 秒`;
+
+    const runtimeElement = document.getElementById("runtime-counter");
+    if (runtimeElement) {
+      runtimeElement.textContent = runtimeText;
+    }
+  }
+
+  updateRuntime();
+  setInterval(updateRuntime, 1000);
+</script>
