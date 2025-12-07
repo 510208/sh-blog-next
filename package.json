@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "wrangler": "wrangler",
+    "deploy": "wrangler deploy --assets=./dist",
     "cn": "pnpm dlx shadcn@latest"
   },
   "dependencies": {
