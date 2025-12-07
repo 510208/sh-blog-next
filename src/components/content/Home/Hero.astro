@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+---
+
+<!-- Hero Section -->
+<section class="relative h-[700px] px-4 py-10 overflow-hidden">
+  <!-- Hero background image -->
+  <div class="absolute inset-0 pointer-events-none">
+    <Image
+      src="/assets/layouts/homepage/samhacker_homepage_background.png"
+      alt=""
+      class="w-full h-full object-cover"
+      width={1920}
+      height={700}
+    />
+    <div class="absolute inset-0 bg-linear-to-b from-black/60 to-black"></div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="relative h-full flex items-end justify-center">
+    <div class="w-full md:w-[80vw] md:min-w-3xl md:max-w-7xl">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <slot name="left">
+          <!-- Left: Main heading -->
+        </slot>
+        <slot name="right">
+          <!-- Right: Featured article card -->
+        </slot>
+      </div>
+    </div>
+  </div>
+</section>
