@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6); // Get latest 6 posts
+
+const featuredPost = posts[0];
+const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
+---
+
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+
+    <slot />
+
+    <Footer />
+  </body>
+</html>
