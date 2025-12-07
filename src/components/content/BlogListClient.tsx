@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import BlogCard from "./BlogCard.tsx";
+import BlogCard from "../widgets/BlogCard.tsx";
 import {
   Pagination,
   PaginationContent,
@@ -8,6 +8,7 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "../ui/pagination.tsx";
+import { DEFAULT_POST_IMAGE } from "@/consts.ts";
 
 type Post = {
   id: string;
@@ -83,7 +84,7 @@ export default function BlogListClient({
             title={post.data.title}
             description={post.data.description}
             pubDate={post.data.pubDate}
-            heroImage={post.data.heroImage?.src}
+            heroImage={post.data.heroImage?.src || DEFAULT_POST_IMAGE}
             href={`/blog/${post.id}/`}
             isLoading={false}
           />
