@@ -1,41 +1,76 @@
 ---
+import "@/styles/markdown.css";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "@/components/content/FormattedDate.astro";
-import BaseLayout from "@/components/core/BaseLayout.astro";
+import BaseLayout from "@/components/layouts/BaseLayout.astro";
+import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
+import Hero from "@/components/content/Home/Hero.astro";
+import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
+import Sidebar from "@/components/Sidebar.astro";
+
+import { CalendarDays, User } from "lucide-react";
+import config from "shblog.config";
+import { Separator } from "@/components/ui/separator";
+import { DEFAULT_POST_IMAGE } from "@/consts";
 
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<BaseLayout>
-  <main>
-    <article>
-      <div class="hero-image">
+<BaseLayout title={`Blog - ${title}`} description={description}>
+  <!-- 注入 head -->
+  <link type="stylesheet" rel="stylesheet" href="/styles/markdown.css" />
+
+  <!-- 內容 -->
+  <Hero backgroundImage={heroImage || DEFAULT_POST_IMAGE}>
+    <!-- Left: Main heading -->
+    <div class="lg:col-span-2" slot="left">
+      <HeroTitle>{title}</HeroTitle>
+      <HeroSubtitle slot="right">
+        {description}
+      </HeroSubtitle>
+    </div>
+  </Hero>
+  <BaseMainContent>
+    <!-- Main column: Blog posts grid -->
+    <article class="flex-1">
+      <!-- 文章資訊 -->
+      <div class="flex mb-4 gap-2">
+        <!-- 文章日期 -->
+        <time class="text-sm text-gray-500 flex items-center gap-1">
+          <CalendarDays size={20} />文章發布時間<FormattedDate date={pubDate} />
+          {
+            updatedDate && (
+              <>
+                <Separator orientation="vertical" /> 更新時間：
+                <FormattedDate date={updatedDate} />
+              </>
+            )
+          }
+        </time>
+        <Separator orientation="vertical" />
+        <!-- 文章作者 -->
+        <div class="text-sm text-gray-500 flex items-center gap-1">
+          <User size={20} />作者 {config.author.name}
+        </div>
+      </div>
+      <!-- 文章圖片 -->
+      <div class="overflow-hidden rounded-xl">
         {
-          heroImage && (
-            <Image width={1020} height={510} src={heroImage} alt="" />
+          (heroImage && <Image width={1020} src={heroImage} alt="" />) || (
+            <Image width={1020} height={340} src={DEFAULT_POST_IMAGE} alt="" />
           )
         }
       </div>
-      <div class="prose">
-        <div class="title">
-          <div class="date">
-            <FormattedDate date={pubDate} />
-            {
-              updatedDate && (
-                <div class="last-updated-on">
-                  Last updated on <FormattedDate date={updatedDate} />
-                </div>
-              )
-            }
-          </div>
-          <h1>{title}</h1>
-          <hr />
-        </div>
+      <!-- 文章內容 -->
+      <div class="mt-10" id="post-content">
         <slot />
       </div>
     </article>
-  </main>
+
+    <!-- Sidebar -->
+    <Sidebar />
+  </BaseMainContent>
 </BaseLayout>

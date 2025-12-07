@@ -1,8 +1,7 @@
 ---
-const {
-  BackgroundImage = "/assets/layouts/homepage/samhacker_homepage_background.png",
-} = Astro.props;
+const { backgroundImage = DEFAULT_POST_IMAGE } = Astro.props;
 
+import { DEFAULT_POST_IMAGE } from "@/consts";
 import { Image } from "astro:assets";
 ---
 
@@ -11,7 +10,7 @@ import { Image } from "astro:assets";
   <!-- Hero background image -->
   <div class="absolute inset-0 pointer-events-none">
     <Image
-      src={BackgroundImage}
+      src={backgroundImage}
       alt=""
       class="w-full h-full object-cover"
       width={1920}
