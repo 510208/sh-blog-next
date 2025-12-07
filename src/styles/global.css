@@ -1,6 +1,8 @@
 /* Import Tailwind CSS v4 */
 @import "tailwindcss";
 
+@tailwind utilities;
+
 /* Import fonts from FontSource */
 @import "@fontsource/inter/400.css";
 @import "@fontsource/inter/500.css";
@@ -10,14 +12,26 @@
 @import "@fontsource/noto-sans-tc/400.css";
 @import "@fontsource/noto-sans-tc/500.css";
 @import "@fontsource/noto-sans-tc/700.css";
+
+@font-face {
+  font-family: "Maple Font";
+  src: url("/fonts/SamhackerMapleFontMono-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Import TailwindCSS Animation */
 @import "tw-animate-css";
 
+/* Custom variants*/
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Tailwind CSS v4 Theme Configuration */
 @theme {
   /* Font families */
   --font-sans: "Inter", "Noto Sans TC", sans-serif;
+  --font-mono: "Maple Font", "Fira Code", monospace;
   --font-display: "ChenYuluoyan 2.0", "Noto Sans TC", sans-serif;
 
   /* Design system breakpoints */
