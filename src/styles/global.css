@@ -12,20 +12,13 @@
 @import "@fontsource/noto-sans-tc/700.css";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Tailwind CSS v4 Theme Configuration */
 @theme {
   /* Font families */
   --font-sans: "Inter", "Noto Sans TC", sans-serif;
   --font-display: "ChenYuluoyan 2.0", "Noto Sans TC", sans-serif;
-
-  /* Colors from Figma design */
-  --color-neutral-950: #0a0a0a;
-  --color-neutral-900: #171717;
-  --color-neutral-800: #262626;
-  --color-neutral-700: #404040;
-  --color-indigo-900: #312e81;
 
   /* Design system breakpoints */
   --breakpoint-sm: 640px;

@@ -3,6 +3,7 @@ import { SITE_TITLE } from "../../consts.ts";
 import config from "../../../shblog.config.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Mail, Info, Search } from "lucide-react";
+import { FAVICON_URL } from "../../consts.ts";
 
 const links = config.navBar.links;
 ---
@@ -17,7 +18,7 @@ const links = config.navBar.links;
     <div class="flex items-center gap-2">
       <div class="w-9 h-9 rounded-lg overflow-hidden">
         <img
-          src="/favicon.png"
+          src={FAVICON_URL}
           alt={SITE_TITLE}
           class="w-full h-full object-cover"
         />
