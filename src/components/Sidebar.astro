@@ -1,7 +1,7 @@
 ---
 import config from "shblog.config";
-import AuthorCard from "./content/AuthorCard";
-import DiscordCard from "./content/DiscordCard";
+import AuthorCard from "./widgets/AuthorCard";
+import DiscordCard from "./widgets/DiscordCard";
 ---
 
 <!-- Sidebar -->
@@ -29,4 +29,7 @@ import DiscordCard from "./content/DiscordCard";
       description="你遇到問題了嗎？加入我的群組「企鵝哥贛話中心」，和群裡的大神一起討論吧！"
     />
   </a>
+
+  <!-- Slot for ToC - will be sticky -->
+  <slot />
 </aside>
