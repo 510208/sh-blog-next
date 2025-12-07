@@ -100,9 +100,9 @@
 }
 
 /* 程式碼區塊樣式 */
-#post-content pre {
+/* #post-content pre {
   @apply bg-neutral-900 rounded-lg p-4 overflow-x-auto border my-4;
-}
+} */
 
 .astro-code {
   @apply bg-transparent p-0 m-0 border-0;
@@ -110,7 +110,7 @@
 
 .astro-code pre,
 .astro-code code {
-  @apply m-0!;
+  @apply m-0! bg-transparent! p-0! border-0! rounded-none!;
 }
 
 /* 自訂代碼區塊容器 */
