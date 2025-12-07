@@ -120,6 +120,12 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  --admonitions-color-tip: oklch(0.7 0.14 180) oklch(0.75 0.14 180);
+  --admonitions-color-note: oklch(0.7 0.14 250) oklch(0.75 0.14 250);
+  --admonitions-color-important: oklch(0.7 0.14 310) oklch(0.75 0.14 310);
+  --admonitions-color-warning: oklch(0.7 0.14 60) oklch(0.75 0.14 60);
+  --admonitions-color-caution: oklch(0.6 0.2 25) oklch(0.65 0.2 25);
 }
 
 @layer base {

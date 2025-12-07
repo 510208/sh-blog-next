@@ -16,7 +16,7 @@
 
 /* 預設 */
 #post-content
-  *:not(:last-child, :only-child, li, pre, code, .astro-code, .astro-code *) {
+  *:not(:last-child, :only-child, li, pre, code, .expressive-code *) {
   @apply mb-4;
 }
 
@@ -100,84 +100,30 @@
 }
 
 /* 程式碼區塊樣式 */
-/* #post-content pre {
-  @apply bg-neutral-900 rounded-lg p-4 overflow-x-auto border my-4;
+.ec-line {
+  @apply font-mono!;
+}
+/* 區塊 code 不要 hover 變色 */
+/* #post-content pre code {
+  @apply bg-transparent px-0 py-0 transition-none;
+}
+
+#post-content em {
+  @apply italic;
+}
+
+#post-content del {
+  @apply line-through;
+}
+
+#post-content u {
+  @apply underline decoration-white/40 decoration-6 transition-all duration-300;
+  text-underline-offset: -2px;
+}
+
+#post-content u:hover {
+  @apply decoration-white/20 transition-all duration-300;
 } */
-
-.astro-code {
-  @apply bg-transparent p-0 m-0 border-0;
-}
-
-.astro-code pre,
-.astro-code code {
-  @apply m-0! bg-transparent! p-0! border-0! rounded-none!;
-}
-
-/* 自訂代碼區塊容器 */
-.code-container {
-  @apply bg-neutral-800 border-2 border-white/10 rounded-[14px] overflow-clip my-6;
-}
-
-.code-header {
-  @apply flex items-center justify-between px-5 py-2.5 h-[41px] border-b-2 border-white/10;
-}
-
-.code-header-left {
-  @apply flex items-center gap-2.5 w-[600px] max-w-full;
-}
-
-.code-icon {
-  @apply shrink-0 w-4 h-4 flex items-center justify-center;
-}
-
-.code-icon-dot {
-  @apply text-white/40 text-[12px];
-}
-
-.code-filename {
-  @apply font-mono text-[16px] text-white/40 whitespace-nowrap overflow-hidden text-ellipsis m-0 p-0;
-}
-
-.code-header-right {
-  @apply flex items-center justify-end basis-0 grow shrink-0;
-}
-
-.code-copy {
-  @apply w-4 h-4 shrink-0 flex items-center justify-center bg-transparent border-0 cursor-pointer text-white/60 transition-colors duration-200 p-0;
-}
-
-.code-copy:hover {
-  @apply text-white/90;
-}
-
-.code-copy svg {
-  @apply w-4 h-4;
-}
-
-/* 代碼區塊內的 pre 樣式調整 */
-.code-container pre {
-  @apply bg-transparent border-0 rounded-none m-0 px-5 py-3;
-}
-
-/* 行號支持 */
-.code-container pre.show-line-numbers {
-  counter-reset: line var(--start-line, 1);
-  counter-increment: line calc(var(--start-line, 1) - 1);
-}
-
-.code-container pre.show-line-numbers code {
-  @apply block;
-}
-
-.code-container pre.show-line-numbers code .line {
-  @apply block;
-}
-
-.code-container pre.show-line-numbers code .line::before {
-  content: counter(line);
-  counter-increment: line;
-  @apply inline-block w-8 mr-4 text-right text-white/30 select-none;
-}
 
 /* 表格樣式 */
 #post-content table {
@@ -276,28 +222,6 @@
 
 #post-content :not(pre) > code:hover {
   @apply bg-neutral-700;
-}
-
-/* 區塊 code 不要 hover 變色 */
-#post-content pre code {
-  @apply bg-transparent px-0 py-0 transition-none;
-}
-
-#post-content em {
-  @apply italic;
-}
-
-#post-content del {
-  @apply line-through;
-}
-
-#post-content u {
-  @apply underline decoration-white/40 decoration-6 transition-all duration-300;
-  text-underline-offset: -2px;
-}
-
-#post-content u:hover {
-  @apply decoration-white/20 transition-all duration-300;
 }
 
 /* 圖片樣式 */
