@@ -8,6 +8,7 @@
 @import "@fontsource/noto-serif-tc/400.css";
 @import "@fontsource/noto-serif-tc/500.css";
 @import "@fontsource/noto-serif-tc/700.css";
+
 /* 設定預設 serif 字體 */
 @theme {
   --font-serif: "Noto Serif TC", serif;
