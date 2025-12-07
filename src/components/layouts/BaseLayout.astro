@@ -1,0 +1,30 @@
+---
+import BaseHead from "../core/BaseHead.astro";
+import Footer from "../core/Footer.astro";
+import Header from "../core/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts.ts";
+import ToTop from "../global/ToTop.astro";
+import "lenis/dist/lenis.css";
+---
+
+<!doctype html>
+<html lang="zh-TW" class="dark">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <slot />
+    <Footer />
+    <ToTop />
+  </body>
+</html>
+
+<script>
+  import Lenis from "lenis";
+
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
+</script>
