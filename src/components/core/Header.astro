@@ -1,0 +1,103 @@
+---
+import { SITE_TITLE } from "../../consts.ts";
+import config from "../../../shblog.config.ts";
+import { Button } from "@/components/ui/button.tsx";
+import { Mail, Info, Search } from "lucide-react";
+
+const links = config.navBar.links;
+---
+
+<header
+  class="fixed top-[18px] left-1/2 -translate-x-1/2 z-50 w-full max-w-[1278px] px-4"
+>
+  <nav
+    class="backdrop-blur-[6px] bg-neutral-900/50 border border-white/10 rounded-2xl px-4 lg:px-8 h-14 flex items-center justify-between"
+  >
+    <!-- Logo and Site Title -->
+    <div class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-lg overflow-hidden">
+        <img
+          src="/favicon.png"
+          alt={SITE_TITLE}
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <a class="hidden lg:block" href="/public">
+        <h1 class="text-2xl font-display text-white capitalize leading-none">
+          {SITE_TITLE}
+        </h1>
+      </a>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="flex items-center gap-2 lg:gap-4">
+      <!-- Main Nav -->
+      <div class="hidden lg:flex items-center gap-1 pr-4">
+        {
+          links.map((link, index) => (
+            <div class="flex items-center">
+              <a
+                href={link.href}
+                class="px-4 h-6 flex items-center text-sm font-medium text-white uppercase hover:text-white/80 transition-colors"
+              >
+                {link.title}
+              </a>
+              {index < links.length - 1 && (
+                <span class="text-neutral-400 text-sm">/</span>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="lg:hidden flex items-center gap-1">
+        {
+          links.map((link, index) => (
+            <div class="flex items-center">
+              <a
+                href={link.href}
+                class="px-4 h-6 flex items-center text-sm font-medium text-white uppercase hover:text-white/80 transition-colors"
+              >
+                <link.icon size={16} />
+              </a>
+              {index < links.length - 1 && (
+                <span class="text-neutral-400 text-sm">/</span>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Action Buttons -->
+      <Button
+        client:load
+        variant="ghost"
+        size="icon"
+        className="rounded-lg shadow-sm hover:bg-white/5"
+        aria-label="Contact"
+      >
+        <Mail className="w-[18px] h-[18px]" />
+      </Button>
+
+      <Button
+        client:load
+        variant="ghost"
+        size="icon"
+        className="rounded-lg shadow-sm hover:bg-white/5"
+        aria-label="Info"
+      >
+        <Info className="w-[18px] h-[18px]" />
+      </Button>
+
+      <Button
+        client:load
+        variant="ghost"
+        size="icon"
+        className="rounded-lg bg-neutral-950 border border-white/15 hover:bg-neutral-900"
+        aria-label="Search"
+      >
+        <Search className="w-[18px] h-[18px]" />
+      </Button>
+    </div>
+  </nav>
+</header>

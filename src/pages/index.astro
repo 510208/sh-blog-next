@@ -1,15 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import AuthorCard from "../components/AuthorCard";
-import DiscordCard from "../components/DiscordCard";
-import BlogList from "../components/BlogList.astro";
+import BaseHead from "../components/core/BaseHead.js";
+import Footer from "../components/core/Footer.js";
+import Header from "../components/core/Header.js";
+import AuthorCard from "../components/content/AuthorCard.tsx";
+import DiscordCard from "../components/content/DiscordCard.tsx";
+import BlogList from "../components/content/BlogList.js";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-import Greeting from "@/components/Greeting.astro";
-import BaseLayout from "@/components/BaseLayout.astro";
+import Greeting from "@/components/content/Greeting.js";
+import BaseLayout from "@/components/core/BaseLayout.js";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
