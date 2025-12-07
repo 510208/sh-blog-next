@@ -5,6 +5,10 @@ const config = {
   description:
     "我是一個熱愛分享技術的部落客，專注於 Minecraft 開服、網站建設、開源軟體等領域。",
   favicon: "/favicon.png",
+  style: {
+    defaultPostImage:
+      "/assets/layouts/homepage/samhacker_homepage_background.png",
+  },
   author: {
     name: "SamHacker",
     bio: "我是一個熱愛分享技術的部落客，專注於 Minecraft 開服、網站建設、開源軟體等領域。",
