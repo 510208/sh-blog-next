@@ -85,7 +85,9 @@ const { title, description, pubDate, updatedDate, heroImage, headings } =
       <!-- 文章圖片 -->
       <div class="overflow-hidden rounded-xl">
         {
-          (heroImage && <Image width={1020} src={heroImage} alt="" />) || (
+          (heroImage && (
+            <Image width={1020} height={574} src={heroImage} alt="" />
+          )) || (
             <Image width={1020} height={340} src={DEFAULT_POST_IMAGE} alt="" />
           )
         }
