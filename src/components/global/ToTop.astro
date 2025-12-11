@@ -28,23 +28,6 @@ import { ArrowUp } from "lucide-react";
     }
   };
 
-  // Smooth scroll to top with animation
-  const scrollToTop = () => {
-    const scrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop;
-
-    if (scrollTop > 0) {
-      // Request animation frame for smooth scrolling
-      requestAnimationFrame(() => {
-        window.scrollBy({
-          top: -scrollTop * 0.3,
-          behavior: "smooth",
-        });
-        scrollToTop(); // Recursive call for continuous smooth scroll
-      });
-    }
-  };
-
   // Native smooth scroll (simpler alternative)
   const scrollToTopSimple = () => {
     window.scrollTo({
