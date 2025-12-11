@@ -1,4 +1,4 @@
-import { Home, Newspaper, Info, Phone } from "lucide-react";
+import { Home, Info, Phone } from "lucide-react";
 
 const config = {
   title: "SamHacker Blog",
@@ -8,6 +8,8 @@ const config = {
   style: {
     defaultPostImage:
       "/assets/layouts/homepage/samhacker_homepage_background.png",
+    postsPerPage: 6,
+    titleSeparator: "-",
   },
   author: {
     name: "SamHacker",
@@ -36,11 +38,11 @@ const config = {
         href: "/",
         icon: Home,
       },
-      {
-        title: "Posts",
-        href: "/blog",
-        icon: Newspaper,
-      },
+      // {
+      //   title: "Posts",
+      //   href: "/blog",
+      //   icon: Newspaper,
+      // },
       {
         title: "About",
         href: "/about",
