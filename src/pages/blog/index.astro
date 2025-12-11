@@ -1,15 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import BaseHead from "../../components/core/BaseHead.astro";
-import Footer from "../../components/core/Footer.astro";
 import FormattedDate from "../../components/content/FormattedDate.astro";
-import Header from "../../components/core/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { DEFAULT_POST_IMAGE, SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import BaseLayout from "@/components/layouts/BaseLayout.astro";
 import Hero from "@/components/content/Home/Hero.astro";
 import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
-import Greeting from "@/components/content/Greeting.astro";
 import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
 
 const posts = (await getCollection("blog")).sort(
@@ -41,9 +37,9 @@ const posts = (await getCollection("blog")).sort(
             >
               {post.data.heroImage && (
                 <Image
-                  width={720}
-                  height={360}
-                  src={post.data.heroImage}
+                  src={post.data.heroImage || DEFAULT_POST_IMAGE}
+                  width={1020}
+                  height={340}
                   alt=""
                   class="mb-2 rounded-xl hover:shadow-lg first:w-full"
                 />
