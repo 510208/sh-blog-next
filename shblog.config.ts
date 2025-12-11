@@ -51,7 +51,7 @@ const config = {
       },
       {
         title: "Contact",
-        href: "/contact",
+        href: "https://510208.github.io/about",
         icon: Phone,
       },
     ],
