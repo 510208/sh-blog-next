@@ -14,7 +14,7 @@ import Sidebar from "@/components/Sidebar.astro";
 import { CalendarDays, User } from "lucide-react";
 import config from "shblog.config";
 import { Separator } from "@/components/ui/separator";
-import { DEFAULT_POST_IMAGE } from "@/consts";
+import { DEFAULT_POST_IMAGE, SEPARATOR } from "@/consts";
 
 import Toc from "../components/Toc.astro";
 import "katex/dist/katex.min.css";
@@ -36,7 +36,10 @@ const { title, description, pubDate, updatedDate, heroImage, headings } =
   Astro.props;
 ---
 
-<BaseLayout title={`Blog - ${title}`} description={description}>
+<BaseLayout
+  title={`${title} ${SEPARATOR} ${config.title}`}
+  description={description}
+>
   <!-- 注入 head -->
   <link
     type="stylesheet"

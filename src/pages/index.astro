@@ -7,6 +7,7 @@ import Hero from "@/components/content/Home/Hero.astro";
 import Sidebar from "@/components/Sidebar.astro";
 import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
 import { HeroSubtitle, HeroTitle } from "@/components/content/Home/HeroItems";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -16,7 +17,7 @@ const featuredPost = posts[0];
 const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
 ---
 
-<BaseLayout>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <!-- Hero Section -->
   <Hero>
     <!-- Left: Main heading -->
