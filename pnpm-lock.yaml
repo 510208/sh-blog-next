@@ -23,15 +23,15 @@ importers:
       '@expressive-code/plugin-line-numbers':
         specifier: ^0.41.3
         version: 0.41.3
-      '@fontsource/inter':
+      '@fontsource-variable/inter':
         specifier: ^5.2.8
         version: 5.2.8
-      '@fontsource/noto-sans-tc':
-        specifier: ^5.2.8
-        version: 5.2.8
-      '@fontsource/noto-serif-tc':
-        specifier: ^5.2.8
-        version: 5.2.8
+      '@fontsource-variable/noto-sans-tc':
+        specifier: ^5.2.9
+        version: 5.2.9
+      '@fontsource-variable/noto-serif-tc':
+        specifier: ^5.2.9
+        version: 5.2.9
       '@radix-ui/react-avatar':
         specifier: ^1.1.11
         version: 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -665,14 +665,14 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@fontsource/inter@5.2.8':
-    resolution: {integrity: sha512-P6r5WnJoKiNVV+zvW2xM13gNdFhAEpQ9dQJHt3naLvfg+LkF2ldgSLiF4T41lf1SQCM9QmkqPTn4TH568IRagg==}
+  '@fontsource-variable/inter@5.2.8':
+    resolution: {integrity: sha512-kOfP2D+ykbcX/P3IFnokOhVRNoTozo5/JxhAIVYLpea/UBmCQ/YWPBfWIDuBImXX/15KH+eKh4xpEUyS2sQQGQ==}
 
-  '@fontsource/noto-sans-tc@5.2.8':
-    resolution: {integrity: sha512-YGeoh/XCBJm9iSUuyDIpw0pd7I+XiO7HI3Tq+38j4fuIjykURHhUDRtjkIFkEzjg8BKZ6MNdyyXHXor1fdoGQg==}
+  '@fontsource-variable/noto-sans-tc@5.2.9':
+    resolution: {integrity: sha512-GhtbSE8IZTP3vZj7Fu1G/PERxguMe3jryAbHovSd22Rs7aYdbXQD8vBqkTT/tkHIUn6t2IFReTfgKUoQBPCe+w==}
 
-  '@fontsource/noto-serif-tc@5.2.8':
-    resolution: {integrity: sha512-GVduDMy/WyWd9MhITJcEJIb1ThsyfWRXTormNAOwgBsPsuguAvjfk5PJAj0mu0U9NK6s9DrB2acwKfRR3dO69g==}
+  '@fontsource-variable/noto-serif-tc@5.2.9':
+    resolution: {integrity: sha512-sKU8xfbsRhHVYg1BDkLc+Pvg5nnUsIN0/xj0R9Ep4bz1O5deWL2mqqssnhqoT0G9mWKOz5v7lq7sddJ2lRuvpg==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -3612,11 +3612,11 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@fontsource/inter@5.2.8': {}
+  '@fontsource-variable/inter@5.2.8': {}
 
-  '@fontsource/noto-sans-tc@5.2.8': {}
+  '@fontsource-variable/noto-sans-tc@5.2.9': {}
 
-  '@fontsource/noto-serif-tc@5.2.8': {}
+  '@fontsource-variable/noto-serif-tc@5.2.9': {}
 
   '@img/colour@1.0.0': {}
 
