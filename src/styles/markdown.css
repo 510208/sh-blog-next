@@ -4,10 +4,7 @@
 @import "@/styles/global.css";
 
 /* Import fonts from FontSource */
-@import "@fontsource/noto-serif-tc/300.css";
-@import "@fontsource/noto-serif-tc/400.css";
-@import "@fontsource/noto-serif-tc/500.css";
-@import "@fontsource/noto-serif-tc/700.css";
+@import "@fontsource-variable/noto-serif-tc";
 
 /* 設定預設 serif 字體 */
 @theme {
