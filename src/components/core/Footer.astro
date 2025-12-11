@@ -7,6 +7,7 @@ const today = new Date();
 ---
 
 <footer
+  transition:persist
   class="relative lg:h-[400px] px-4 py-10 overflow-hidden flex justify-center"
 >
   <!-- Background gradients -->
@@ -73,34 +74,33 @@ const today = new Date();
           </p>
         </div>
 
-        <!-- Middle section - Copyright -->
-        <div class="text-white text-[10px] leading-normal">
-          <p>
-            <a
-              href="https://samhacker.xyz/"
-              class="underline decoration-solid hover:text-white/80 transition-colors"
-            >
-              SamHacker Blog
-            </a>
-            © {today.getFullYear()} by
-            <a
-              href="https://510208.github.io/"
-              class="underline decoration-solid hover:text-white/80 transition-colors"
-            >
-              SamHacker
-            </a>
-            is licensed under
-            <a
-              href="https://creativecommons.org/licenses/by-nc/4.0/"
-              class="underline decoration-solid hover:text-white/80 transition-colors"
-            >
-              CC BY-NC 4.0
-            </a>
-          </p>
-        </div>
-
         <!-- Bottom section -->
         <div class="space-y-2">
+          <div class="text-white text-[10px] leading-normal">
+            <p>
+              <a
+                href="https://samhacker.xyz/"
+                class="underline decoration-solid hover:text-white/80 transition-colors"
+              >
+                SamHacker Blog
+              </a>
+              © {today.getFullYear()} by
+              <a
+                href="https://510208.github.io/"
+                class="underline decoration-solid hover:text-white/80 transition-colors"
+              >
+                SamHacker
+              </a>
+              is licensed under
+              <a
+                href="https://creativecommons.org/licenses/by-nc/4.0/"
+                class="underline decoration-solid hover:text-white/80 transition-colors"
+              >
+                CC BY-NC 4.0
+              </a>
+            </p>
+          </div>
+
           <p class="text-white/40 text-[10px] leading-normal">
             🇹🇼 © {today.getFullYear()} SamHacker
           </p>
@@ -146,6 +146,8 @@ const today = new Date();
               <Github className="w-6 h-6" />
             </a>
           </div>
+
+          <a href="/sitemap-0.xml">Sitemap</a>
         </div>
       </div>
     </div>

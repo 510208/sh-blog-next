@@ -10,6 +10,7 @@ const links = config.navBar.links;
 
 <header
   class="fixed top-[18px] left-1/2 -translate-x-1/2 z-50 w-full max-w-[1278px] px-4"
+  transition:persist
 >
   <nav
     class="backdrop-blur-[6px] bg-neutral-900/50 border border-white/10 rounded-2xl px-4 lg:px-8 h-14 flex items-center justify-between"
@@ -39,7 +40,7 @@ const links = config.navBar.links;
             <div class="flex items-center">
               <a
                 href={link.href}
-                class="px-4 h-6 flex items-center text-sm font-medium text-white uppercase hover:text-white/80 transition-colors"
+                class="px-2 lg:px-4 h-6 flex items-center text-sm font-medium text-white uppercase hover:text-white/80 transition-colors"
               >
                 {link.title}
               </a>
@@ -70,35 +71,45 @@ const links = config.navBar.links;
       </div>
 
       <!-- Action Buttons -->
-      <Button
-        client:load
-        variant="ghost"
-        size="icon"
-        className="rounded-lg shadow-sm hover:bg-white/5"
-        aria-label="Contact"
-      >
-        <Mail className="w-[18px] h-[18px]" />
-      </Button>
+      <div class="flex items-center gap-2">
+        <a
+          href="mailto:xux510208@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button
+            client:load
+            variant="ghost"
+            size="icon"
+            className="hidden sm:block rounded-lg shadow-sm hover:bg-white/5"
+            aria-label="Contact"
+          >
+            <Mail className="w-[18px] h-[18px]" />
+          </Button></a
+        >
 
-      <Button
-        client:load
-        variant="ghost"
-        size="icon"
-        className="rounded-lg shadow-sm hover:bg-white/5"
-        aria-label="Info"
-      >
-        <Info className="w-[18px] h-[18px]" />
-      </Button>
+        <a href="/about" target="_blank" rel="noopener noreferrer"
+          ><Button
+            client:load
+            variant="ghost"
+            size="icon"
+            className="hidden sm:block rounded-lg shadow-sm hover:bg-white/5"
+            aria-label="Info"
+          >
+            <Info className="w-[18px] h-[18px]" />
+          </Button></a
+        >
 
-      <Button
-        client:load
-        variant="ghost"
-        size="icon"
-        className="rounded-lg bg-neutral-950 border border-white/15 hover:bg-neutral-900"
-        aria-label="Search"
-      >
-        <Search className="w-[18px] h-[18px]" />
-      </Button>
+        <Button
+          client:load
+          variant="ghost"
+          size="icon"
+          className="rounded-lg bg-neutral-950 border border-white/15 hover:bg-neutral-900"
+          aria-label="Search"
+        >
+          <Search className="w-[18px] h-[18px]" />
+        </Button>
+      </div>
     </div>
   </nav>
 </header>

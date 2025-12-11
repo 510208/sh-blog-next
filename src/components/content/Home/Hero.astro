@@ -6,7 +6,10 @@ import { Image } from "astro:assets";
 ---
 
 <!-- Hero Section -->
-<section class="relative h-[700px] px-4 py-10 overflow-hidden">
+<section
+  class="relative h-[700px] px-4 py-10 overflow-hidden"
+  transition:name="hero"
+>
   <!-- Hero background image -->
   <div class="absolute inset-0 pointer-events-none">
     <Image
