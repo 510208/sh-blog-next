@@ -5,12 +5,15 @@ import Header from "../core/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts.ts";
 import ToTop from "../global/ToTop.astro";
 import "lenis/dist/lenis.css";
+import config from "shblog.config";
+
+const LANG = config.lang || "zh-TW";
 
 const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="zh-TW" class="dark">
+<html lang={LANG} class="dark">
   <head>
     <BaseHead title={title} description={description || SITE_DESCRIPTION} />
     <slot name="head" />
