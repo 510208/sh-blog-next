@@ -21,6 +21,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "ChenYuluoyan 2.0";
+  src: url("/fonts/ChenYuluoyan-2.0-Thin.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Import TailwindCSS Animation */
 @import "tw-animate-css";
 
