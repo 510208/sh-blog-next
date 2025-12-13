@@ -23,3 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 wrangler.jsonc
+
+# 文章
+src/content/*
