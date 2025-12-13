@@ -2,8 +2,9 @@
 import { SITE_TITLE } from "../../consts.ts";
 import config from "../../../shblog.config.ts";
 import { Button } from "@/components/ui/button.tsx";
-import { Mail, Info, Search } from "lucide-react";
+import { Mail, Info } from "lucide-react";
 import { FAVICON_URL } from "../../consts.ts";
+import { SearchDialog } from "../search/SearchDialog";
 
 const links = config.navBar.links;
 ---
@@ -100,15 +101,7 @@ const links = config.navBar.links;
           </Button></a
         >
 
-        <Button
-          client:load
-          variant="ghost"
-          size="icon"
-          className="rounded-lg bg-neutral-950 border border-white/15 hover:bg-neutral-900"
-          aria-label="Search"
-        >
-          <Search className="w-[18px] h-[18px]" />
-        </Button>
+        <SearchDialog client:load />
       </div>
     </div>
   </nav>
