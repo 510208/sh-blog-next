@@ -62,7 +62,7 @@ export default function BlogCard({
                 <div className="flex items-center gap-1.5">
                   <Calendar className="w-4 h-4" />
                   <time dateTime={pubDate.toISOString()}>
-                    {pubDate.toLocaleDateString("zh-TW", {
+                    {pubDate.toLocaleDateString("zh-Hant", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
