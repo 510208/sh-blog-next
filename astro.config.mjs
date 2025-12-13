@@ -21,23 +21,26 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
-import rehypeComponents from "rehype-components";
-import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
 
 import react from "@astrojs/react";
 
 import expressiveCode from "astro-expressive-code";
 
+import pagefind from "astro-pagefind";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://samhacker.xyz",
-  integrations: [expressiveCode(), mdx(), sitemap(), react()],
+  integrations: [expressiveCode(), mdx(), sitemap(), react(), pagefind()],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   experimental: {
     svgo: true,
   },
+
   markdown: {
     shikiConfig: {
       // 添加 Shiki transformer 來處理代碼區塊的 metadata
@@ -57,18 +60,18 @@ export default defineConfig({
       // rehype-code-block 必須在其他處理代碼的插件之後
       rehypeCodeBlock,
       // rehypeComponents 必須在 rehypeSlug 之前，以便正確處理 admonition
-      [
-        rehypeComponents,
-        {
-          components: {
-            note: (x, y) => AdmonitionComponent(x, y, "note"),
-            tip: (x, y) => AdmonitionComponent(x, y, "tip"),
-            important: (x, y) => AdmonitionComponent(x, y, "important"),
-            caution: (x, y) => AdmonitionComponent(x, y, "caution"),
-            warning: (x, y) => AdmonitionComponent(x, y, "warning"),
-          },
-        },
-      ],
+      // [
+      //   rehypeComponents,
+      //   {
+      //     components: {
+      //       note: (x, y) => AdmonitionComponent(x, y, "note"),
+      //       tip: (x, y) => AdmonitionComponent(x, y, "tip"),
+      //       important: (x, y) => AdmonitionComponent(x, y, "important"),
+      //       caution: (x, y) => AdmonitionComponent(x, y, "caution"),
+      //       warning: (x, y) => AdmonitionComponent(x, y, "warning"),
+      //     },
+      //   },
+      // ],
       rehypeSlug,
       [
         rehypeAutolinkHeadings,
