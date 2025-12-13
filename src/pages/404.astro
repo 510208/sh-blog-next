@@ -3,6 +3,7 @@ import BaseHead from "@/components/core/BaseHead.astro";
 import { SEPARATOR, SITE_TITLE } from "@/consts";
 
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import config from "shblog.config";
 
 // 取得使用者想前往的路徑
 const { url } = Astro.request;
@@ -27,10 +28,12 @@ if (url.toLocaleLowerCase().includes("rick") || isRickroll) {
 } else if (url.toLocaleLowerCase().includes("uwu")) {
   qr_img = "/assets/layouts/404/404_uwu.png";
 }
+
+const locale = config.lang || "zh-Hant";
 ---
 
 <!doctype html>
-<html lang="zh-Hant">
+<html lang={locale}>
   <!-- 
     冷知識，
     如果你看到了這則注釋，那你應該也是個網頁大神。
