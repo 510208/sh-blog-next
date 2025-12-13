@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Clock, Calendar } from "lucide-react";
+import config from "shblog.config";
 
 interface BlogCardProps {
   title: string;
@@ -62,7 +63,7 @@ export default function BlogCard({
                 <div className="flex items-center gap-1.5">
                   <Calendar className="w-4 h-4" />
                   <time dateTime={pubDate.toISOString()}>
-                    {pubDate.toLocaleDateString("zh-Hant", {
+                    {pubDate.toLocaleDateString(config.lang || "zh-Hant", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
