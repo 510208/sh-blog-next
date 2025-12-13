@@ -56,4 +56,7 @@ const CURRENT_PAGE_TITLE = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
+<!-- 在 </head> 或 </body> 前加入 -->
+<script is:inline src="/pagefind/pagefind.js"></script>
+
 <ViewTransitions />
