@@ -1,6 +1,7 @@
 import { Handshake, Home, Info, Phone } from "lucide-react";
+import type { ShBlogConfig } from "./src/types/shblog.config.d";
 
-const config = {
+const config: ShBlogConfig = {
   title: "SamHacker Blog",
   description:
     "我是一個熱愛分享技術的部落客，專注於 Minecraft 開服、網站建設、開源軟體等領域。",
@@ -109,6 +110,22 @@ const config = {
       tags: ["文學", "作家"],
     },
   ],
+  behavior: {
+    enableComment: true,
+    giscusConfig: {
+      repo: "510208/utterances",
+      repoId: "R_kgDOKOthQw",
+      category: "Announcements",
+      categoryId: "DIC_kwDOKOthQ84Czwi8",
+      mapping: "og:title",
+      strict: "0",
+      reactionsEnabled: "1",
+      emitMetadata: "1",
+      inputPosition: "top",
+      theme: "transparent_dark",
+      lang: "zh-TW",
+    },
+  },
 };
 
 export default config;
