@@ -87,9 +87,14 @@ const { title, description, pubDate, updatedDate, heroImage, headings } =
       <div class="overflow-hidden rounded-xl">
         {
           (heroImage && (
-            <Image width={1020} height={574} src={heroImage} alt="" />
+            <Image width={1020} height={574} src={heroImage} alt="文章封面" />
           )) || (
-            <Image width={1020} height={340} src={DEFAULT_POST_IMAGE} alt="" />
+            <Image
+              width={1020}
+              height={340}
+              src={DEFAULT_POST_IMAGE}
+              alt="預設文章封面"
+            />
           )
         }
       </div>
@@ -98,7 +103,7 @@ const { title, description, pubDate, updatedDate, heroImage, headings } =
         <slot />
       </div>
 
-      <div class="my-10">
+      <div id="comment-sep" class="my-10">
         <Separator />
       </div>
       <Comment />
