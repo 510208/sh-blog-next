@@ -1,0 +1,30 @@
+---
+import { MessageCircle } from "lucide-react";
+import { Button } from "../ui/button";
+
+const className = Astro.props.class;
+---
+
+<Button
+  id="to-comment-button"
+  aria-label="Jump to comments"
+  variant={"ghost"}
+  className={className}
+>
+  <MessageCircle className="w-5 h-5 text-white rotate-90" />
+</Button>
+
+<!-- Client-side JavaScript: Handles interaction -->
+<script>
+  const toCommentBtn = document.getElementById(
+    "to-comment-button"
+  ) as HTMLButtonElement;
+
+  toCommentBtn.addEventListener("click", () => {
+    const commentsSection = document.getElementById("comments");
+    if (commentsSection) {
+      const offsetTop = commentsSection.offsetTop - 60;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+    }
+  });
+</script>

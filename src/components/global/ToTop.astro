@@ -1,14 +1,18 @@
 ---
 import { Button } from "@/components/ui/button.tsx";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, MessageCircle } from "lucide-react";
+
+const className = Astro.props.class;
 ---
 
 <Button
   id="to-top-button"
   aria-label="Back to top"
-  className="fixed bottom-6 right-6 rounded-lg w-12 h-12 shadow-lg opacity-0 invisible transition-all duration-300 data-[show=true]:opacity-100 data-[show=true]:visible flex items-center justify-center backdrop-blur-md bg-white/10 dark:bg-black/20 border border-white/20 hover:bg-white/20 dark:hover:bg-black/30 active:scale-95"
+  variant={"ghost"}
+  className={`rounded-lg shadow-lg opacity-0 invisible transition-all duration-300 data-[show=true]:opacity-100 data-[show=true]:visible flex items-center justify-center backdrop-blur-md scale-110 ${className}`}
 >
-  <ArrowUp className="w-5 h-5 text-white" />
+  <ArrowUp className="w-5 h-5 text-white rotate-90" />
+  <span class="uppercase text-xs tracking-[0.3em]">Back to top</span>
 </Button>
 
 <!-- Client-side JavaScript: Handles interaction -->
