@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import type { InputPosition, Mapping } from "@giscus/react";
+import * as SimpleIcons from "simple-icons-astro";
 
 export interface NavLink {
   title: string;
@@ -58,6 +59,11 @@ export interface Style {
   titleSeparator: string;
 }
 
+export interface FooterLink {
+  socialMedia: keyof typeof SimpleIcons | string;
+  url: string;
+}
+
 export interface ShBlogConfig {
   title: string;
   description: string;
@@ -68,6 +74,7 @@ export interface ShBlogConfig {
   navBar: NavBar;
   friendLinks: FriendLink[];
   behavior: Behavior;
+  footer: Array<FooterLink>;
 }
 
 declare const config: ShBlogConfig;
