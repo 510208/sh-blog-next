@@ -126,6 +126,42 @@ const config: ShBlogConfig = {
       lang: "zh-TW",
     },
   },
+  footer: [
+    // socialMedia 的名稱請前往 https://simpleicons.org/ 上尋找，大小寫須完全吻合
+    // 如需使用自訂圖標，請提供圖標的完整 URL 或針對網站根目錄的相對路徑
+    {
+      socialMedia: "Threads",
+      url: "https://www.threads.com/@samhacker.xyz",
+    },
+    {
+      socialMedia: "Instagram",
+      url: "https://www.instagram.com/samhacker.xyz/",
+    },
+    {
+      socialMedia: "Github",
+      url: "https://github.com/510208",
+    },
+    {
+      socialMedia: "Bento",
+      url: "https://bento.me/510208",
+    },
+    {
+      socialMedia: "Githubpages",
+      url: "https://510208.github.io",
+    },
+    {
+      socialMedia: "Discord",
+      url: "https://discord.gg/R2eFtXgsRg",
+    },
+    {
+      socialMedia: "Figma",
+      url: "https://www.figma.com/@samhacker",
+    },
+    {
+      socialMedia: "/assets/logo/social_media/penana_symbol.svg",
+      url: "https://www.penana.com/user/234799/samhacker",
+    },
+  ],
 };
 
 export default config;
