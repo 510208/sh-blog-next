@@ -25,4 +25,6 @@ pnpm-debug.log*
 wrangler.jsonc
 
 # 文章
-src/content/*
+src/content/blog/*
+src/assets/blog/*
+public/assets/blog/*
