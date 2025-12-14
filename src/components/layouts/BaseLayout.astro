@@ -3,7 +3,7 @@ import BaseHead from "../core/BaseHead.astro";
 import Footer from "../core/Footer.astro";
 import Header from "../core/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts.ts";
-import ToTop from "../global/ToTop.astro";
+import StickyButtons from "../global/StickyButtons.astro";
 import "lenis/dist/lenis.css";
 import config from "shblog.config";
 
@@ -22,7 +22,7 @@ const { title, description } = Astro.props;
     <Header />
     <slot />
     <Footer />
-    <ToTop />
+    <StickyButtons />
   </body>
 </html>
 
