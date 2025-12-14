@@ -13,16 +13,25 @@ interface Props {
 
 const { headings } = Astro.props;
 
+// 清理文本：移除錨點符號
+const cleanHeadingText = (text: string): string => {
+  return text.replace("#", "").trim();
+};
+
 // 構建樹形結構，只顯示 h2 和其子項
 const tocTree = headings.reduce(
   (acc, heading) => {
     if (heading.depth === 2) {
       acc.push({
         ...heading,
+        text: cleanHeadingText(heading.text),
         children: [],
       });
     } else if (heading.depth > 2 && acc.length > 0) {
-      acc[acc.length - 1].children.push(heading);
+      acc[acc.length - 1].children.push({
+        ...heading,
+        text: cleanHeadingText(heading.text),
+      });
     }
     return acc;
   },
