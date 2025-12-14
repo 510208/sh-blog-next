@@ -131,6 +131,9 @@ importers:
       sharp:
         specifier: ^0.34.3
         version: 0.34.5
+      simple-icons-astro:
+        specifier: ^16.1.0
+        version: 16.1.0(astro@5.16.3(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.4.0
@@ -3029,6 +3032,11 @@ packages:
 
   shiki@3.17.0:
     resolution: {integrity: sha512-lUZfWsyW7czITYTdo/Tb6ZM4VfyXlzmKYBQBjTz+pBzPPkP08RgIt00Ls1Z50Cl3SfwJsue6WbJeF3UgqLVI9Q==}
+
+  simple-icons-astro@16.1.0:
+    resolution: {integrity: sha512-BzkYMmN1J8S2iAzMpNo1NtjNfdleWY7ZY39onZ1EWE7yCfjiOXfEo5zSIhX84OuNFeB/VlmWiEeQy6lc/jHrfQ==}
+    peerDependencies:
+      astro: '>=2.7.1'
 
   simple-swizzle@0.2.4:
     resolution: {integrity: sha512-nAu1WFPQSMNr2Zn9PGSZK9AGn4t/y97lEm+MXTtUDwfP0ksAIX4nO+6ruD9Jwut4C49SB1Ws+fbXsm/yScWOHw==}
@@ -6890,6 +6898,10 @@ snapshots:
       '@shikijs/types': 3.17.0
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
+
+  simple-icons-astro@16.1.0(astro@5.16.3(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
+    dependencies:
+      astro: 5.16.3(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
 
   simple-swizzle@0.2.4:
     dependencies:
