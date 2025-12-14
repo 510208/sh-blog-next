@@ -1,6 +1,6 @@
 ---
 import { Button } from "@/components/ui/button.tsx";
-import { ArrowUp, MessageCircle } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 const className = Astro.props.class;
 ---
@@ -11,8 +11,11 @@ const className = Astro.props.class;
   variant={"ghost"}
   className={`rounded-lg shadow-lg opacity-0 invisible transition-all duration-300 data-[show=true]:opacity-100 data-[show=true]:visible flex items-center justify-center backdrop-blur-md scale-110 ${className}`}
 >
-  <ArrowUp className="w-5 h-5 text-white rotate-90" />
-  <span class="uppercase text-xs tracking-[0.3em]">Back to top</span>
+  <ArrowUp className="text-white lg:rotate-90" size={20} />
+  <span class="hidden lg:block uppercase text-xs ml-4 tracking-[0.3em]"
+    >Back to top</span
+  >
+  <div class="hidden lg:block w-10 h-px bg-gray-300/50 ml-2"></div>
 </Button>
 
 <!-- Client-side JavaScript: Handles interaction -->
@@ -25,7 +28,7 @@ const className = Astro.props.class;
   const handleScroll = () => {
     const scrollTop =
       document.documentElement.scrollTop || document.body.scrollTop;
-    if (scrollTop > 300) {
+    if (scrollTop > 500) {
       scrollToTopBtn.setAttribute("data-show", "true");
     } else {
       scrollToTopBtn.setAttribute("data-show", "false");
