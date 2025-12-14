@@ -155,7 +155,7 @@ const tocTree = headings.reduce(
       });
     });
 
-  // 高亮當前閱讀位置
+  // 高亮當前閱讀位置並自動展開/關閉父項
   const setCurrent: IntersectionObserverCallback = (entries) => {
     for (let entry of entries) {
       const id = entry.target.id;
@@ -167,19 +167,62 @@ const tocTree = headings.reduce(
 
       if (!tocLink) continue;
 
+      const listItem = tocLink.closest("li");
+      if (!listItem) continue;
+
+      const hasToggle = listItem.querySelector(".toc-toggle");
+
       if (entry.isIntersecting) {
+        // 進入視圖：高亮並展開父項（僅限子項）
         document
-          .querySelectorAll("[data-blog-toc] a")
+          .querySelectorAll("[data-blog-toc] a.active")
           .forEach((e) => e.classList.remove("active"));
         tocLink.classList.add("active");
+
+        if (!hasToggle) {
+          const parentUl = listItem.closest(".toc-children");
+          if (parentUl) {
+            const parentId = parentUl.id;
+            if (parentId && parentUl.classList.contains("hidden")) {
+              parentUl.classList.remove("hidden");
+              const toggleButton = document.querySelector(
+                `[data-toggle-target="${parentId}"]`
+              );
+              if (toggleButton) {
+                const chevron = toggleButton.querySelector("svg");
+                if (chevron) chevron.style.transform = "rotate(-180deg)";
+              }
+            }
+          }
+        }
+      } else {
+        // 滾出視圖：移除 active 並關閉父項（僅限子項）
+        tocLink.classList.remove("active");
+
+        if (!hasToggle) {
+          const parentUl = listItem.closest(".toc-children");
+          if (parentUl) {
+            const parentId = parentUl.id;
+            if (parentId && !parentUl.classList.contains("hidden")) {
+              parentUl.classList.add("hidden");
+              const toggleButton = document.querySelector(
+                `[data-toggle-target="${parentId}"]`
+              );
+              if (toggleButton) {
+                const chevron = toggleButton.querySelector("svg");
+                if (chevron) chevron.style.transform = "rotate(0deg)";
+              }
+            }
+          }
+        }
       }
     }
   };
 
   const observerOption: IntersectionObserverInit = {
     root: null,
-    rootMargin: "0px 0px -180px",
-    threshold: 1.0,
+    rootMargin: "0px 0px -50%",
+    threshold: 0,
   };
 
   const headingObserver = new IntersectionObserver(setCurrent, observerOption);
