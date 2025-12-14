@@ -1,7 +1,6 @@
 ---
-import { Button } from "@/components/ui/button.tsx";
-import { Music, Globe, Github, Youtube, MessageSquare } from "lucide-react";
 import SiteRuntime from "../widgets/SiteRuntime.astro";
+import SocialLinks from "./SocialLinks.astro";
 
 const today = new Date();
 ---
@@ -106,46 +105,7 @@ const today = new Date();
           </p>
 
           <!-- Social links -->
-          <div
-            class="flex items-center justify-start md:justify-end gap-4 flex-wrap"
-          >
-            <a
-              href="https://discord.gg/yourserver"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Discord"
-              class="w-6 h-6 hover:opacity-70 text-white"
-            >
-              <MessageSquare className="w-6 h-6" />
-            </a>
-            <a
-              href="https://youtube.com/@penguinbrother_xux"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-              class="w-6 h-6 hover:opacity-70 text-white"
-            >
-              <Youtube className="w-6 h-6" />
-            </a>
-            <a
-              href="https://samhacker.xyz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Website"
-              class="w-6 h-6 hover:opacity-70 text-white"
-            >
-              <Globe className="w-6 h-6" />
-            </a>
-            <a
-              href="https://github.com/510208"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              class="w-6 h-6 hover:opacity-70 text-white"
-            >
-              <Github className="w-6 h-6" />
-            </a>
-          </div>
+          <SocialLinks />
 
           <a href="/sitemap-0.xml">Sitemap</a>
         </div>
