@@ -18,6 +18,7 @@ import { DEFAULT_POST_IMAGE, SEPARATOR } from "@/consts";
 
 import Toc from "../components/Toc.astro";
 import "katex/dist/katex.min.css";
+import Comment from "@/components/comment/Comment.astro";
 
 interface Props {
   title: string;
@@ -96,6 +97,11 @@ const { title, description, pubDate, updatedDate, heroImage, headings } =
       <div class="mt-10" id="post-content">
         <slot />
       </div>
+
+      <div class="my-10">
+        <Separator />
+      </div>
+      <Comment />
     </article>
 
     <!-- TOC Sidebar -->
