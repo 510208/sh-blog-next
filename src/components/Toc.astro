@@ -1,4 +1,5 @@
 ---
+import { Button } from "./ui/button";
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { ChevronDown } from "lucide-react";
 
@@ -54,17 +55,18 @@ const tocTree = headings.reduce(
                 >
                   <span class="flex-1 truncate">{item.text}</span>
                   {item.children.length > 0 && (
-                    <button
-                      class="toc-toggle shrink-0 w-5 h-5 flex items-center justify-center rounded hover:bg-slate-700 transition-colors"
+                    <Button
+                      className="toc-toggle shrink-0 w-5 h-5 flex items-center justify-center rounded hover:bg-slate-700 transition-colors"
                       data-toggle-target={`toc-children-${index}`}
                       type="button"
                       aria-label={`展開 ${item.text} 的子項`}
+                      asChild
                     >
                       <ChevronDown
                         size={16}
                         className="transition-transform duration-200"
                       />
-                    </button>
+                    </Button>
                   )}
                 </a>
                 {item.children.length > 0 && (
@@ -76,7 +78,8 @@ const tocTree = headings.reduce(
                       <li>
                         <a
                           href={`#${child.slug}`}
-                          class="toc-link toc-level-{child.depth} block px-8 py-1.5 text-xs text-slate-400 hover:text-slate-100 transition-colors duration-200 truncate"
+                          class={`toc-link toc-level-${child.depth} block py-1.5 text-xs text-slate-400 hover:text-slate-100 transition-colors duration-200 truncate`}
+                          style={`padding-left: ${1.5 + (child.depth - 3) * 1}rem;`}
                           data-heading-slug={child.slug}
                         >
                           {child.text}
