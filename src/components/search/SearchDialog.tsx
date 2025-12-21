@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { SearchIcon } from "@/components/ui/animated/search";
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import { SearchCommandBox } from "./SearchCommandBox";
 // import SearchComponent from "astro-pagefind/components/Search";
@@ -14,7 +14,7 @@ export function SearchDialog() {
           className="rounded-lg bg-neutral-950 border border-white/15 hover:bg-neutral-900"
           aria-label="Search"
         >
-          <Search className="w-[18px] h-[18px]" />
+          <SearchIcon size={18} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg p-0">
