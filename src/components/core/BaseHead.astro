@@ -5,7 +5,6 @@ import "../../styles/global.css";
 import type { ImageMetadata } from "astro";
 import FallbackImage from "../../assets/blog-placeholder-1.jpg";
 import { SITE_TITLE } from "../../consts.ts";
-import { ViewTransitions } from "astro:transitions";
 import config from "shblog.config";
 
 interface Props {
@@ -18,7 +17,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = FallbackImage } = Astro.props;
 const FAVICON = config.favicon || "/favicon.svg";
-const CURRENT_PAGE_TITLE = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
+// const CURRENT_PAGE_TITLE = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
 ---
 
 <!-- Global Metadata -->
@@ -58,5 +57,3 @@ const CURRENT_PAGE_TITLE = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
 
 <!-- 在 </head> 或 </body> 前加入 -->
 <script is:inline src="/pagefind/pagefind.js"></script>
-
-<ViewTransitions />

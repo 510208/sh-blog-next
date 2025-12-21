@@ -6,8 +6,8 @@ import {
 } from "@/components/ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React from "react";
-import { Twitter, Github, Mail, Rss } from "lucide-react";
-import { Button } from "../ui/button";
+import { Mail, Rss } from "lucide-react";
+import { Github, X } from "simple-icons-astro";
 
 interface LinksProp {
   icon: string;
@@ -26,10 +26,6 @@ interface AuthorCardProps {
 const getIconComponent = (iconName: string) => {
   // 需要其他圖標時，在此函數中添加相應的映射
   switch (iconName.toLowerCase()) {
-    case "twitter":
-      return Twitter;
-    case "github":
-      return Github;
     case "mail":
       return Mail;
     case "rss":
@@ -88,7 +84,7 @@ function AuthorCard({
                       aria-label={link.label}
                       className="inline-flex items-center justify-center p-1 rounded hover:bg-gray-700 transition-colors"
                     >
-                      {IconComponent && <IconComponent size={18} />}
+                      {IconComponent && <IconComponent />}
                     </a>
                   </TooltipTrigger>
                   <TooltipContent>
