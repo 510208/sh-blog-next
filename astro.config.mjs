@@ -2,6 +2,7 @@
 
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import partytown from "@astrojs/partytown";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
@@ -28,10 +29,24 @@ import expressiveCode from "astro-expressive-code";
 
 import pagefind from "astro-pagefind";
 
+const isDev = process.env.NODE_ENV === "development";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://samhacker.xyz",
-  integrations: [expressiveCode(), mdx(), sitemap(), react(), pagefind()],
+  integrations: [
+    isDev ? null : expressiveCode(),
+    mdx(),
+    sitemap(),
+    react(),
+    isDev ? null : pagefind(),
+    partytown({
+      // Optional: Add config options here
+      config: {
+        forward: ["dataLayer.push", "gtag"],
+      },
+    }),
+  ].filter(Boolean),
 
   vite: {
     plugins: [tailwindcss()],
