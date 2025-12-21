@@ -51,6 +51,10 @@ export interface GiscusConfig {
 export interface Behavior {
   enableComment: boolean;
   giscusConfig: GiscusConfig;
+  enableGTM: boolean;
+  gtmConfig: {
+    googleTagManagerId: string;
+  };
 }
 
 export interface Style {
