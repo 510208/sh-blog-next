@@ -77,7 +77,7 @@ const { title, description, pubDate, updatedDate, heroImage, headings } =
             )
           }
         </time>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" client:only="react" />
         <!-- 文章作者 -->
         <div class="text-sm text-gray-500 flex items-center gap-1">
           <User size={20} />作者 {config.author.name}
@@ -104,7 +104,7 @@ const { title, description, pubDate, updatedDate, heroImage, headings } =
       </div>
 
       <div id="comment-sep" class="my-10">
-        <Separator />
+        <Separator client:only="react" />
       </div>
       <Comment />
     </article>

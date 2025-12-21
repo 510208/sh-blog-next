@@ -1,11 +1,14 @@
+"use client";
+
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Clock, Calendar } from "lucide-react";
+import { useEffect, useState } from "react";
 import config from "shblog.config";
 
 interface BlogCardProps {
   title: string;
   description?: string;
-  pubDate: Date;
+  pubDate: string; // ISO string from server
   heroImage?: string;
   href: string;
   isLoading?: boolean;
@@ -19,6 +22,21 @@ export default function BlogCard({
   href,
   isLoading = false,
 }: BlogCardProps) {
+  const [formattedDate, setFormattedDate] = useState<string>("");
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    const date = new Date(pubDate);
+    setFormattedDate(
+      date.toLocaleDateString(config.lang || "zh-Hant", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    );
+    setIsHydrated(true);
+  }, [pubDate]);
+
   return (
     <a href={href} className="block">
       <Card
@@ -58,26 +76,20 @@ export default function BlogCard({
 
           {/* Metadata */}
           <div className="flex items-center gap-3 text-sm text-neutral-500">
-            {!isLoading ? (
+            {!isLoading && isHydrated ? (
               <>
                 <div className="flex items-center gap-1.5">
                   <Calendar className="w-4 h-4" />
-                  <time dateTime={pubDate.toISOString()}>
-                    {pubDate.toLocaleDateString(config.lang || "zh-Hant", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
+                  <time dateTime={pubDate}>{formattedDate}</time>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4" />
                   <span>5 min read</span>
                 </div>
               </>
-            ) : (
+            ) : isLoading ? (
               <div className="h-5 w-32 bg-neutral-700 rounded-md animate-pulse" />
-            )}
+            ) : null}
           </div>
         </CardContent>
       </Card>
