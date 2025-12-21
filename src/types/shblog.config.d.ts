@@ -55,6 +55,7 @@ export interface Behavior {
   gtmConfig: {
     googleTagManagerId: string;
   };
+  enable404EasterEgg: boolean;
 }
 
 export interface Style {

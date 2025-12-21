@@ -18,19 +18,21 @@ let description =
   "如需此問題與可能修正的詳細資訊，請回去 https://samhacker.xyz";
 
 // 彩蛋
-if (url.toLocaleLowerCase().includes("rick") || random < 0.1) {
-  qr_img = "/assets/layouts/404/404_rickroll.svg";
-  description =
-    "如需此問題與可能修正的詳細資訊，請前往 https://api.samhacker.xyz/rick 觀看驚喜影片";
-} else if (
-  url.toLocaleLowerCase().includes("114514") ||
-  url.toLocaleLowerCase().includes("1919810") ||
-  random < 0.2
-) {
-  qr_img = "/assets/layouts/404/404_yajyuusenpai.png";
-  description = "如需此問題與可能修正的詳細資訊，請先重新看一遍銀夢（確信";
-} else if (url.toLocaleLowerCase().includes("uwu") || random < 0.3) {
-  qr_img = "/assets/layouts/404/404_uwu.png";
+if (config.behavior.enable404EasterEgg) {
+  if (url.toLocaleLowerCase().includes("rick") || random < 0.1) {
+    qr_img = "/assets/layouts/404/404_rickroll.svg";
+    description =
+      "如需此問題與可能修正的詳細資訊，請前往 https://api.samhacker.xyz/rick 觀看驚喜影片";
+  } else if (
+    url.toLocaleLowerCase().includes("114514") ||
+    url.toLocaleLowerCase().includes("1919810") ||
+    random < 0.2
+  ) {
+    qr_img = "/assets/layouts/404/404_yajyuusenpai.png";
+    description = "如需此問題與可能修正的詳細資訊，請先重新看一遍銀夢（確信";
+  } else if (url.toLocaleLowerCase().includes("uwu") || random < 0.3) {
+    qr_img = "/assets/layouts/404/404_uwu.png";
+  }
 }
 
 const locale = config.lang || "zh-Hant";
