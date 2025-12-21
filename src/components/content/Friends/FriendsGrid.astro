@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 
 import config from "shblog.config";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FriendAvatar } from "./FriendAvatar";
 
 const items = config.friendLinks;
@@ -31,7 +30,7 @@ const items = config.friendLinks;
                 <div class="flex flex-row flex-nowrap items-center">
                   {item.tags &&
                     item.tags.length > 0 &&
-                    item.tags.map((tag, i) => (
+                    item.tags.map((tag, _i) => (
                       <>
                         <Badge className="mr-2 mt-2">{tag}</Badge>
                       </>

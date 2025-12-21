@@ -8,7 +8,7 @@ const postsPerPage = config.style.postsPerPage || 6;
 const allPosts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-const totalPages = Math.ceil(allPosts.length / postsPerPage); // Calculate total pages based on posts per page
+// const totalPages = Math.ceil(allPosts.length / postsPerPage); // Calculate total pages based on posts per page
 
 // Serialize posts for client-side consumption (convert dates to ISO strings)
 const serializedPosts = allPosts.map((post) => ({
