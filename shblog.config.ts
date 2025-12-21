@@ -125,6 +125,10 @@ const config: ShBlogConfig = {
       theme: "transparent_dark",
       lang: "zh-TW",
     },
+    enableGTM: true,
+    gtmConfig: {
+      googleTagManagerId: "GTM-N2SPWPQW",
+    },
   },
   footer: [
     // socialMedia 的名稱請前往 https://simpleicons.org/ 上尋找，大小寫須完全吻合
