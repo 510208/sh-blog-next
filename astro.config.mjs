@@ -22,6 +22,8 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
+import rehypeComponents from "rehype-components";
+import { AdmonitionComponent } from "./src/plugins/rehype-components-admonition.mjs";
 
 import react from "@astrojs/react";
 
@@ -69,23 +71,19 @@ export default defineConfig({
     ],
     rehypePlugins: [
       rehypeKatex,
-      rehypeCodeTitles,
-      // rehype-code-block 必須在其他處理代碼的插件之後
-      rehypeCodeBlock,
-      // rehypeComponents 必須在 rehypeSlug 之前，以便正確處理 admonition
-      // [
-      //   rehypeComponents,
-      //   {
-      //     components: {
-      //       note: (x, y) => AdmonitionComponent(x, y, "note"),
-      //       tip: (x, y) => AdmonitionComponent(x, y, "tip"),
-      //       important: (x, y) => AdmonitionComponent(x, y, "important"),
-      //       caution: (x, y) => AdmonitionComponent(x, y, "caution"),
-      //       warning: (x, y) => AdmonitionComponent(x, y, "warning"),
-      //     },
-      //   },
-      // ],
       rehypeSlug,
+      [
+        rehypeComponents,
+        {
+          components: {
+            note: (x, y) => AdmonitionComponent(x, y, "note"),
+            tip: (x, y) => AdmonitionComponent(x, y, "tip"),
+            important: (x, y) => AdmonitionComponent(x, y, "important"),
+            caution: (x, y) => AdmonitionComponent(x, y, "caution"),
+            warning: (x, y) => AdmonitionComponent(x, y, "warning"),
+          },
+        },
+      ],
       [
         rehypeAutolinkHeadings,
         {
@@ -109,6 +107,8 @@ export default defineConfig({
           },
         },
       ],
+      rehypeCodeTitles,
+      rehypeCodeBlock,
     ],
   },
 });
