@@ -1,6 +1,9 @@
 export function HeroTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
+    <h1
+      data-pagefind-meta="title"
+      className="text-4xl md:text-6xl font-bold text-white leading-tight mb-4"
+    >
       {children}
     </h1>
   );
