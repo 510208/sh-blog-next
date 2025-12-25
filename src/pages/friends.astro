@@ -4,6 +4,7 @@ import Hero from "@/components/content/Home/Hero.astro";
 import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
 import BaseLayout from "@/components/layouts/BaseLayout.astro";
 import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
+import Sidebar from "@/components/Sidebar.astro";
 ---
 
 <BaseLayout title="友情連結" description="這裡是我的一些朋友或推薦的網站清單。">
@@ -15,5 +16,10 @@ import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
       </HeroSubtitle>
     </div>
   </Hero>
-  <BaseMainContent><FriendsGrid /></BaseMainContent>
+  <BaseMainContent>
+    <div class="flex-1">
+      <FriendsGrid />
+    </div>
+    <Sidebar />
+  </BaseMainContent>
 </BaseLayout>
