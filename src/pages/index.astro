@@ -37,7 +37,7 @@ const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
       featuredPost && (
         <a
           href={`/blog/${featuredPost.id}/`}
-          class="border border-white/20 rounded-xl overflow-hidden backdrop-blur-sm bg-black/30 hover:bg-black/50 transition-all group h-[230px] flex flex-col justify-end p-6"
+          class="border border-white/20 rounded-xl overflow-hidden backdrop-blur-sm bg-black/30 hover:bg-black/50 transition-all group h-57.5 flex flex-col justify-end p-6"
           style={{
             backgroundImage: featuredPost.data.heroImage
               ? `url(${featuredPost.data.heroImage.src})`
