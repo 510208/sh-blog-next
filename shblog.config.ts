@@ -109,6 +109,13 @@ const config: ShBlogConfig = {
       siteUrl: "https://www.penana.com/user/233957/%E7%92%90%E6%B2%90",
       tags: ["文學", "作家"],
     },
+    {
+      title: "Ruixue",
+      imgUrl: "/assets/friends/ruixue.webp",
+      desc: "喜歡AI、程式、還有可愛的小蘿莉,也愛分享生活趣事,正在經營自己的Discord機器人Minging-ru與社群,一步步打造專屬的數位天地~",
+      siteUrl: "https://ruixue.onrender.com/",
+      tags: ["Discord Bot", "技術", "生活"],
+    },
   ],
   behavior: {
     enableComment: true,
