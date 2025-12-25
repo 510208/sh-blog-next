@@ -137,6 +137,9 @@ importers:
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
+      remark-github-beta-blockquote-admonitions:
+        specifier: ^3.1.1
+        version: 3.1.1
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -156,6 +159,9 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
     devDependencies:
+      '@types/mdast':
+        specifier: ^4.0.4
+        version: 4.0.4
       pagefind:
         specifier: ^1.4.0
         version: 1.4.0
@@ -3169,6 +3175,9 @@ packages:
   remark-github-admonitions-to-directives@2.1.0:
     resolution: {integrity: sha512-bI3E4Oj1pKY3ym2IQrrVCdORgEu0+mSrWgpCYFNy8QvytfnLs/nAacVPjkWU/JzDMUiQio2k4nTFP7bsIr9TSA==}
     engines: {pnpm: '>=9.0.0'}
+
+  remark-github-beta-blockquote-admonitions@3.1.1:
+    resolution: {integrity: sha512-36ofXpQnz9wrZthe0WB1qtNCgflHFsz7VoUG/j+WJU/GxMpo7Tp+qN86s/Tvx6MiusQIDg0BZhWXnfklEXRiVw==}
 
   remark-math@6.0.0:
     resolution: {integrity: sha512-MMqgnP74Igy+S3WwnhQ7kqGlEerTETXMvJhrUzDikVZ2/uogJCb+WHUg97hK9/jcfc0dkD73s3LN8zU49cTEtA==}
@@ -7297,6 +7306,10 @@ snapshots:
       unist-util-visit: 5.0.0
     transitivePeerDependencies:
       - supports-color
+
+  remark-github-beta-blockquote-admonitions@3.1.1:
+    dependencies:
+      unist-util-visit: 5.0.0
 
   remark-math@6.0.0:
     dependencies:

@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./global.css";
+@import "./markdown-extended.css";
 
 /* Import fonts from FontSource */
 @import "@fontsource-variable/noto-serif-tc";
