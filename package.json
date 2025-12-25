@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "pagefind --site dist",
+    "postbuild": "pagefind --site dist  --serve",
     "preview": "astro preview",
     "astro": "astro",
     "wrangler": "wrangler",
