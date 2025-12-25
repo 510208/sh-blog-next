@@ -1,0 +1,15 @@
+@import "./global.css";
+
+:root {
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--color-primary);
+  --pagefind-ui-text: var(--color-foreground);
+  --pagefind-ui-background: var(--color-background);
+  --pagefind-ui-border: var(--color-border);
+  --pagefind-ui-tag: var(--color-secondary);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: var(--radius-md);
+  --pagefind-ui-image-border-radius: var(--radius-md);
+  --pagefind-ui-image-box-ratio: 3 / 2;
+  --pagefind-ui-font: var(--font-sans);
+}
