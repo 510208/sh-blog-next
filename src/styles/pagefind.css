@@ -7,9 +7,36 @@
   --pagefind-ui-background: var(--color-background);
   --pagefind-ui-border: var(--color-border);
   --pagefind-ui-tag: var(--color-secondary);
-  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-width: 2px;
   --pagefind-ui-border-radius: var(--radius-md);
   --pagefind-ui-image-border-radius: var(--radius-md);
   --pagefind-ui-image-box-ratio: 3 / 2;
   --pagefind-ui-font: var(--font-sans);
+}
+
+#search input[type="text"] {
+  height: 48px;
+  @apply shadow-xs transition-[color,box-shadow] outline-none;
+  @apply focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px];
+  @apply aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive;
+  @apply text-lg font-normal;
+  background-color: color-mix(in oklab, var(--input) 30%, transparent);
+}
+
+#search {
+  @apply mx-auto w-full;
+}
+
+#search .pagefind-ui__form::before {
+  height: calc(18px * 1);
+  top: calc((48px - (18px * 1)) / 2);
+}
+
+#search .pagefind-ui__form {
+  @apply justify-center;
+}
+
+#search .pagefind-ui__form button {
+  height: calc(18px * 1);
+  top: calc((48px - (18px * 1)) / 2);
 }
