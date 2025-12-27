@@ -1,9 +1,12 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card.tsx";
-import { Clock, Calendar } from "lucide-react";
+import { Clock, Calendar, Tag } from "lucide-react";
+import Tags from "../ui/Tags.tsx";
 import { useEffect, useState } from "react";
 import config from "shblog.config";
+import { CalendarDaysIcon } from "../ui/animated/calendar-days.tsx";
+import { BookmarkIcon } from "../ui/animated/bookmark.tsx";
 
 interface BlogCardProps {
   title: string;
@@ -12,6 +15,8 @@ interface BlogCardProps {
   heroImage?: string;
   href: string;
   isLoading?: boolean;
+  category: string | null;
+  tags: string[] | null;
 }
 
 export default function BlogCard({
@@ -20,6 +25,8 @@ export default function BlogCard({
   pubDate,
   heroImage,
   href,
+  category,
+  tags,
   isLoading = false,
 }: BlogCardProps) {
   const [formattedDate, setFormattedDate] = useState<string>("");
@@ -40,13 +47,13 @@ export default function BlogCard({
   return (
     <a href={href} className="block">
       <Card
-        className={`backdrop-blur-[10px] border border-white/10 rounded-[14px] overflow-hidden transition-all hover:border-white/20 ${
+        className={`backdrop-blur-[10px] border border-white/10 rounded-[14px] transition-all hover:border-white/20 ${
           isLoading ? "bg-neutral-800" : "bg-neutral-900"
         }`}
       >
         <CardContent className="flex flex-col gap-2.5">
           {/* Image */}
-          <div className="h-[180px] rounded-2xl overflow-hidden bg-neutral-700">
+          <div className="h-45 rounded-2xl overflow-hidden bg-neutral-700">
             {!isLoading && heroImage && (
               <img
                 src={heroImage}
@@ -75,17 +82,43 @@ export default function BlogCard({
           )}
 
           {/* Metadata */}
-          <div className="flex items-center gap-3 text-sm text-neutral-500">
+          <div className="flex items-center gap-3 text-sm text-neutral-500 flex-wrap">
             {!isLoading && isHydrated ? (
               <>
+                {/* 文章發表日期 */}
                 <div className="flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4" />
+                  <CalendarDaysIcon size={16} />
                   <time dateTime={pubDate}>{formattedDate}</time>
                 </div>
-                <div className="flex items-center gap-1.5">
+
+                {/* 估計閱讀時間 */}
+                {/* <div className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4" />
                   <span>5 min read</span>
-                </div>
+                </div> */}
+
+                {/* 文章標籤 */}
+                {tags && (
+                  <div className="flex items-center gap-1.5">
+                    <Tag size={16} />
+                    <Tags tags={tags} />
+                  </div>
+                )}
+
+                {/* 文章分類 */}
+                {category && (
+                  <>
+                    <div className="flex items-center gap-1.5">
+                      <BookmarkIcon size={16} />
+                      <a
+                        className="hover:text-white transition-all"
+                        href={`/blog/categories/${category.toLowerCase()}`}
+                      >
+                        <span>{category}</span>
+                      </a>
+                    </div>
+                  </>
+                )}
               </>
             ) : isLoading ? (
               <div className="h-5 w-32 bg-neutral-700 rounded-md animate-pulse" />
