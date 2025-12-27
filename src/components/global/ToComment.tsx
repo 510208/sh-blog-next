@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import { MessageCircleMoreIcon } from "../ui/animated/message-circle-more";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
@@ -13,8 +13,12 @@ export const ToCommentButton = ({ className }: { className?: string }) => {
             aria-label="Jump to comments"
             variant={"ghost"}
             className={`hidden lg:block backdrop-blur-md ${className}`}
+            asChild
           >
-            <MessageCircle className="w-5 h-5 text-white lg:rotate-90" />
+            <MessageCircleMoreIcon
+              size={20}
+              className="text-white lg:rotate-90"
+            />
           </Button>
 
           {/* 手機版回頂端按鈕 */}
@@ -23,8 +27,12 @@ export const ToCommentButton = ({ className }: { className?: string }) => {
             aria-label="Jump to comments"
             variant={"outline"}
             className={`lg:hidden block backdrop-blur-md ${className}`}
+            asChild
           >
-            <MessageCircle className="w-5 h-5 text-white lg:rotate-90" />
+            <MessageCircleMoreIcon
+              size={20}
+              className="text-white lg:rotate-90"
+            />
           </Button>
         </>
       </TooltipTrigger>
