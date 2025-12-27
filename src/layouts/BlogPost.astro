@@ -11,7 +11,7 @@ import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
 // @ts-ignore
 import Sidebar from "@/components/Sidebar.astro";
 
-import { CalendarDays, User } from "lucide-react";
+import { CalendarDays, Tag, User } from "lucide-react";
 import config from "shblog.config";
 import { Separator } from "@/components/ui/separator";
 import { DEFAULT_POST_IMAGE, SEPARATOR } from "@/consts";
@@ -19,6 +19,7 @@ import { DEFAULT_POST_IMAGE, SEPARATOR } from "@/consts";
 import Toc from "../components/Toc.astro";
 import "katex/dist/katex.min.css";
 import Comment from "@/components/comment/Comment.astro";
+import Tags from "@/components/Tags.astro";
 
 interface Props {
   title: string;
@@ -31,9 +32,10 @@ interface Props {
     slug: string;
     text: string;
   }>;
+  tags?: CollectionEntry<"blog">["data"]["tags"];
 }
 
-const { title, description, pubDate, updatedDate, heroImage, headings } =
+const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
   Astro.props;
 ---
 
@@ -63,26 +65,37 @@ const { title, description, pubDate, updatedDate, heroImage, headings } =
   <BaseMainContent>
     <!-- Main column: Blog post content -->
     <article class="flex-1">
-      <!-- 文章資訊 -->
-      <div class="flex mb-4 gap-2">
-        <!-- 文章日期 -->
-        <time class="text-sm text-gray-500 flex items-center gap-1">
-          <CalendarDays size={20} />文章發布時間<FormattedDate date={pubDate} />
-          {
-            updatedDate && (
-              <>
-                <Separator orientation="vertical" /> 更新時間：
-                <FormattedDate date={updatedDate} />
-              </>
-            )
-          }
-        </time>
-        <Separator orientation="vertical" client:only="react" />
-        <!-- 文章作者 -->
-        <div class="text-sm text-gray-500 flex items-center gap-1">
-          <User size={20} />作者 {config.author.name}
+      <div>
+        <!-- 文章資訊 -->
+        <div class="flex mb-4 gap-2">
+          <!-- 文章日期 -->
+          <time class="text-sm text-gray-500 flex items-center gap-1">
+            <CalendarDays size={20} />文章發布時間<FormattedDate
+              date={pubDate}
+            />
+            {
+              updatedDate && (
+                <>
+                  <Separator orientation="vertical" /> 更新時間：
+                  <FormattedDate date={updatedDate} />
+                </>
+              )
+            }
+          </time>
+          <Separator orientation="vertical" client:only="react" />
+          <!-- 文章作者 -->
+          <div class="text-sm text-gray-500 flex items-center gap-1">
+            <User size={20} />作者 {config.author.name}
+          </div>
+        </div>
+        <div class="flex mb-4 gap-2">
+          <!-- 文章標籤 -->
+          <div class="text-sm text-gray-500 flex items-center gap-1">
+            <Tag size={20} />標籤 <Tags tags={tags} />
+          </div>
         </div>
       </div>
+
       <!-- 文章圖片 -->
       <div class="overflow-hidden rounded-xl">
         {
