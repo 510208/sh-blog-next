@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  src: string;
+  alt?: string;
+  title?: string;
+  [key: string]: any;
+}
+
+const { src, alt = "", title, ...rest } = Astro.props;
+
+// 若 src 是遠端圖片或路徑，提供預設寬高；本地 astro:assets 會自動計算
+const width = rest.width || 1020;
+const height = rest.height || 576;
+---
+
+<Image {src} alt={alt} width={width} height={height} title={title} {...rest} />
