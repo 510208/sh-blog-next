@@ -1,0 +1,20 @@
+---
+import config from "shblog.config";
+
+interface Props {
+  date: Date;
+}
+
+const { date } = Astro.props;
+const locale = config.lang || "zh-Hant";
+---
+
+<time datetime={date.toISOString()}>
+  {
+    date.toLocaleDateString(locale, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+  }
+</time>

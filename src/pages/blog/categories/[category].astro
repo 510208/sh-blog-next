@@ -1,0 +1,126 @@
+---
+import { getCollection } from "astro:content";
+import { sortByDate } from "../../../lib/sortByDate";
+import BaseLayout from "@/components/layouts/BaseLayout.astro";
+import { SITE_TITLE } from "@/consts";
+import config from "shblog.config";
+import Hero from "@/components/content/Home/Hero.astro";
+import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
+import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
+import Sidebar from "@/components/Sidebar.astro";
+import TimelineSinglePost from "@/components/ui/timeline/TimelineSinglePost.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  // 取得所有不重複的分類
+  const categories = [
+    ...new Set(
+      posts.map((post: any) => post.data.category).filter((c: any) => !!c)
+    ),
+  ];
+
+  // 建立每個分類的路徑
+  return categories.map((category) => {
+    return {
+      params: { category: category },
+      props: {
+        category: category,
+        posts: sortByDate(posts.filter((p) => p.data.category === category)),
+      },
+    };
+  });
+}
+
+const { posts, category } = Astro.props as any;
+
+// 按年份分組文章
+const postsByYear = posts.reduce((acc: any, post: any) => {
+  const year = new Date(post.data.pubDate).getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(post);
+  return acc;
+}, {});
+
+const years = Object.keys(postsByYear).sort(
+  (a, b) => parseInt(b) - parseInt(a)
+);
+---
+
+<BaseLayout
+  title={`分類 ${category} ${config.style.titleSeparator} ${SITE_TITLE}`}
+  description={`分類為 ${category} 的文章列表`}
+>
+  <!-- Hero Section -->
+  <Hero>
+    <div class="lg:col-span-2" slot="left">
+      <HeroTitle>{category}</HeroTitle>
+      <HeroSubtitle slot="right">
+        以下是分類為 {category} 的所有文章列表。
+      </HeroSubtitle>
+    </div>
+  </Hero>
+
+  <BaseMainContent>
+    <div class="flex-1">
+      <div class="space-y-8">
+        {
+          years.map((year) => {
+            const yearPosts = postsByYear[year];
+            return (
+              <div class="relative">
+                {/* 年份標題 */}
+                <div class="flex items-center gap-4 mb-6">
+                  <h2 class="text-4xl font-bold text-gray-900 dark:text-white">
+                    {year}
+                  </h2>
+                  <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-green-500" />
+                    <span class="text-sm text-gray-500 dark:text-gray-400">
+                      {yearPosts.length} 篇文章
+                    </span>
+                  </div>
+                </div>
+
+                {/* 時間線 */}
+                <div class="relative pl-8 border-l-2 border-gray-200 dark:border-gray-700">
+                  {yearPosts.map((post: any, index: number) => {
+                    const month = new Date(post.data.pubDate)
+                      .toLocaleDateString("zh-TW", {
+                        month: "2-digit",
+                        day: "2-digit",
+                      })
+                      .replace("/", "-");
+                    const postTags = post.data.tags || [];
+
+                    return (
+                      <div class="relative mb-8 group">
+                        {/* 時間線圓點 */}
+                        <div class="absolute -left-9.75 top-1 w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-600 group-hover:bg-green-500 transition-colors" />
+
+                        {/* 日期標籤 */}
+                        <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                          {month}
+                        </div>
+
+                        {/* 文章卡片 */}
+                        <TimelineSinglePost
+                          postData={post}
+                          postTags={postTags}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <Sidebar />
+  </BaseMainContent>
+</BaseLayout>

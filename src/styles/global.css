@@ -1,31 +1,41 @@
 /* Import Tailwind CSS v4 */
 @import "tailwindcss";
 
+@tailwind utilities;
+
 /* Import fonts from FontSource */
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/600.css";
-@import "@fontsource/inter/700.css";
-@import "@fontsource/noto-sans-tc/300.css";
-@import "@fontsource/noto-sans-tc/400.css";
-@import "@fontsource/noto-sans-tc/500.css";
-@import "@fontsource/noto-sans-tc/700.css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/noto-sans-tc";
+
+@font-face {
+  font-family: "Maple Font";
+  src: url("/fonts/SamhackerMapleFontMono-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ChenYuluoyan 2.0";
+  src: url("/fonts/ChenYuluoyan-2.0-Thin.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Import TailwindCSS Animation */
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* Custom variants*/
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Tailwind CSS v4 Theme Configuration */
 @theme {
   /* Font families */
   --font-sans: "Inter", "Noto Sans TC", sans-serif;
-  --font-display: "ChenYuluoyan 2.0", "Noto Sans TC", sans-serif;
-
-  /* Colors from Figma design */
-  --color-neutral-950: #0a0a0a;
-  --color-neutral-900: #171717;
-  --color-neutral-800: #262626;
-  --color-neutral-700: #404040;
-  --color-indigo-900: #312e81;
+  --font-mono: "Maple Font", "Fira Code", monospace;
+  --font-display: "Inter", "Noto Sans TC", sans-serif;
+  --font-funny: "ChenYuluoyan 2.0", "Noto Sans TC", sans-serif;
 
   /* Design system breakpoints */
   --breakpoint-sm: 640px;
@@ -113,6 +123,12 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  --admonitions-color-tip: oklch(0.7 0.14 180) oklch(0.75 0.14 180);
+  --admonitions-color-note: oklch(0.7 0.14 250) oklch(0.75 0.14 250);
+  --admonitions-color-important: oklch(0.7 0.14 310) oklch(0.75 0.14 310);
+  --admonitions-color-warning: oklch(0.7 0.14 60) oklch(0.75 0.14 60);
+  --admonitions-color-caution: oklch(0.6 0.2 25) oklch(0.65 0.2 25);
 }
 
 @layer base {
@@ -122,4 +138,15 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Improve Scroll */
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* ::selected 效果 */
+::selection {
+  @apply bg-white/20 text-white;
 }

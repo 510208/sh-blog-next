@@ -1,0 +1,29 @@
+---
+import Giscus from "@giscus/react";
+
+import config from "shblog.config";
+
+const GISCUS_ENABLED = config.behavior.enableComment || false;
+const GISCUS_CONFIG = config.behavior.giscusConfig;
+---
+
+{
+  GISCUS_ENABLED && (
+    <Giscus
+      id="comments"
+      repo={GISCUS_CONFIG.repo}
+      repoId={GISCUS_CONFIG.repoId}
+      category={GISCUS_CONFIG.category}
+      categoryId={GISCUS_CONFIG.categoryId}
+      mapping={GISCUS_CONFIG.mapping}
+      strict={GISCUS_CONFIG.strict}
+      reactionsEnabled={GISCUS_CONFIG.reactionsEnabled}
+      emitMetadata={GISCUS_CONFIG.emitMetadata}
+      inputPosition={GISCUS_CONFIG.inputPosition}
+      theme={GISCUS_CONFIG.theme}
+      lang={GISCUS_CONFIG.lang}
+      loading="lazy"
+      client:only="react"
+    />
+  )
+}

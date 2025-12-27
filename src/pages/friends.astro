@@ -1,0 +1,25 @@
+---
+import FriendsGrid from "@/components/content/Friends/FriendsGrid.astro";
+import Hero from "@/components/content/Home/Hero.astro";
+import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
+import BaseLayout from "@/components/layouts/BaseLayout.astro";
+import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
+import Sidebar from "@/components/Sidebar.astro";
+---
+
+<BaseLayout title="友情連結" description="這裡是我的一些朋友或推薦的網站清單。">
+  <Hero>
+    <div class="lg:col-span-2" slot="left">
+      <HeroTitle> 友情連結 </HeroTitle>
+      <HeroSubtitle slot="right">
+        這裡是我的一些朋友或推薦的網站清單，歡迎點擊造訪他們的網站，支持他們的創作與努力！
+      </HeroSubtitle>
+    </div>
+  </Hero>
+  <BaseMainContent>
+    <div class="flex-1">
+      <FriendsGrid />
+    </div>
+    <Sidebar />
+  </BaseMainContent>
+</BaseLayout>

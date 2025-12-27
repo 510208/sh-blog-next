@@ -1,0 +1,108 @@
+---
+import { SITE_TITLE } from "../../consts.ts";
+import config from "../../../shblog.config.ts";
+import { Button } from "@/components/ui/button.tsx";
+import { Mail, Info } from "lucide-react";
+import { FAVICON_URL } from "../../consts.ts";
+import { SearchDialog } from "../search/SearchDialog";
+
+const links = config.navBar.links;
+---
+
+<header
+  class="fixed top-4.5 left-1/2 -translate-x-1/2 z-50 w-full max-w-[1278px] px-4"
+  transition:persist
+>
+  <nav
+    class="backdrop-blur-[6px] bg-neutral-900/50 border border-white/10 rounded-2xl px-4 lg:px-8 h-14 flex items-center justify-between"
+  >
+    <!-- Logo and Site Title -->
+    <div class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-lg overflow-hidden">
+        <img
+          src={FAVICON_URL}
+          alt={SITE_TITLE}
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <a class="hidden lg:block" href="/">
+        <h1 class="text-2xl text-white capitalize leading-none font-funny">
+          {SITE_TITLE}
+        </h1>
+      </a>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="flex items-center gap-2 lg:gap-4">
+      <!-- Main Nav -->
+      <div class="hidden lg:flex items-center gap-1 pr-4">
+        {
+          links.map((link, index) => (
+            <div class="flex items-center">
+              <a
+                href={link.href}
+                class="px-2 lg:px-4 h-6 flex items-center text-sm font-medium text-white uppercase hover:text-white/80 transition-colors"
+              >
+                {link.title}
+              </a>
+              {index < links.length - 1 && (
+                <span class="text-neutral-400 text-sm">/</span>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="lg:hidden flex items-center gap-1">
+        {
+          links.map((link, index) => (
+            <div class="flex items-center">
+              <a
+                href={link.href}
+                class="px-4 h-6 flex items-center text-sm font-medium text-white uppercase hover:text-white/80 transition-colors"
+              >
+                <link.icon size={16} />
+              </a>
+              {index < links.length - 1 && (
+                <span class="text-neutral-400 text-sm">/</span>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2">
+        <a
+          href="mailto:xux510208@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button
+            client:load
+            variant="ghost"
+            size="icon"
+            className="hidden sm:block rounded-lg shadow-sm hover:bg-white/5"
+            aria-label="Contact"
+          >
+            <Mail size={18} />
+          </Button>
+        </a>
+
+        <a href="/about" target="_blank" rel="noopener noreferrer">
+          <Button
+            client:load
+            variant="ghost"
+            size="icon"
+            className="hidden sm:block rounded-lg shadow-sm hover:bg-white/5"
+            aria-label="Info"
+          >
+            <Info size={18} />
+          </Button>
+        </a>
+
+        <SearchDialog client:load />
+      </div>
+    </div>
+  </nav>
+</header>

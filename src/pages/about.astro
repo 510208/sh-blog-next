@@ -1,63 +1,70 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import Layout from "../layouts/BlogPost.astro";
 ---
 
 <Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
+  title="關於我與這個網站"
+  description="這裡是關於我與這個網站的介紹頁面。"
+  pubDate={new Date("August 08 2021")}
+  heroImage="/assets/layouts/homepage/samhacker_homepage_background.png"
+  headings={[]}
 >
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
-
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
-
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
-
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
-
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+  <div class="mb-16">
+    <h2 class="text-2xl font-bold mb-4">我是誰</h2>
+    <p class="content-text">
+      嗨！我是 SamHacker，一個熱愛 Coding 的高中生。現年（2025年）16歲，善於運用
+      <a href="https://www.typescriptlang.org/">TypeScript</a>、
+      <a href="https://www.python.org/">Python</a>
+      等語言。最近在學習
+      <a href="https://nextjs.org/">Next.js</a>、
+      <a href="https://vitejs.dev/">Vite</a>、
+      <a href="https://reactjs.org/">React</a>、
+      <a href="https://greensock.com/gsap/">GSAP</a>
+      等前端框架，也計畫要涉獵 Svelte、Vue 等框架。前端可能還算可以，但做後端就真的完全不行。
+    </p>
+    <p class="content-text">
+      未來可能會去學習
+      <a href="https://laravel.com/">Laravel</a>、
+      <a href="https://www.djangoproject.com/">Django</a>
+      等後端框架，充實自己的能力。我對網頁前端設計、Python 腳本、AI 與 AIGC 等領域有些興趣。
+      <br />
+      雖然技術仍然不足以稱為專家，但如果你也對這些領域有興趣，或許我們可以一起交流？
+    </p>
+    <p class="content-text">
+      至於如果你想知道為什麼我叫 SamHacker
+      嘛...主要就只是因為之前中二病時期感覺當駭客很帥（？），然後 Sam
+      一直是我的英文名字，兩個隨便組合一下就出現這個名字了。
+    </p>
+    <p class="content-text">
+      以前的名字是 510208，學校發的 ST
+      網域郵件用這個數字當帳號，但因為有些平台不收純數字的帳號，所以就改成現在這個名字了。
+    </p>
+    <p class="content-text">
+      另外如果你想知道的話，我還有一個虛擬身分御坂糸紗奈（Misaka Misana，a.k.a.
+      林韻恩），純粹都只是隨便亂取的名字。依據著名的「網路上遇到自稱女生的大多都是小男娘居多」的定律，反正那說的不是我。
+    </p>
+  </div>
+  <div class="mb-16">
+    <h2 class="text-2xl font-bold mb-4">關於這個網站</h2>
+    <p class="content-text">
+      同樣的網址，我所製作的第一個網站是採用純粹的 HTML、CSS 與 JavaScript
+      所建構的，並沒有使用任何框架或庫。
+      但很遺憾的，不才是個非常之大懶蟲，手寫靜態網站應該會寫到死掉，所以決定痛定思痛，邁出腳步探索更強大的框架。
+    </p>
+    <p class="content-text">
+      於是我選擇了 Astro
+      作為我的網站框架，因為它輕量且易於使用，並且支援多種前端框架的整合，讓我能夠更靈活地開發網站功能。
+      這個網站的第一個版本是在 2021 年 8 月 8
+      日開始開發的，當時我還只是個國中生。
+    </p>
+    <p class="content-text">
+      用框架開發的第一個版本是使用 Vite + React
+      開發，沒有任何多重頁面路由，純粹一個網站，甚至連捲動都不能捲動，當然更遑論動畫什麼的，那叫奢望。
+    </p>
+    <p class="content-text">
+      當時是國三，畢竟還要準備考高中什麼的，根本沒時間完善我的個人網站。
+      因此這些完善內容的工作就交給了會考完的我。
+      專案做了將近兩個月，最終也算是有了一些進展，也就是現在你們看到的這個網站。
+    </p>
+  </div>
 </Layout>

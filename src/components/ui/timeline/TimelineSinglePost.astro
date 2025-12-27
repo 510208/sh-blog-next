@@ -1,0 +1,37 @@
+---
+import { Hash } from "lucide-react";
+import Tags from "../../../components/Tags.astro";
+import { Badge } from "../badge";
+
+interface Props {
+  postData: any;
+  postTags: string[];
+}
+
+const { postData, postTags } = Astro.props;
+---
+
+<a
+  href={`/blog/${postData.id}/`}
+  class="flex p-4 rounded-lg transition-all align-center flex-wrap"
+>
+  <h3
+    class="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-green-500 transition-colors text-center"
+  >
+    {postData.data.title}
+  </h3>
+  <div class="flex flex-wrap gap-2 justify-center mt-2 ml-4">
+    {
+      postTags.map((t: string) => (
+        <Badge
+          variant="secondary"
+          className="px-2 text-sm hover:bg-secondary/90 transition-all"
+          client:only
+        >
+          <Hash size={14} />
+          {t}
+        </Badge>
+      ))
+    }
+  </div>
+</a>

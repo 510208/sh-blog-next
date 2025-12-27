@@ -1,0 +1,51 @@
+---
+import { Button } from "@/components/ui/button.tsx";
+import { ArrowUp } from "lucide-react";
+
+const className = Astro.props.class;
+---
+
+<Button
+  id="to-top-button"
+  aria-label="Back to top"
+  variant={"ghost"}
+  className={`rounded-lg shadow-lg opacity-0 invisible transition-all duration-300 data-[show=true]:opacity-100 data-[show=true]:visible flex items-center justify-center backdrop-blur-md scale-110 ${className}`}
+>
+  <ArrowUp className="text-white lg:rotate-90" size={20} />
+  <span class="hidden lg:block uppercase text-xs ml-4 tracking-[0.3em]"
+    >Back to top</span
+  >
+  <div class="hidden lg:block w-10 h-px bg-gray-300/50 ml-2"></div>
+</Button>
+
+<!-- Client-side JavaScript: Handles interaction -->
+<script>
+  const scrollToTopBtn = document.getElementById(
+    "to-top-button"
+  ) as HTMLButtonElement;
+
+  // Show/hide button based on scroll position
+  const handleScroll = () => {
+    const scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop > 500) {
+      scrollToTopBtn.setAttribute("data-show", "true");
+    } else {
+      scrollToTopBtn.setAttribute("data-show", "false");
+    }
+  };
+
+  // Native smooth scroll (simpler alternative)
+  const scrollToTopSimple = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  scrollToTopBtn.addEventListener("click", scrollToTopSimple);
+
+  // Initialize button state on page load
+  handleScroll();
+</script>

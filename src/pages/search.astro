@@ -1,0 +1,35 @@
+---
+import BaseLayout from "@/components/layouts/BaseLayout.astro";
+import Hero from "@/components/content/Home/Hero.astro";
+import { HeroSubtitle, HeroTitle } from "@/components/content/Home/HeroItems";
+
+import { default as AstroSearch } from "astro-pagefind/components/Search";
+
+import "@/styles/pagefind.css";
+import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
+import Sidebar from "@/components/Sidebar.astro";
+import { Input } from "@/components/ui/input";
+---
+
+<BaseLayout title="站內搜尋" description="在這裡搜尋本站的內容吧~~">
+  <!-- Hero Section -->
+  <Hero>
+    <!-- Left: Main heading -->
+    <div class="lg:col-span-2" slot="left">
+      <HeroTitle> 站內搜尋 </HeroTitle>
+      <HeroSubtitle slot="right">搜尋你想尋找的內容...</HeroSubtitle>
+    </div>
+  </Hero>
+
+  <BaseMainContent>
+    <div class="flex-1">
+      <AstroSearch
+        id="search"
+        className="pagefind-ui"
+        uiOptions={{ showImages: false }}
+      />
+    </div>
+
+    <Sidebar />
+  </BaseMainContent>
+</BaseLayout>
