@@ -1,4 +1,4 @@
-import { Handshake, Home, Info, Phone } from "lucide-react";
+import { Newspaper, Handshake, Home, Info, Phone } from "lucide-react";
 import type { ShBlogConfig } from "./src/types/shblog.config.d";
 
 const config: ShBlogConfig = {
@@ -39,6 +39,11 @@ const config: ShBlogConfig = {
         title: "Home",
         href: "/",
         icon: Home,
+      },
+      {
+        title: "Blog",
+        href: "/blog",
+        icon: Newspaper,
       },
       {
         title: "About",
