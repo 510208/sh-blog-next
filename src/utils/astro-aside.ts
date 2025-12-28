@@ -37,7 +37,7 @@ export function makeComponentNode(
 }
 
 function remarkAsides(): unified.Plugin<[], mdast.Root> {
-  const variants = new Set(["note", "tip", "caution", "danger"]);
+  const variants = new Set(["note", "tip", "caution", "danger", "important"]);
 
   const transformer: unified.Transformer<mdast.Root> = (tree: any) => {
     visit(tree, (node: any, index, parent) => {
