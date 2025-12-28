@@ -19,7 +19,11 @@ export async function GET({ url }: { url: URL }): Promise<Response> {
   const purify = DOMPurify(window);
 
   const safeQuery = purify.sanitize(query);
-  const allPosts = await getCollection("blog");
+  const allPosts = await getCollection("blog", ({ data }) => {
+    // 開發環境顯示所有文章,生產環境過濾掉 draft 文章
+    if (import.meta.env.DEV) return true;
+    return data.draft !== true;
+  });
 
   const results = allPosts
     .filter(
