@@ -17,7 +17,7 @@ type Post = {
     description?: string;
     pubDate: string; // serialized ISO string
     heroImage?: { src: string } | null;
-    category: string | null;
+    category: string | string[] | null;
     tags: string[] | null;
   };
 };

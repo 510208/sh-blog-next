@@ -15,7 +15,7 @@ interface BlogCardProps {
   heroImage?: string;
   href: string;
   isLoading?: boolean;
-  category: string | null;
+  category: string | string[] | null;
   tags: string[] | null;
 }
 
@@ -107,17 +107,25 @@ export default function BlogCard({
 
                 {/* 文章分類 */}
                 {category && (
-                  <>
-                    <div className="flex items-center gap-1.5">
-                      <BookmarkIcon size={16} />
-                      <a
-                        className="hover:text-white transition-all"
-                        href={`/blog/categories/${category.toLowerCase()}`}
-                      >
-                        <span>{category}</span>
-                      </a>
-                    </div>
-                  </>
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <BookmarkIcon size={16} />
+                    {(Array.isArray(category) ? category : [category]).map(
+                      (cat, idx) => (
+                        <span key={idx}>
+                          <a
+                            className="hover:text-white transition-all"
+                            href={`/blog/categories/${cat.toLowerCase()}`}
+                          >
+                            <span>{cat}</span>
+                          </a>
+                          {idx <
+                            (Array.isArray(category) ? category : [category])
+                              .length -
+                              1 && <span className="mx-1">,</span>}
+                        </span>
+                      )
+                    )}
+                  </div>
                 )}
               </>
             ) : isLoading ? (

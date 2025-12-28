@@ -17,10 +17,16 @@ export async function getStaticPaths() {
     return data.draft !== true;
   });
 
-  // 取得所有不重複的分類
+  // 取得所有不重複的分類（支援字串或陣列）
   const categories = [
     ...new Set(
-      posts.map((post: any) => post.data.category).filter((c: any) => !!c)
+      posts
+        .flatMap((post: any) => {
+          const cat = post.data.category;
+          if (!cat) return [];
+          return Array.isArray(cat) ? cat : [cat];
+        })
+        .filter((c: any) => !!c)
     ),
   ];
 
@@ -30,7 +36,15 @@ export async function getStaticPaths() {
       params: { category: category },
       props: {
         category: category,
-        posts: sortByDate(posts.filter((p) => p.data.category === category)),
+        posts: sortByDate(
+          posts.filter((p) => {
+            const cat = p.data.category;
+            if (!cat) return false;
+            return Array.isArray(cat)
+              ? cat.includes(category)
+              : cat === category;
+          })
+        ),
       },
     };
   });
