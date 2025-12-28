@@ -1,0 +1,34 @@
+---
+import { ToCommentButton } from "./ToComment";
+---
+
+<ToCommentButton className={Astro.props.class} client:load />
+
+<!-- Client-side JavaScript: Handles interaction -->
+<script>
+  // 電腦版
+  const toCommentBtn = document.getElementById(
+    "to-comment-button"
+  ) as HTMLButtonElement;
+
+  toCommentBtn.addEventListener("click", () => {
+    const commentsSection = document.getElementById("comment-sep");
+    if (commentsSection) {
+      const offsetTop = commentsSection.offsetTop - 120;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+    }
+  });
+
+  // 手機版
+  const toCommentBtnMobile = document.getElementById(
+    "to-comment-button-mobile"
+  ) as HTMLButtonElement;
+
+  toCommentBtnMobile.addEventListener("click", () => {
+    const commentsSection = document.getElementById("comment-sep");
+    if (commentsSection) {
+      const offsetTop = commentsSection.offsetTop - 80;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+    }
+  });
+</script>

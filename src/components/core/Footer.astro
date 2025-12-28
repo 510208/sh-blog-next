@@ -1,0 +1,115 @@
+---
+import SiteRuntime from "../widgets/SiteRuntime.astro";
+import SocialLinks from "./SocialLinks.astro";
+
+const today = new Date();
+---
+
+<footer
+  transition:persist
+  class="relative lg:h-[400px] px-4 py-10 overflow-hidden flex justify-center"
+>
+  <!-- Background gradients -->
+  <div class="absolute inset-0 pointer-events-none">
+    <img
+      src="/assets/layouts/footer/footer_background_gradient.png"
+      alt=""
+      class="w-full h-full object-cover"
+    />
+  </div>
+
+  <!-- Center text overlay -->
+  <div
+    class="absolute left-1/2 top-[69%] -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none"
+  >
+    <h2
+      class="font-bold text-7xl md:text-[128px] leading-tight md:leading-none text-white/5 whitespace-nowrap"
+    >
+      DESIGNED BY
+      <br />
+      SAMHACKER
+    </h2>
+  </div>
+
+  <!-- Content container -->
+  <div
+    class="relative backdrop-blur-sm bg-white/10 border border-white/10 rounded-[20px] p-6 md:p-10 h-full overflow-auto w-full md:w-[80vw] md:min-w-3xl md:max-w-6xl"
+  >
+    <div class="flex flex-col md:flex-row md:justify-between gap-8 h-full">
+      <!-- Left side -->
+      <div class="w-full md:w-[567px]">
+        <!-- Logo -->
+        <div class="mb-4">
+          <h3 class="text-white font-display text-xl font-black">
+            SamHacker Blog
+          </h3>
+        </div>
+
+        <div class="h-px bg-white/20 w-full md:w-[260px] my-4"></div>
+
+        <!-- Description -->
+        <div class="text-white/60 text-sm leading-6 tracking-[0.7px] mb-6">
+          <p>你好！歡迎來到我的部落格</p>
+          <p>這裡是我分享自己的生活與 Coding 日常的地方</p>
+          <p>我是個自學程式語言的高中生，有時也會寫寫文章什麼的</p>
+          <p>如果你也對這些東西有些興趣，歡迎關注我喔！</p>
+        </div>
+        <SiteRuntime />
+      </div>
+
+      <!-- Right side -->
+      <div
+        class="w-full md:w-[567px] flex flex-col justify-between text-left md:text-right gap-6"
+      >
+        <!-- Top section -->
+        <div class="space-y-2">
+          <p class="text-white text-sm leading-normal">
+            歡迎非商業性轉載，轉載時請務必註明原文作者與原文連結
+            <br />
+            如需商業合作授權,請來信洽談：
+            <span class="underline decoration-solid">
+              samhacker@samhacker.xyz
+            </span>
+          </p>
+        </div>
+
+        <!-- Bottom section -->
+        <div class="space-y-2">
+          <div class="text-white text-[10px] leading-normal">
+            <p>
+              <a
+                href="https://samhacker.xyz/"
+                class="underline decoration-solid hover:text-white/80 transition-colors"
+              >
+                SamHacker Blog
+              </a>
+              © {today.getFullYear()} by
+              <a
+                href="https://510208.github.io/"
+                class="underline decoration-solid hover:text-white/80 transition-colors"
+              >
+                SamHacker
+              </a>
+              is licensed under
+              <a
+                href="https://creativecommons.org/licenses/by-nc/4.0/"
+                class="underline decoration-solid hover:text-white/80 transition-colors"
+              >
+                CC BY-NC 4.0
+              </a>
+            </p>
+          </div>
+
+          <p class="text-white/40 text-[10px] leading-normal">
+            🇹🇼 © {today.getFullYear()} SamHacker
+          </p>
+
+          <!-- Social links -->
+          <SocialLinks />
+
+          <a href="/sitemap-0.xml">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

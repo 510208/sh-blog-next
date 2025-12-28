@@ -1,0 +1,21 @@
+---
+import { Hash, MoreHorizontal } from "lucide-react";
+import { Badge } from "./ui/badge";
+
+const { tags } = Astro.props;
+---
+
+{
+  tags && tags.length > 0 ? (
+    <div class="tags-list flex items-center gap-2">
+      {tags.map((tag: string) => (
+        <a href={`/blog/tags/${tag.toLowerCase()}`} class="tag-link">
+          <Badge variant="secondary" className="px-2 text-sm" client:only>
+            <Hash size={14} />
+            {tag}
+          </Badge>
+        </a>
+      ))}
+    </div>
+  ) : null
+}

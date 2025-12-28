@@ -1,0 +1,140 @@
+---
+import "@/styles/global.css";
+
+import BaseHead from "@/components/core/BaseHead.astro";
+import { SEPARATOR, SITE_TITLE } from "@/consts";
+
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import config from "shblog.config";
+
+// 取得使用者想前往的路徑
+const { url } = Astro.request;
+
+// 有10%機會跳出rickroll的QR碼彩蛋
+const random = Math.random();
+
+let qr_img = "/assets/layouts/404/404_qr.svg";
+let description =
+  "如需此問題與可能修正的詳細資訊，請回去 https://samhacker.xyz";
+
+// 彩蛋
+if (config.behavior.enable404EasterEgg) {
+  if (url.toLocaleLowerCase().includes("rick") || random < 0.1) {
+    qr_img = "/assets/layouts/404/404_rickroll.svg";
+    description =
+      "如需此問題與可能修正的詳細資訊，請前往 https://api.samhacker.xyz/rick 觀看驚喜影片";
+  } else if (
+    url.toLocaleLowerCase().includes("114514") ||
+    url.toLocaleLowerCase().includes("1919810") ||
+    random < 0.2
+  ) {
+    qr_img = "/assets/layouts/404/404_yajyuusenpai.png";
+    description = "如需此問題與可能修正的詳細資訊，請先重新看一遍銀夢（確信";
+  } else if (url.toLocaleLowerCase().includes("uwu") || random < 0.3) {
+    qr_img = "/assets/layouts/404/404_uwu.png";
+  }
+}
+
+const locale = config.lang || "zh-Hant";
+---
+
+<!doctype html>
+<html lang={locale}>
+  <!-- 
+    冷知識，
+    如果你看到了這則注釋，那你應該也是個網頁大神。
+    沒錯，這個頁面還有其他小彩蛋！
+    例如如果在網址列加入 "rick"、"114514" 或 "uwu" 等關鍵字，頁面就會出現神奇的變化喔！
+    試試看吧！
+  -->
+  <head>
+    <BaseHead
+      title={`要找的東西不在這！ ${SEPARATOR} ${SITE_TITLE}`}
+      description="找不到目標的頁面，請查明後再開..."
+    />
+  </head>
+  <body>
+    <div
+      class="min-h-screen w-screen flex flex-col bg-[#0078d7] pt-6 sm:pt-10 lg:pt-27 px-4 sm:px-8 lg:px-50 pb-32 sm:pb-20"
+    >
+      <!-- 主要內容 -->
+      <div class="flex flex-col items-start justify-start w-full gap-0">
+        <h1 class="text-7xl sm:text-9xl lg:text-[200px] font-normal">
+          {Math.random() < 0.1 ? ":)" : ":("}
+        </h1>
+        <h2
+          class="text-xl sm:text-3xl lg:text-5xl/16 font-thin mt-6 ml-1 sm:ml-2"
+        >
+          您的裝置發生問題，但我們不可能重新啟動。<br />
+          我們根本不會收集任何錯誤資訊，所以你也別期待會為你重新啟動。
+        </h2>
+        <h2
+          id="progress"
+          class="text-xl sm:text-3xl lg:text-5xl/16 font-thin ml-2 sm:ml-4 mt-4 sm:mt-6"
+        >
+          已完成 0%
+        </h2>
+      </div>
+      <div
+        class="flex flex-col sm:flex-row ml-2 sm:ml-4 mt-4 sm:mt-6 gap-4 sm:gap-6"
+      >
+        <div
+          class="h-24 w-24 sm:h-30 sm:w-30 p-2 bg-white flex justify-center align-middle shrink-0"
+        >
+          <img src={qr_img} class="m-auto" alt="Windows Logo" />
+        </div>
+        <div
+          class="text-white font-light max-w-full sm:max-w-lg text-sm sm:text-base"
+        >
+          <p class="wrap-break-word">
+            {description}
+          </p>
+          <p class="mt-4 sm:mt-10">上網公審站長時，請提供此資訊：</p>
+          <p>停止代碼：THERE_IS_NOTHING</p>
+          <p class="break-all">
+            失敗的項目：{
+              `${url.toLocaleLowerCase().replace(/^https?:\/\//, "")}　.lnk`
+            }
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      id="info"
+      hidden
+      class="fixed bottom-4 sm:bottom-10 left-1/2 -translate-x-1/2 sm:left-4/9 sm:translate-x-0 bg-blue-600/60 px-3 sm:px-4 py-2 rounded-xl text-sm sm:text-base max-w-[90vw] sm:max-w-none text-center sm:text-left"
+    >
+      按下<KbdGroup><Kbd>任意鍵</Kbd></KbdGroup>以返回首頁...
+    </div>
+  </body>
+</html>
+
+<script>
+  // 模擬進度條
+  let progress = 0;
+  const progressElement = document.getElementById("progress");
+  const intervalId = window.setInterval(() => {
+    if (progress < 100) {
+      progress += Math.floor(Math.random() * 10) + 1; // 每次增加1-10%
+      if (progress > 100) {
+        progress = 100;
+        // 移除 #info 的hidden屬性
+        const infoElement = document.getElementById("info");
+        if (infoElement) {
+          infoElement.hidden = false;
+        } else {
+          console.error("找不到 #info 元素");
+        }
+        // 停止更新進度條
+        window.clearInterval(intervalId);
+        // 監聽鍵盤事件，按下任意鍵返回首頁
+        document.addEventListener("keydown", () => {
+          window.location.href = "/";
+        });
+      }
+      if (progressElement) progressElement.textContent = `已完成 ${progress}%`;
+    } else {
+      window.clearInterval(intervalId);
+    }
+  }, 1000);
+</script>

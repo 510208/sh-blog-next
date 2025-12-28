@@ -1,0 +1,54 @@
+---
+const { code, language } = Astro.props;
+---
+
+<div class="code-block">
+  <div class="code-header">
+    <span class="language-badge">{language || "text"}</span>
+  </div>
+  <pre>
+    <code class={`language-${language || 'text'}`}>
+      {code}
+      <slot />
+    </code>
+  </pre>
+</div>
+
+<style>
+  .code-block {
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+
+  .code-header {
+    background: #2d2d2d;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .language-badge {
+    color: #cccccc;
+    font-size: 0.875rem;
+    font-family:
+      ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+  }
+
+  pre {
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  code {
+    font-family:
+      ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #d4d4d4;
+  }
+</style>

@@ -1,0 +1,244 @@
+---
+import { Button } from "./ui/button";
+import { CardTitle } from "./ui/card";
+import { ChevronDown } from "lucide-react";
+
+interface Props {
+  headings: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+}
+
+const { headings } = Astro.props;
+
+// 清理文本：移除錨點符號
+const cleanHeadingText = (text: string): string => {
+  return text.replace("#", "").trim();
+};
+
+// 構建樹形結構，只顯示 h2 和其子項
+const tocTree = headings.reduce(
+  (acc, heading) => {
+    if (heading.depth === 2) {
+      acc.push({
+        ...heading,
+        text: cleanHeadingText(heading.text),
+        children: [],
+      });
+    } else if (heading.depth > 2 && acc.length > 0) {
+      acc[acc.length - 1].children.push({
+        ...heading,
+        text: cleanHeadingText(heading.text),
+      });
+    }
+    return acc;
+  },
+  [] as Array<{
+    depth: number;
+    slug: string;
+    text: string;
+    children: Array<{ depth: number; slug: string; text: string }>;
+  }>
+);
+---
+
+<div id="toc" class="sticky top-30 z-40 mt-5">
+  {
+    tocTree.length > 0 && (
+      <div class="flex flex-col h-full">
+        <div class="px-4 py-3 border-b border-slate-700">
+          <CardTitle className="text-white text-sm font-semibold tracking-wider bg-transparent">
+            文章目錄
+          </CardTitle>
+        </div>
+        <nav class="flex-1 overflow-y-auto" data-blog-toc-nav>
+          <ol class="py-2" data-blog-toc>
+            {tocTree.map((item, index) => (
+              <li class="group">
+                <a
+                  href={`#${item.slug}`}
+                  class="toc-link toc-level-2 flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors duration-200 relative"
+                  data-heading-slug={item.slug}
+                >
+                  <span class="flex-1 truncate">{item.text}</span>
+                  {item.children.length > 0 && (
+                    <Button
+                      className="toc-toggle shrink-0 w-5 h-5 flex items-center justify-center rounded hover:bg-slate-700 transition-colors"
+                      data-toggle-target={`toc-children-${index}`}
+                      type="button"
+                      aria-label={`展開 ${item.text} 的子項`}
+                      asChild
+                    >
+                      <ChevronDown
+                        size={16}
+                        className="transition-transform duration-200"
+                      />
+                    </Button>
+                  )}
+                </a>
+                {item.children.length > 0 && (
+                  <ul
+                    class="toc-children hidden overflow-hidden transition-all duration-200"
+                    id={`toc-children-${index}`}
+                  >
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={`#${child.slug}`}
+                          class={`toc-link toc-level-${child.depth} block py-1.5 text-xs text-slate-400 hover:text-slate-100 transition-colors duration-200 truncate`}
+                          style={`padding-left: ${1.5 + (child.depth - 3) * 1}rem;`}
+                          data-heading-slug={child.slug}
+                        >
+                          {child.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+    )
+  }
+</div>
+
+<script>
+  // 設置標題的滾動邊距，防止被 TOC 卡住
+  document
+    .querySelectorAll("article :is(h2,h3,h4,h5,h6)")
+    .forEach((heading) => {
+      (heading as HTMLElement).style.scrollMarginTop = "90px";
+    });
+
+  // 切換子項顯示/隱藏
+  document.querySelectorAll(".toc-toggle").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = button.getAttribute("data-toggle-target");
+      if (!targetId) return;
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const isHidden = target.classList.contains("hidden");
+      target.classList.toggle("hidden", !isHidden);
+
+      // 旋轉箭頭
+      const chevron = button.querySelector("svg");
+      if (chevron) {
+        chevron.style.transform = isHidden ? "rotate(0deg)" : "rotate(-180deg)";
+      }
+    });
+  });
+
+  // 當用戶點擊某個標題時，自動展開其父項
+  document
+    .querySelectorAll("article :is(h2,h3,h4,h5,h6)")
+    .forEach((heading) => {
+      heading.addEventListener("click", () => {
+        const slug = heading.id;
+        // 找到這個標題對應的目錄項
+        const tocLink = document.querySelector(
+          `[data-blog-toc] a[data-heading-slug="${slug}"]`
+        );
+
+        if (tocLink) {
+          // 如果是子項，展開其父項
+          const parent = tocLink.closest("li");
+          if (parent) {
+            const toggleButton =
+              parent.previousElementSibling?.querySelector(".toc-toggle");
+            if (toggleButton) {
+              const targetId = toggleButton.getAttribute("data-toggle-target");
+              if (targetId) {
+                const target = document.getElementById(targetId);
+                if (target && target.classList.contains("hidden")) {
+                  target.classList.remove("hidden");
+                  const chevron = toggleButton.querySelector("svg");
+                  if (chevron) chevron.style.transform = "rotate(-180deg)";
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+
+  // 高亮當前閱讀位置並自動展開/關閉父項
+  const setCurrent: IntersectionObserverCallback = (entries) => {
+    for (let entry of entries) {
+      const id = entry.target.id;
+      if (!id) continue;
+
+      const tocLink = document.querySelector(
+        `[data-blog-toc] a[data-heading-slug="${id}"]`
+      );
+
+      if (!tocLink) continue;
+
+      const listItem = tocLink.closest("li");
+      if (!listItem) continue;
+
+      const hasToggle = listItem.querySelector(".toc-toggle");
+
+      if (entry.isIntersecting) {
+        // 進入視圖：高亮並展開父項（僅限子項）
+        document
+          .querySelectorAll("[data-blog-toc] a.active")
+          .forEach((e) => e.classList.remove("active"));
+        tocLink.classList.add("active");
+
+        if (!hasToggle) {
+          const parentUl = listItem.closest(".toc-children");
+          if (parentUl) {
+            const parentId = parentUl.id;
+            if (parentId && parentUl.classList.contains("hidden")) {
+              parentUl.classList.remove("hidden");
+              const toggleButton = document.querySelector(
+                `[data-toggle-target="${parentId}"]`
+              );
+              if (toggleButton) {
+                const chevron = toggleButton.querySelector("svg");
+                if (chevron) chevron.style.transform = "rotate(-180deg)";
+              }
+            }
+          }
+        }
+      } else {
+        // 滾出視圖：移除 active 並關閉父項（僅限子項）
+        tocLink.classList.remove("active");
+
+        if (!hasToggle) {
+          const parentUl = listItem.closest(".toc-children");
+          if (parentUl) {
+            const parentId = parentUl.id;
+            if (parentId && !parentUl.classList.contains("hidden")) {
+              parentUl.classList.add("hidden");
+              const toggleButton = document.querySelector(
+                `[data-toggle-target="${parentId}"]`
+              );
+              if (toggleButton) {
+                const chevron = toggleButton.querySelector("svg");
+                if (chevron) chevron.style.transform = "rotate(0deg)";
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+
+  const observerOption: IntersectionObserverInit = {
+    root: null,
+    rootMargin: "0px 0px -50%",
+    threshold: 0,
+  };
+
+  const headingObserver = new IntersectionObserver(setCurrent, observerOption);
+  document
+    .querySelectorAll("article :is(h2,h3,h4,h5,h6)")
+    .forEach((heading) => headingObserver.observe(heading));
+</script>

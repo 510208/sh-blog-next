@@ -1,0 +1,44 @@
+---
+import { Button } from "@/components/ui/button.tsx";
+import * as SimpleIcons from "simple-icons-astro";
+import config from "@/../shblog.config";
+
+type IconName = keyof typeof SimpleIcons;
+
+const isImageUrl = (str: string): boolean => {
+  return /^\/.*\.(png|jpg|jpeg|gif|svg|webp)$/i.test(str);
+};
+---
+
+<div class="flex items-center justify-start md:justify-end gap-4 flex-wrap">
+  {
+    config.footer.map((link) => {
+      const isUrl = isImageUrl(link.socialMedia);
+      const IconComponent = !isUrl
+        ? SimpleIcons[link.socialMedia as IconName]
+        : null;
+
+      return (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.socialMedia}
+          class="w-6 h-6 text-white"
+        >
+          <Button asChild>
+            {isUrl ? (
+              <img
+                src={link.socialMedia}
+                alt=""
+                class="w-6 h-6 object-contain hover:opacity-80 transition-all"
+              />
+            ) : IconComponent ? (
+              <IconComponent className="w-6 h-6 hover:opacity-80 transition-all" />
+            ) : null}
+          </Button>
+        </a>
+      );
+    })
+  }
+</div>

@@ -1,0 +1,35 @@
+---
+import config from "shblog.config";
+import AuthorCard from "./widgets/AuthorCard";
+import DiscordCard from "./widgets/DiscordCard";
+---
+
+<!-- Sidebar -->
+<aside class="w-full lg:w-95 flex flex-col gap-5">
+  <!-- Author card -->
+  <AuthorCard
+    client:load
+    image={config.author.avatarUrl}
+    name={config.author.name}
+    slug={config.author.name.toLowerCase().replace(/\s+/g, "")}
+    description={config.author.bio}
+    links={config.author.links}
+  />
+
+  <!-- Discord cards -->
+  <a
+    href="https://discord.gg/CWCjhRGJ2e"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <DiscordCard
+      client:load
+      title="Discord"
+      subtitle="加入我的討論群組！"
+      description="你遇到問題了嗎？加入我的群組「企鵝哥贛話中心」，和群裡的大神一起討論吧！"
+    />
+  </a>
+
+  <!-- Slot for ToC - will be sticky -->
+  <slot />
+</aside>

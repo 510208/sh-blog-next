@@ -1,0 +1,272 @@
+/* Import Tailwind CSS v4 */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./global.css";
+@import "./markdown-extended.css";
+
+/* Import fonts from FontSource */
+@import "@fontsource-variable/noto-serif-tc";
+
+/* 設定預設 serif 字體 */
+@theme {
+  --font-serif: "Noto Serif TC", serif;
+}
+
+/* 預設 */
+#post-content
+  *:not(:last-child, :only-child, li, pre, code, .expressive-code *) {
+  @apply mb-4;
+}
+
+/* 段落樣式 */
+#post-content p,
+#post-content li,
+#post-content ol,
+#post-content ul {
+  @apply text-lg leading-relaxed text-neutral-400;
+}
+
+/* 標題樣式 */
+#post-content h1,
+#post-content h2,
+#post-content h3,
+#post-content h4,
+#post-content h5,
+#post-content h6 {
+  @apply font-display font-bold my-8!;
+}
+
+#post-content h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl;
+}
+
+#post-content h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+#post-content h3 {
+  @apply text-2xl md:text-3xl lg:text-4xl;
+}
+
+#post-content h4 {
+  @apply text-xl md:text-2xl lg:text-3xl;
+}
+
+#post-content h5 {
+  @apply text-lg md:text-xl lg:text-2xl;
+}
+
+#post-content h6 {
+  @apply text-lg md:text-lg lg:text-xl;
+}
+
+/* 列表樣式 */
+#post-content ul,
+#post-content ol {
+  @apply list-inside marker:text-white/30 pl-[30px];
+}
+
+#post-content li {
+  @apply my-1 mb-2;
+}
+
+#post-content ul {
+  @apply list-disc;
+}
+
+#post-content ol {
+  @apply list-decimal;
+}
+
+#post-content ul ul,
+#post-content ol ul,
+#post-content ul ol,
+#post-content ol ol {
+  @apply pl-2.5 mb-0!;
+}
+
+#post-content ul ul:first-child,
+#post-content ol ul:first-child,
+#post-content ul ol:first-child,
+#post-content ol ol:first-child {
+  @apply pl-6 mt-4 mb-0!;
+}
+
+/* 引言樣式 */
+#post-content blockquote {
+  @apply font-serif border-l-4 border-neutral-700 pl-4 italic text-neutral-400;
+}
+
+/* 程式碼區塊樣式 */
+.ec-line {
+  @apply font-mono!;
+}
+/* 區塊 code 不要 hover 變色 */
+/* #post-content pre code {
+  @apply bg-transparent px-0 py-0 transition-none;
+}
+
+#post-content em {
+  @apply italic;
+}
+
+#post-content del {
+  @apply line-through;
+}
+
+#post-content u {
+  @apply underline decoration-white/40 decoration-6 transition-all duration-300;
+  text-underline-offset: -2px;
+}
+
+#post-content u:hover {
+  @apply decoration-white/20 transition-all duration-300;
+} */
+
+/* 表格樣式 */
+#post-content table {
+  @apply w-full border-collapse rounded-lg overflow-hidden;
+}
+
+#post-content th,
+#post-content td {
+  @apply p-2 border transition-colors duration-300;
+}
+
+#post-content th {
+  @apply text-left;
+}
+
+#post-content tbody tr {
+  @apply transition-colors duration-300;
+}
+
+#post-content tbody tr:nth-child(odd) {
+  /* 奇數行樣式 */
+  @apply bg-neutral-900;
+}
+
+#post-content tbody tr:nth-child(even) {
+  /* 偶數行樣式 */
+  @apply bg-neutral-950;
+}
+
+#post-content tbody tr:nth-child(odd):hover,
+#post-content tbody tr:nth-child(even):hover {
+  /* 滑鼠懸停樣式 */
+  @apply bg-neutral-800 transition-colors duration-300;
+}
+
+/* 列 hover 效果 */
+#post-content td:hover,
+#post-content th:hover {
+  @apply bg-neutral-700/50;
+}
+
+#post-content thead tr {
+  @apply bg-neutral-800;
+}
+
+/* 分隔線樣式 */
+#post-content hr {
+  @apply border-t border-2 border-neutral-700 my-8 max-w-2xl justify-center mx-auto;
+}
+
+/* 行內元素樣式 */
+#post-content a,
+#post-content strong,
+#post-content em,
+#post-content del,
+#post-content u,
+#post-content .spoiler,
+#post-content code {
+  @apply mx-1;
+}
+
+#post-content a {
+  @apply text-green-300 relative transition-all duration-300 px-0.5;
+}
+
+#post-content a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px; /* 調整底線位置 */
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+#post-content a:hover {
+  @apply text-green-400;
+  transform: translateY(-2px);
+}
+
+#post-content a:hover::after {
+  background-color: rgba(255, 255, 255, 0.1); /* 底線 hover 效果 */
+}
+
+#post-content strong {
+  @apply font-semibold text-white/80;
+}
+
+/* 行內 code */
+#post-content :not(pre) > code {
+  @apply bg-neutral-800 text-sm font-mono px-1.5 py-0.5 rounded transition-colors duration-300;
+}
+
+#post-content :not(pre) > code:hover {
+  @apply bg-neutral-700;
+}
+
+/* 圖片樣式 */
+#post-content img {
+  @apply rounded-lg my-6;
+}
+
+/* 圖片置中 */
+#post-content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 音頻和視頻樣式 */
+#post-content audio,
+#post-content video {
+  @apply rounded-lg my-6;
+}
+
+#post-content audio:hover,
+#post-content video:hover {
+  @apply scale-105 transition-transform duration-300;
+}
+
+/* 防雷內容 */
+#post-content .spoiler {
+  @apply bg-neutral-800;
+  color: transparent;
+  border-radius: 4px;
+  padding: 0 4px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  /* 圖層模糊 */
+  filter: blur(4px);
+}
+
+#post-content .spoiler:hover {
+  color: #fff;
+  filter: blur(0px);
+}
+
+/* 锚點樣式 */
+.anchor-icon {
+  @apply opacity-30 transition-opacity duration-300;
+}
+
+.anchor-icon:hover {
+  @apply opacity-100;
+}

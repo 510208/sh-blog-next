@@ -1,0 +1,56 @@
+---
+import { ArrowUpRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+
+import config from "shblog.config";
+import { Button } from "@/components/ui/button";
+import { FriendAvatar } from "./FriendAvatar";
+
+const items = config.friendLinks;
+---
+
+<div class="flex w-full rounded-lg overflow-hidden relative min-h-32">
+  <div class="card-base z-10 px-9 py-6 relative w-full">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 my-4">
+      {
+        items.map((item) => (
+          <div class="flex flex-nowrap items-stretch min-h-28 gap-4 rounded-lg">
+            <FriendAvatar link={item.imgUrl} fallback={item.title} />
+            <div class="grow w-full">
+              <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 mb-1">
+                {item.title}
+              </div>
+              <div class="text-50 text-sm font-medium">{item.desc}</div>
+              <div
+                class:list={[
+                  "items-center",
+                  { flex: true, "hidden md:flex": false },
+                ]}
+              >
+                <div class="flex flex-row flex-nowrap items-center">
+                  {item.tags &&
+                    item.tags.length > 0 &&
+                    item.tags.map((tag, _i) => (
+                      <>
+                        <Badge className="mr-2 mt-2">{tag}</Badge>
+                      </>
+                    ))}
+                  {!(item.tags && item.tags.length > 0) && (
+                    <Badge className="mr-2 mt-2" variant={"secondary"}>
+                      沒有標籤
+                    </Badge>
+                  )}
+                </div>
+              </div>
+            </div>
+            <a href={item.siteUrl} target="_blank" rel="noopener noreferrer">
+              <Button variant={"ghost"}>
+                <ArrowUpRight />
+              </Button>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

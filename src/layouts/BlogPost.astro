@@ -1,86 +1,162 @@
 ---
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
+import "@/styles/markdown.css";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@/components/content/FormattedDate.astro";
+import BaseLayout from "@/components/layouts/BaseLayout.astro";
+import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
+import Hero from "@/components/content/Home/Hero.astro";
+import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
 
-type Props = CollectionEntry<'blog'>['data'];
+// @ts-ignore
+import Sidebar from "@/components/Sidebar.astro";
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+import { CalendarDays, Tag, User } from "lucide-react";
+import config from "shblog.config";
+import { Separator } from "@/components/ui/separator";
+import { DEFAULT_POST_IMAGE, SEPARATOR } from "@/consts";
+
+import Toc from "../components/Toc.astro";
+import "katex/dist/katex.min.css";
+import Comment from "@/components/comment/Comment.astro";
+import Tags from "@/components/Tags.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: any;
+  headings: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+  tags?: CollectionEntry<"blog">["data"]["tags"];
+}
+
+const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
+  Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<BaseLayout
+  title={`${title} ${SEPARATOR} ${config.title}`}
+  description={description}
+>
+  <!-- 注入 head -->
+  <link
+    type="stylesheet"
+    rel="stylesheet"
+    href="/styles/markdown.css"
+    slot="head"
+  />
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+  <!-- 內容 -->
+  <Hero backgroundImage={heroImage || DEFAULT_POST_IMAGE}>
+    <!-- Left: Main heading -->
+    <div class="lg:col-span-2" slot="left">
+      <HeroTitle>{title}</HeroTitle>
+      <HeroSubtitle slot="right">
+        {description}
+      </HeroSubtitle>
+    </div>
+  </Hero>
+
+  <BaseMainContent>
+    <!-- Main column: Blog post content -->
+    <article class="flex-1">
+      <div>
+        <!-- 文章資訊 -->
+        <div class="flex mb-4 gap-2">
+          <!-- 文章日期 -->
+          <time class="text-sm text-gray-500 flex items-center gap-1">
+            <CalendarDays size={20} />文章發布時間<FormattedDate
+              date={pubDate}
+            />
+            {
+              updatedDate && (
+                <>
+                  <Separator orientation="vertical" /> 更新時間：
+                  <FormattedDate date={updatedDate} />
+                </>
+              )
+            }
+          </time>
+          <Separator orientation="vertical" client:only="react" />
+          <!-- 文章作者 -->
+          <div class="text-sm text-gray-500 flex items-center gap-1">
+            <User size={20} />作者 {config.author.name}
+          </div>
+        </div>
+        <div class="flex mb-4 gap-2">
+          <!-- 文章標籤 -->
+          <div class="text-sm text-gray-500 flex items-center gap-1">
+            <Tag size={20} />標籤 <Tags tags={tags} />
+          </div>
+        </div>
+      </div>
+
+      <!-- 文章圖片 -->
+      <div class="overflow-hidden rounded-xl">
+        {
+          (heroImage && (
+            <Image width={1020} height={574} src={heroImage} alt="文章封面" />
+          )) || (
+            <Image
+              width={1020}
+              height={340}
+              src={DEFAULT_POST_IMAGE}
+              alt="預設文章封面"
+            />
+          )
+        }
+      </div>
+      <!-- 文章內容 -->
+      <div class="mt-10" id="post-content">
+        <slot />
+      </div>
+
+      <div id="comment-sep" class="my-10">
+        <Separator client:only="react" />
+      </div>
+      <Comment />
+    </article>
+
+    <!-- TOC Sidebar -->
+    <div>
+      <Sidebar />
+      {headings?.length > 0 && <Toc {headings} />}
+    </div>
+  </BaseMainContent>
+</BaseLayout>
+
+<script>
+  document.addEventListener("click", function (e: MouseEvent) {
+    const target = e.target as Element | null;
+    if (target && target.classList.contains("copy-btn")) {
+      const preEle = target.closest("pre");
+      const codeEle = preEle?.querySelector("code");
+      const code = Array.from(
+        codeEle?.querySelectorAll(".code:not(summary *)") ?? []
+      )
+        .map((el) => el.textContent)
+        .map((t) => (t === "\n" ? "" : t))
+        .join("\n");
+      navigator.clipboard.writeText(code);
+
+      const timeoutId = target.getAttribute("data-timeout-id");
+      if (timeoutId) {
+        clearTimeout(parseInt(timeoutId));
+      }
+
+      target.classList.add("success");
+
+      // 设置新的timeout并保存ID到按钮的自定义属性中
+      const newTimeoutId = setTimeout(() => {
+        target.classList.remove("success");
+      }, 1000);
+
+      target.setAttribute("data-timeout-id", newTimeoutId.toString());
+    }
+  });
+</script>
