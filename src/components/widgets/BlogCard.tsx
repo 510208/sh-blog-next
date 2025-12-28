@@ -123,10 +123,12 @@ export default function BlogCard({
                       <BookmarkIcon size={16} />
                       <a
                         className="hover:text-white transition-all"
-                        href={`/blog/categories/${category.toLowerCase()}`}
+                        href={`/blog/categories/${(Array.isArray(category) ? category[0] : category).toLowerCase()}`}
                         onClick={handleCategoryClick}
                       >
-                        <span>{category}</span>
+                        <span>
+                          {Array.isArray(category) ? category[0] : category}
+                        </span>
                       </a>
                     </div>
                   </>
