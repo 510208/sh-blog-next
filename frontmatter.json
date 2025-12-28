@@ -4,7 +4,7 @@
     {
       "name": "default",
       "pageBundle": false,
-      "previewPath": null,
+      "previewPath": "blog",
       "fields": [
         {
           "title": "Title",
