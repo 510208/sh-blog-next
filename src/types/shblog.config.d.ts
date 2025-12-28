@@ -62,6 +62,7 @@ export interface Style {
   defaultPostImage: string;
   postsPerPage: number;
   titleSeparator: string;
+  enableTransitions: boolean;
 }
 
 export interface FooterLink {
