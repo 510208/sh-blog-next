@@ -1,7 +1,7 @@
 ---
 title: First post
 description: Lorem ipsum dolor sit amet
-pubDate: Jul 08 2022
+pubDate: 2022-07-08T04:00:00.000Z
 heroImage: ../../assets/blog-placeholder-3.jpg
 category: Astro預設文章
 draft: false
