@@ -44,8 +44,16 @@ export default function BlogCard({
     setIsHydrated(true);
   }, [pubDate]);
 
+  const handleCardClick = () => {
+    window.location.href = href;
+  };
+
+  const handleCategoryClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
-    <a href={href} className="block">
+    <div onClick={handleCardClick} className="block cursor-pointer">
       <Card
         className={`backdrop-blur-[10px] border border-white/10 rounded-[14px] transition-all hover:border-white/20 ${
           isLoading ? "bg-neutral-800" : "bg-neutral-900"
@@ -99,7 +107,10 @@ export default function BlogCard({
 
                 {/* 文章標籤 */}
                 {tags && (
-                  <div className="flex items-center gap-1.5">
+                  <div
+                    className="flex items-center gap-1.5"
+                    onClick={handleCategoryClick}
+                  >
                     <Tag size={16} />
                     <Tags tags={tags} />
                   </div>
@@ -113,6 +124,7 @@ export default function BlogCard({
                       <a
                         className="hover:text-white transition-all"
                         href={`/blog/categories/${category.toLowerCase()}`}
+                        onClick={handleCategoryClick}
                       >
                         <span>{category}</span>
                       </a>
@@ -126,6 +138,6 @@ export default function BlogCard({
           </div>
         </CardContent>
       </Card>
-    </a>
+    </div>
   );
 }
