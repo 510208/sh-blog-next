@@ -19,7 +19,7 @@
 }
 
 /* 段落樣式 */
-#post-content p,
+#post-content p:not(.content p),
 #post-content li,
 #post-content ol,
 #post-content ul {

@@ -1,86 +1,104 @@
-aside {
-  --aside-color-base: var(--color-base-purple);
-  --aside-color-lightness: 54%;
-  --aside-accent-color: hsl(
-    var(--aside-color-base),
-    var(--aside-color-lightness)
-  );
-  --aside-text-lightness: 20%;
-  --aside-text-accent-color: hsl(
-    var(--aside-color-base),
-    var(--aside-text-lightness)
-  );
+/* ==========
+   Base style
+   ========== */
 
-  border-inline-start: 4px solid var(--aside-accent-color);
-  padding: 1rem;
-  background-color: hsla(
-    var(--aside-color-base),
-    var(--aside-color-lightness),
-    var(--theme-accent-opacity)
-  );
-  outline: 1px solid transparent;
-  margin: 1rem 0;
+aside.content {
+  --accent: #999;
+  --bg: #f5f5f5;
+
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 6px solid var(--accent);
+  border-radius: 6px;
+  background-color: var(--bg);
+  color: #fff;
+
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
-.theme-dark aside {
-  --aside-text-lightness: 85%;
+/* Title row */
+aside.content > .title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
 }
 
-.title {
-  line-height: 1;
-  margin: 0 0 0.5rem 0 !important;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: var(--aside-text-accent-color);
+/* Icon */
+aside.content .icon {
+  display: inline-flex;
+  align-items: center;
 }
 
-.icon svg {
-  width: 1.5em;
-  height: 1.5em;
-  vertical-align: middle;
-  fill: currentcolor;
+aside.content svg {
+  fill: currentColor;
 }
 
-aside a,
-aside a > code:not([class*="language"]) {
-  color: var(--aside-text-accent-color);
+/* Content */
+
+aside.content section p {
+  margin: 0.25rem 0 0;
+  color: #fff;
 }
 
-aside section {
-  padding-left: 0;
+aside.caution section {
+  margin-top: 0;
 }
 
-aside section p {
-  margin: 0 !important;
+/* ==========
+   Variants
+   ========== */
+aside.content.note {
+  --accent: #7c4dff;
+  --bg: #4b2e83;
 }
 
-aside p,
-aside.content ul {
-  color: var(--theme-text);
+/* 提示 */
+aside.content.tip {
+  --accent: #26c6da;
+  --bg: #1e6671;
 }
 
-.theme-dark aside code:not([class*="language"]) {
-  color: var(--theme-code-text);
+/* 注意 */
+aside.content.important {
+  --accent: #2831ff;
+  --bg: #2e307a;
 }
 
-aside pre {
-  margin-left: 0;
-  margin-right: 0;
+/* 警告 */
+/* aside.content.warning {
+  --accent: #f9a825;
+  --bg: #7a6132;
+} */
+
+/* 危險行為 */
+aside.content.danger {
+  --accent: #ff1744;
+  --bg: #7a1f33;
 }
 
-.tip {
-  --aside-color-lightness: 42%;
-  --aside-color-base: var(--color-base-teal);
+aside.content.caution {
+  --accent: #ff9100;
+  --bg: #7a4e1f;
 }
 
-.caution {
-  --aside-color-lightness: 59%;
-  --aside-color-base: var(--color-base-yellow);
+/* ==========
+   Markdown compatibility
+   ========== */
+
+aside.content section a {
+  color: #fff;
+  text-decoration: underline;
 }
 
-.danger {
-  --aside-color-lightness: 54%;
-  --aside-color-base: var(--color-base-red);
+aside.content section code {
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.15);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
