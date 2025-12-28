@@ -28,3 +28,7 @@ wrangler.jsonc
 src/content/blog/*
 src/assets/blog/*
 public/assets/blog/*
+
+# Frontmatter CMS
+.frontmatter/database/
+.frontmatter/*
