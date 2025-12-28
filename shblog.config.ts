@@ -1,26 +1,61 @@
 import { Newspaper, Handshake, Home, Info, Phone } from "lucide-react";
 import type { ShBlogConfig } from "./src/types/shblog.config.d";
 
+//
+//    ______ _____  __             __   _  __        _____
+//   / __/ // / _ )/ /__  ___ _    \ \ / |/ /____ __/ /\  \
+//  _\ \/ _  / _  / / _ \/ _ `/     > >    / -_) \ / __/>  >
+// /___/_//_/____/_/\___/\_, /     /_/_/|_/\__/_\_\\__//__/
+//                      /___/
+//     M a k e   B l o g g i n g   G r e a t   A g a i n
+//
+//
+//   SHBlog Next 是一款由 SamHacker 基於 Astro 框架打造的現代化部落格系統，
+//   專為內容創作者設計，提供簡潔且高效的寫作與發布體驗。
+//   無論你是技術部落客、生活分享者，還是專業作家，SHBlog Next 都能滿足你的需求，
+//   幫助你輕鬆建立個人品牌，與全球讀者分享你的故事與知識。
+
 const config: ShBlogConfig = {
+  // 網站名稱
+  //   這個名稱會顯示在瀏覽器標籤、網站頁首和搜尋引擎結果中
   title: "SamHacker Blog",
+
+  // 網站描述
+  //   這個描述會顯示在網站頁首和搜尋引擎結果中
   description:
     "我是一個熱愛分享技術的部落客，專注於 Minecraft 開服、網站建設、開源軟體等領域。",
+
+  // 網站語言 (使用 IETF 語言標籤)
+  //  這個語言設定會影響搜尋引擎優化 (SEO) 和無障礙功能，除非有需要，否則請設定成網站主要的語言即可，不須多做變動
   lang: "zh-tw",
+
+  // 網站圖示 (favicon) 的路徑
+  //   這個圖示會顯示在瀏覽器標籤和書籤中，提供的路徑應該是相對於網站根目錄的路徑
+  //   如 example.com/favicon.ico 則應該填寫 /favicon.ico
   favicon: "/favicon.png",
+
+  // 風格設定
   style: {
     defaultPostImage:
-      "/assets/layouts/homepage/samhacker_homepage_background.png",
-    postsPerPage: 6,
-    titleSeparator: "-",
+      "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設文章圖片，如果文章沒有指定封面就使用它
+    postsPerPage: 6, // 首頁每頁顯示的文章數量
+    titleSeparator: "-", // 網站標題分隔符號，會用在瀏覽器標籤和 SEO 中，例如 "文章標題 - 網站名稱"
   },
+
+  // 作者（站長）資訊
   author: {
-    name: "SamHacker",
-    bio: "我是一個熱愛分享技術的部落客，專注於 Minecraft 開服、網站建設、開源軟體等領域。",
-    email: "xux510208@gmail.com",
+    name: "SamHacker", // 網站站長名稱
+    bio: "我是一個熱愛分享技術的部落客，專注於 Minecraft 開服、網站建設、開源軟體等領域。", // 簡短自我介紹
+    // 詳細自我介紹請在 src/pages/about.astro 中編輯
+
+    email: "xux510208@gmail.com", // 聯絡電子郵件
+    // 頭像圖片的完整 URL 或相對路徑
     avatarUrl:
       "https://gravatar.com/avatar/f7598bd8d4aba38d7219341f81a162fc842376b3b556b1995cbb97271d9e2915?v=1753291388000&size=256&d=initials",
+
+    // 社交媒體連結
     links: [
-      // 如需其他的社交媒體圖標，請在 AuthorCard 組件中添加相應的圖標映射
+      // 如需其他的社交媒體圖標，請在 AuthorCard 元件中添加相應的圖標映射
       {
         icon: "Twitter",
         to: "https://twitter.com/samhacker",
@@ -33,7 +68,15 @@ const config: ShBlogConfig = {
       },
     ],
   },
+
+  // 頁首選單設定
   navBar: {
+    // 請依照以下格式添加選單項目
+    // {
+    //   title: "Logo",  // 選單顯示名稱
+    //   href: "/",  // 連結目標網址（可用相對、外連網址或絕對路徑）
+    //   icon: Home,  // 選單圖標，請從 lucide-react 匯入對應圖標，此圖標會用於行動裝置選單顯示
+    // }
     links: [
       {
         title: "Home",
@@ -62,7 +105,18 @@ const config: ShBlogConfig = {
       },
     ],
   },
+
+  // 友情連結設定
   friendLinks: [
+    // 請依照以下格式添加友情連結，友情連結可以用來交換連結或推薦其他網站，因此建議慎選
+    // {
+    //   title: "網站名稱", // 連結網站的名稱
+    //   imgUrl: "/path/to/image.png", // 連結網站的圖示，建議使用正方形圖片
+    //   desc: "網站描述", // 簡短的網站介紹
+    //   siteUrl: "https://example.com", // 連結網站的網址
+    //   tags: ["標籤1", "標籤2"], // 可選的標籤，用於分類或描述網站
+    // }
+
     {
       title: "SamHacker",
       imgUrl:
@@ -122,8 +176,28 @@ const config: ShBlogConfig = {
       tags: ["Discord Bot", "技術", "生活"],
     },
   ],
+
+  // 其他行為設定
   behavior: {
-    enableComment: true,
+    enableComment: true, // 是否啟用文章評論功能
+    // 評論系統設定，當 enableComment 為 true 時生效
+    // giscus 評論系統設定說明請參考：https://giscus.app/zh-TW
+    // <script src="https://giscus.app/client.js"
+    //     data-repo="[在此輸入儲存庫名稱]"
+    //     data-repo-id="[在此輸入儲存庫 ID]"
+    //     data-category="[在此輸入分類名稱]"
+    //     data-category-id="[在此輸入分類 ID]"
+    //     data-mapping="pathname"
+    //     data-strict="0"
+    //     data-reactions-enabled="1"
+    //     data-emit-metadata="0"
+    //     data-input-position="bottom"
+    //     data-theme="preferred_color_scheme"
+    //     data-lang="zh-TW"
+    //     crossorigin="anonymous"
+    //     async>
+    // </script>
+    // 設定與上述 script 標籤中的 data- 屬性對應，可以直接用官網提供的產生器來取得對應的值
     giscusConfig: {
       repo: "510208/utterances",
       repoId: "R_kgDOKOthQw",
@@ -137,15 +211,26 @@ const config: ShBlogConfig = {
       theme: "transparent_dark",
       lang: "zh-TW",
     },
+
+    // 是否啟用 Google Tag Manager 以進行網站流量分析
     enableGTM: true,
+    // Google Tag Manager 設定，當 enableGTM 為 true 時生效
     gtmConfig: {
-      googleTagManagerId: "GTM-N2SPWPQW",
+      googleTagManagerId: "GTM-N2SPWPQW", // 在此輸入您的 Google Tag Manager ID
     },
+
+    // 是否啟用 404 頁面彩蛋，此項目在 CloudFlare Worker 部署時可能不生效
     enable404EasterEgg: true,
   },
+
+  // 頁尾社交媒體連結設定
   footer: [
     // socialMedia 的名稱請前往 https://simpleicons.org/ 上尋找，大小寫須完全吻合
     // 如需使用自訂圖標，請提供圖標的完整 URL 或針對網站根目錄的相對路徑
+    // {
+    //   socialMedia: "Twitter",  // 社交媒體名稱
+    //   url: "https://twitter.com/johndoe",  // 連結網址
+    // },
     {
       socialMedia: "Threads",
       url: "https://www.threads.com/@samhacker.xyz",
@@ -175,10 +260,10 @@ const config: ShBlogConfig = {
       url: "https://www.figma.com/@samhacker",
     },
     {
-      socialMedia: "/assets/logo/social_media/penana_symbol.svg",
-      url: "https://www.penana.com/user/234799/samhacker",
+      socialMedia: "/assets/logo/social_media/penana_symbol.svg", // 自訂圖標範例
+      url: "https://www.penana.com/user/234799/samhacker", // 連結網址
     },
   ],
 };
 
-export default config;
+export default config; // 匯出設定
