@@ -15,7 +15,7 @@ interface BlogCardProps {
   heroImage?: string;
   href: string;
   isLoading?: boolean;
-  category: string | null;
+  category: string | string[] | null;
   tags: string[] | null;
 }
 

@@ -24,17 +24,17 @@ const isImageUrl = (str: string): boolean => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.socialMedia}
-          class="w-6 h-6 hover:opacity-70 text-white"
+          class="w-6 h-6 text-white"
         >
           <Button asChild>
             {isUrl ? (
               <img
                 src={link.socialMedia}
                 alt=""
-                class="w-6 h-6 object-contain"
+                class="w-6 h-6 object-contain hover:opacity-80 transition-all"
               />
             ) : IconComponent ? (
-              <IconComponent className="w-6 h-6" />
+              <IconComponent className="w-6 h-6 hover:opacity-80 transition-all" />
             ) : null}
           </Button>
         </a>
