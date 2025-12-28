@@ -55,7 +55,7 @@ const FAVICON = config.favicon || "/favicon.svg";
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
-<ClientRouter />
+{config.style.enableTransitions && <ClientRouter />}
 
 <!-- Google Tag Manager -->
 <script is:inline type="text/partytown">
