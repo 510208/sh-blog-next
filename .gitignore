@@ -30,4 +30,5 @@ src/assets/blog/*
 public/assets/blog/*
 
 # Frontmatter CMS
-.frontmatter/database/*
+.frontmatter/database/
+.frontmatter/*
