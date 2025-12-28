@@ -40,6 +40,7 @@ const config: ShBlogConfig = {
       "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設文章圖片，如果文章沒有指定封面就使用它
     postsPerPage: 6, // 首頁每頁顯示的文章數量
     titleSeparator: "-", // 網站標題分隔符號，會用在瀏覽器標籤和 SEO 中，例如 "文章標題 - 網站名稱"
+    enableTransitions: false, // 是否啟用頁面轉場動畫
   },
 
   // 作者（站長）資訊
