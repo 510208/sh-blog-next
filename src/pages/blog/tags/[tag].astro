@@ -13,7 +13,11 @@ import { Badge } from "@/components/ui/badge";
 import TimelineSinglePost from "@/components/ui/timeline/TimelineSinglePost.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("blog", ({ data }) => {
+    // 開發環境顯示所有文章,生產環境過濾掉 draft 文章
+    if (import.meta.env.DEV) return true;
+    return data.draft !== true;
+  });
 
   // 取得所有不重複的標籤
   const tags = [

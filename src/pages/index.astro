@@ -9,7 +9,13 @@ import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
 import { HeroSubtitle, HeroTitle } from "@/components/content/Home/HeroItems";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 
-const posts = (await getCollection("blog"))
+const posts = (
+  await getCollection("blog", ({ data }) => {
+    // 開發環境顯示所有文章,生產環境過濾掉 draft 文章
+    if (import.meta.env.DEV) return true;
+    return data.draft !== true;
+  })
+)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 6); // Get latest 6 posts
 

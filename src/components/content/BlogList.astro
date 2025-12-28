@@ -5,9 +5,13 @@ import config from "shblog.config";
 
 const postsPerPage = config.style.postsPerPage || 6;
 // `BlogList` now delegates pagination to the client component.
-const allPosts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const allPosts = (
+  await getCollection("blog", ({ data }) => {
+    // 開發環境顯示所有文章,生產環境過濾掉 draft 文章
+    if (import.meta.env.DEV) return true;
+    return data.draft !== true;
+  })
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 // const totalPages = Math.ceil(allPosts.length / postsPerPage); // Calculate total pages based on posts per page
 
 // Serialize posts for client-side consumption (convert dates to ISO strings)
