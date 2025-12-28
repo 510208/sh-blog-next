@@ -5,6 +5,7 @@ import type { ImageMetadata } from "astro";
 import FallbackImage from "../../assets/blog-placeholder-1.jpg";
 import { SITE_TITLE } from "../../consts.ts";
 import config from "shblog.config";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -53,6 +54,8 @@ const FAVICON = config.favicon || "/favicon.svg";
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<ClientRouter />
 
 <!-- Google Tag Manager -->
 <script is:inline type="text/partytown">
