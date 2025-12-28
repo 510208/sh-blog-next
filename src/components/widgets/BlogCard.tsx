@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card.tsx";
-import { Clock, Calendar, Tag } from "lucide-react";
+import { Tag } from "lucide-react";
 import Tags from "../ui/Tags.tsx";
 import { useEffect, useState } from "react";
 import config from "shblog.config";
