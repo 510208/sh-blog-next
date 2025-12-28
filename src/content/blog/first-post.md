@@ -1,9 +1,12 @@
 ---
-title: "First post"
-description: "Lorem ipsum dolor sit amet"
-pubDate: "Jul 08 2022"
-heroImage: "../../assets/blog-placeholder-3.jpg"
-category: "Astro預設文章"
+title: First post
+description: Lorem ipsum dolor sit amet
+pubDate: Jul 08 2022
+heroImage: ../../assets/blog-placeholder-3.jpg
+category: Astro預設文章
+draft: false
+tags:
+  - 範例標籤1
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra.
