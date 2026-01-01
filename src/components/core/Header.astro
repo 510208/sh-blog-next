@@ -64,7 +64,7 @@ const links = config.navBar.links;
                 <link.icon size={16} />
               </a>
               {index < links.length - 1 && (
-                <span class="text-neutral-400 text-sm">/</span>
+                <span class="hidden sm:block text-neutral-400 text-sm">/</span>
               )}
             </div>
           ))
@@ -82,7 +82,7 @@ const links = config.navBar.links;
             client:load
             variant="ghost"
             size="icon"
-            className="hidden sm:block rounded-lg shadow-sm hover:bg-white/5"
+            className="hidden sm:flex items-center justify-center rounded-lg hover:bg-white/5"
             aria-label="Contact"
           >
             <Mail size={18} />
@@ -94,7 +94,7 @@ const links = config.navBar.links;
             client:load
             variant="ghost"
             size="icon"
-            className="hidden sm:block rounded-lg shadow-sm hover:bg-white/5"
+            className="hidden sm:flex items-center justify-center rounded-lg hover:bg-white/5"
             aria-label="Info"
           >
             <Info size={18} />
