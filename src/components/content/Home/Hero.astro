@@ -14,13 +14,18 @@ import config from "shblog.config";
   <!-- Hero background image -->
   <div class="absolute inset-0 pointer-events-none">
     <Image
-      src={backgroundImage || config.style.heroImage.src}
+      src={backgroundImage ?? config.style.heroImage.src}
       inferSize={true}
       alt=""
-      class={"w-full h-full object-cover bg-fixed" +
-        (config.style.heroImage.method === "mask"
-          ? ` bg-linear-to-b mask-b-from-${config.style.heroImage.from}% mask-b-to-${config.style.heroImage.to}%`
-          : " z-0")}
+      class={
+        "w-full h-full object-cover bg-fixed" +
+        (config.style.heroImage.method === "mask" ? " bg-linear-to-b" : " z-0")
+      }
+      style={
+        config.style.heroImage.method === "mask"
+          ? `-webkit-mask-image: linear-gradient(to bottom, transparent ${config.style.heroImage.from}%, black ${config.style.heroImage.to}%); mask-image: linear-gradient(to bottom, transparent ${config.style.heroImage.from}%, black ${config.style.heroImage.to}%);`
+          : undefined
+      }
       width={1920}
       height={700}
     />
