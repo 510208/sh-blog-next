@@ -17,18 +17,24 @@ import config from "shblog.config";
       src={backgroundImage || config.style.heroImage.src}
       inferSize={true}
       alt=""
-      class=`w-full h-full object-cover bg-fixed mask-b-from-${config.style.heroImage.from}% mask-b-to-${config.style.heroImage.to}%`
+      class={"w-full h-full object-cover bg-fixed" +
+        (config.style.heroImage.method === "mask"
+          ? ` bg-linear-to-b mask-b-from-${config.style.heroImage.from}% mask-b-to-${config.style.heroImage.to}%`
+          : " z-0")}
       width={1920}
       height={700}
     />
-    <div
-      class=`absolute inset-0 bg-linear-to-b from-black/${config.style.heroImage.from} to-black/${config.style.heroImage.to}`
-    >
-    </div>
+    {
+      config.style.heroImage.method === "overlay" && (
+        <div
+          class={`absolute inset-0 bg-linear-to-b z-1 from-black/60 to-black`}
+        />
+      )
+    }
   </div>
 
   <!-- Hero content -->
-  <div class="relative h-full flex items-end justify-center">
+  <div class="relative h-full flex items-end justify-center z-10">
     <div class="w-full md:w-[80vw] md:min-w-3xl md:max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <slot name="left">

@@ -37,10 +37,10 @@ const config: ShBlogConfig = {
   // 風格設定
   style: {
     heroImage: {
-      from: 80,
-      to: 100,
-      src: "/assets/layouts/homepage/samhacker_homepage_background.png",
-      method: "mask",
+      from: 80, // 背景圖淡入起始透明度，數值越大透明度越低
+      to: 100, // 背景圖淡入結束透明度，數值越大透明度越低
+      src: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      method: "overlay", // 背景圖顯示方式，可選值有 "mask"（CSS原生遮罩，測試版）和 "overlay"（使用div遮罩，不能使用透明度，建議）
     },
     defaultPostImage:
       "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設文章圖片，如果文章沒有指定封面就使用它
