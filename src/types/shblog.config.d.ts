@@ -59,6 +59,10 @@ export interface Behavior {
 }
 
 export interface Style {
+  heroImageOpacity: {
+    from: number;
+    to: number;
+  };
   defaultPostImage: string;
   postsPerPage: number;
   titleSeparator: string;

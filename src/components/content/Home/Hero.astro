@@ -3,6 +3,7 @@ const { backgroundImage = DEFAULT_POST_IMAGE } = Astro.props;
 
 import { DEFAULT_POST_IMAGE } from "@/consts";
 import { Image } from "astro:assets";
+import config from "shblog.config";
 ---
 
 <!-- Hero Section -->
@@ -16,11 +17,10 @@ import { Image } from "astro:assets";
       src={backgroundImage}
       inferSize={true}
       alt=""
-      class="w-full h-full object-cover"
+      class=`w-full h-full object-cover mask-b-from-${config.style.heroImageOpacity.from}% mask-b-to-${config.style.heroImageOpacity.to}%`
       width={1920}
       height={700}
     />
-    <div class="absolute inset-0 bg-linear-to-b from-black/60 to-black"></div>
   </div>
 
   <!-- Hero content -->

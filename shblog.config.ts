@@ -36,8 +36,12 @@ const config: ShBlogConfig = {
 
   // 風格設定
   style: {
+    heroImageOpacity: {
+      from: 80, // 首頁大圖的透明度起始值，範圍為0~100（即百分位數）
+      to: 100, // 首頁大圖的透明度結束值，範圍為0~100（即百分位數）
+    },
     defaultPostImage:
-      "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設文章圖片，如果文章沒有指定封面就使用它
+      "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設文章圖片與首頁大圖，如果文章沒有指定封面就使用它
     postsPerPage: 6, // 首頁每頁顯示的文章數量
     titleSeparator: "-", // 網站標題分隔符號，會用在瀏覽器標籤和 SEO 中，例如 "文章標題 - 網站名稱"
     enableTransitions: false, // 是否啟用頁面轉場動畫
