@@ -9,7 +9,6 @@ import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
 import { HeroSubtitle, HeroTitle } from "@/components/content/Home/HeroItems";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import config from "shblog.config";
-import type { s } from "hastscript";
 
 const posts = (
   await getCollection("blog", ({ data }) => {
