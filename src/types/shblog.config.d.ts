@@ -59,11 +59,12 @@ export interface Behavior {
 }
 
 export interface Style {
-  heroImageOpacity: {
+  heroImage: {
+    src: string;
     from: number;
     to: number;
+    method: "mask" | "overlay";
   };
-  defaultHeroImage: string;
   defaultPostImage: string;
   postsPerPage: number;
   titleSeparator: string;

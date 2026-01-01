@@ -14,13 +14,17 @@ import config from "shblog.config";
   <!-- Hero background image -->
   <div class="absolute inset-0 pointer-events-none">
     <Image
-      src={backgroundImage || config.style.defaultHeroImage}
+      src={backgroundImage || config.style.heroImage.src}
       inferSize={true}
       alt=""
-      class=`w-full h-full object-cover bg-fixed mask-b-from-${config.style.heroImageOpacity.from}% mask-b-to-${config.style.heroImageOpacity.to}%`
+      class=`w-full h-full object-cover bg-fixed mask-b-from-${config.style.heroImage.from}% mask-b-to-${config.style.heroImage.to}%`
       width={1920}
       height={700}
     />
+    <div
+      class=`absolute inset-0 bg-linear-to-b from-black/${config.style.heroImage.from} to-black/${config.style.heroImage.to}`
+    >
+    </div>
   </div>
 
   <!-- Hero content -->

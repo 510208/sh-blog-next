@@ -36,12 +36,12 @@ const config: ShBlogConfig = {
 
   // 風格設定
   style: {
-    heroImageOpacity: {
-      from: 80, // 首頁大圖的透明度起始值，範圍為0~100（即百分位數）
-      to: 100, // 首頁大圖的透明度結束值，範圍為0~100（即百分位數）
+    heroImage: {
+      from: 80,
+      to: 100,
+      src: "/assets/layouts/homepage/samhacker_homepage_background.png",
+      method: "mask",
     },
-    defaultHeroImage:
-      "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設首頁大圖，如果沒有指定首頁大圖就使用它
     defaultPostImage:
       "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設文章圖片，如果文章沒有指定封面就使用它
     postsPerPage: 6, // 首頁每頁顯示的文章數量
