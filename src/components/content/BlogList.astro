@@ -29,7 +29,7 @@ const serializedPosts = allPosts.map((post) => ({
 ---
 
 <BlogListClient
-  client:only="react"
+  client:load
   posts={serializedPosts}
   postsPerPage={postsPerPage}
 />

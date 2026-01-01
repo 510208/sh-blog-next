@@ -32,3 +32,4 @@ public/assets/blog/*
 # Frontmatter CMS
 .frontmatter/database/
 .frontmatter/*
+.vscode/settings.json

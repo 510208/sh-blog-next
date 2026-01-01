@@ -27,7 +27,12 @@ import { SearchIcon } from "@/components/ui/animated/search";
 
 export function SearchDialog() {
   return (
-    <a href="/search" target="_blank" rel="noopener noreferrer">
+    <a
+      href="/search"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hidden sm:block"
+    >
       <Button
         variant="ghost"
         size="icon"

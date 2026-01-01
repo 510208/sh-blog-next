@@ -3,28 +3,43 @@ const { backgroundImage = DEFAULT_POST_IMAGE } = Astro.props;
 
 import { DEFAULT_POST_IMAGE } from "@/consts";
 import { Image } from "astro:assets";
+import config from "shblog.config";
 ---
 
 <!-- Hero Section -->
 <section
-  class="relative h-175 px-4 py-10 overflow-hidden"
+  class="relative h-screen max-h-175 px-4 py-10 overflow-hidden"
   transition:name="hero"
 >
   <!-- Hero background image -->
   <div class="absolute inset-0 pointer-events-none">
     <Image
-      src={backgroundImage}
+      src={backgroundImage ?? config.style.heroImage.src}
       inferSize={true}
       alt=""
-      class="w-full h-full object-cover"
+      class={
+        "w-full h-full object-cover bg-fixed" +
+        (config.style.heroImage.method === "mask" ? " bg-linear-to-b" : " z-0")
+      }
+      style={
+        config.style.heroImage.method === "mask"
+          ? `-webkit-mask-image: linear-gradient(to bottom, transparent ${config.style.heroImage.from}%, black ${config.style.heroImage.to}%); mask-image: linear-gradient(to bottom, transparent ${config.style.heroImage.from}%, black ${config.style.heroImage.to}%);`
+          : undefined
+      }
       width={1920}
       height={700}
     />
-    <div class="absolute inset-0 bg-linear-to-b from-black/60 to-black"></div>
+    {
+      config.style.heroImage.method === "overlay" && (
+        <div
+          class={`absolute inset-0 bg-linear-to-b z-1 from-black/60 to-black`}
+        />
+      )
+    }
   </div>
 
   <!-- Hero content -->
-  <div class="relative h-full flex items-end justify-center">
+  <div class="relative h-full flex items-end justify-center z-10">
     <div class="w-full md:w-[80vw] md:min-w-3xl md:max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <slot name="left">

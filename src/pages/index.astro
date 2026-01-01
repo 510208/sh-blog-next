@@ -8,6 +8,7 @@ import Sidebar from "@/components/Sidebar.astro";
 import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
 import { HeroSubtitle, HeroTitle } from "@/components/content/Home/HeroItems";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+import config from "shblog.config";
 
 const posts = (
   await getCollection("blog", ({ data }) => {
@@ -35,31 +36,34 @@ const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
         <Greeting />
       </HeroSubtitle>
     </div>
-  </Hero>
-
-  <!-- Right: Featured article card -->
-  <div class="flex flex-col justify-end gap-5" slot="right">
+    <!-- Right: Featured article card -->
     {
-      featuredPost && (
-        <a
-          href={`/blog/${featuredPost.id}/`}
-          class="border border-white/20 rounded-xl overflow-hidden backdrop-blur-sm bg-black/30 hover:bg-black/50 transition-all group h-57.5 flex flex-col justify-end p-6"
-          style={{
-            backgroundImage: featuredPost.data.heroImage
-              ? `url(${featuredPost.data.heroImage.src})`
-              : "none",
-            backgroundSize: "cover",
-            backgroundBlendMode: "darken",
-          }}
-        >
-          <p class="text-white/60 text-xl tracking-[4px] mb-2.5">最近更新</p>
-          <h2 class="text-white text-4xl font-bold group-hover:text-white/90 transition-colors">
-            {featuredPost.data.title}
-          </h2>
-        </a>
+      config.style.enableRecentPosts && (
+        <div class="flex flex-col justify-end gap-5" slot="right">
+          {featuredPost && (
+            <a
+              href={`/blog/${featuredPost.id}/`}
+              class="border border-white/20 rounded-xl overflow-hidden backdrop-blur-sm bg-black/30 hover:bg-black/50 transition-all group h-57.5 flex flex-col justify-end p-6"
+              style={{
+                backgroundImage: featuredPost.data.heroImage
+                  ? `url(${featuredPost.data.heroImage.src})`
+                  : "none",
+                backgroundSize: "cover",
+                backgroundBlendMode: "darken",
+              }}
+            >
+              <p class="text-white/60 text-xl tracking-[4px] mb-2.5">
+                最近更新
+              </p>
+              <h2 class="text-white text-4xl font-bold group-hover:text-white/90 transition-colors">
+                {featuredPost.data.title}
+              </h2>
+            </a>
+          )}
+        </div>
       )
     }
-  </div>
+  </Hero>
 
   <!-- Main content section -->
   <BaseMainContent>

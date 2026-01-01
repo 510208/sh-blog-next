@@ -59,10 +59,17 @@ export interface Behavior {
 }
 
 export interface Style {
+  heroImage: {
+    src: string;
+    from: number;
+    to: number;
+    method: "mask" | "overlay";
+  };
   defaultPostImage: string;
   postsPerPage: number;
   titleSeparator: string;
   enableTransitions: boolean;
+  enableRecentPosts: boolean;
 }
 
 export interface FooterLink {
