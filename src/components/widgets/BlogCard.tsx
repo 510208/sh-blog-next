@@ -56,7 +56,7 @@ export default function BlogCard({
       <Card
         className={`backdrop-blur-[10px] min-h-110 border border-white/10 rounded-[14px] transition-all hover:border-white/20 p-0 gap-3 overflow-hidden ${
           isLoading ? "bg-neutral-800" : "bg-neutral-900"
-        } flex flex-col h-full relative`}
+        } flex flex-col h-full relative group`}
       >
         {/* 背景圖層 */}
         {!isLoading && heroImage && (
@@ -64,7 +64,7 @@ export default function BlogCard({
             <img
               src={heroImage}
               alt=""
-              className="w-full h-full object-cover opacity-10 blur-[20px] scale-110"
+              className="w-full h-full object-cover opacity-10 group-hover:opacity-15 blur-[20px] group-hover:blur-[3px] scale-110 transition-all duration-300"
             />
           </div>
         )}
