@@ -34,7 +34,7 @@ import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://sh-blog-next.vercel.app",
+  site: process.env.SITE_URL || "https://sh-blog-next.vercel.app",
   integrations: [
     AutoImport({
       imports: [asideAutoImport],
