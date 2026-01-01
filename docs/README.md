@@ -1,4 +1,4 @@
-<center><img src="/docs/assets/screenshot.png" alt="Screenshot" width="600px" /></center>
+<center><img src="/docs/assets/key_visual.png" alt="Screenshot" width="full" /></center>
 
 # SamHacker Blog Next
 
@@ -30,3 +30,24 @@ pnpm preview
 - 結合 React 元件，提升互動性與可維護性。
 
 歡迎有興趣的開發者一同參與此專案，若有任何建議或問題，請隨時提出 Issue 或 Pull Request。
+
+## 鳴謝
+
+特別感謝以下專案與資源的支持：
+
+- [Astro](https://astro.build/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [React](https://react.dev/)
+- [MDX](https://mdxjs.com/)
+- [Vercel](https://vercel.com/) 提供的雲端部署服務（用於部署Demo站）
+- [Stable Diffusion A1111 WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 提供的圖片生成技術與[wainsfwillustrious模型](https://civitai.com/models/827184/wai-illustrious-sdxl)（用於生成部落格關鍵視覺圖）
+
+此外，也要感謝以下網站提供的設計啟發與靈感：
+
+- [毛哥EM資訊密技](https://emtech.cc/)
+- [SamHacker](https://510208.github.io/)
+- [Fuwari](https://fuwari.vercel.app/)主題
+- [Zhenyuan Dev](https://zhenyuan.dev/)
+  _與開放原始碼界的各位_
+
+另外感謝所有開源社群的貢獻，讓這個專案得以順利完成！
