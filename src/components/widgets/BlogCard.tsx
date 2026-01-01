@@ -1,12 +1,11 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card.tsx";
+import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
 import { Tag } from "lucide-react";
 import Tags from "../ui/Tags.tsx";
 import { useEffect, useState } from "react";
 import config from "shblog.config";
 import { CalendarDaysIcon } from "../ui/animated/calendar-days.tsx";
-import { BookmarkIcon } from "../ui/animated/bookmark.tsx";
 
 interface BlogCardProps {
   title: string;
@@ -55,13 +54,13 @@ export default function BlogCard({
   return (
     <div onClick={handleCardClick} className="block cursor-pointer">
       <Card
-        className={`backdrop-blur-[10px] border border-white/10 rounded-[14px] transition-all hover:border-white/20 ${
+        className={`backdrop-blur-[10px] min-h-110 border border-white/10 rounded-[14px] transition-all hover:border-white/20 p-0 gap-3 overflow-hidden ${
           isLoading ? "bg-neutral-800" : "bg-neutral-900"
-        }`}
+        } flex flex-col h-full`} // 新增: 使 Card 成為 flex column 並充滿高度
       >
-        <CardContent className="flex flex-col gap-2.5">
+        <CardHeader className="p-0 pb-0">
           {/* Image */}
-          <div className="h-45 rounded-2xl overflow-hidden bg-neutral-700">
+          <div className="h-50 overflow-hidden bg-neutral-700">
             {!isLoading && heroImage && (
               <img
                 src={heroImage}
@@ -70,26 +69,46 @@ export default function BlogCard({
               />
             )}
           </div>
+        </CardHeader>
 
-          {/* Title */}
-          <h3
-            className={`text-xl font-bold leading-normal ${
-              isLoading
-                ? "h-8 bg-neutral-700 rounded-md animate-pulse"
-                : "text-white"
-            }`}
-          >
-            {!isLoading && title}
-          </h3>
-
-          {/* Description */}
-          {!isLoading && description && (
-            <p className="text-neutral-400 text-sm line-clamp-2 leading-relaxed">
-              {description}
-            </p>
-          )}
-
-          {/* Metadata */}
+        <CardContent className="flex flex-col gap-2.5 p-6 pt-0 flex-1">
+          {" "}
+          {/* 新增 flex-1 */}
+          <div className="flex-1">
+            {" "}
+            {/* 主要內容放這裡，會撐開空間 */}
+            {/* 文章分類 */}
+            {category && (
+              <div>
+                <a
+                  className="hover:text-white transition-all font-mono text-sm text-neutral-400"
+                  href={`/blog/categories/${(Array.isArray(category) ? category[0] : category).toLowerCase()}`}
+                  onClick={handleCategoryClick}
+                >
+                  <span className="tracking-[0.5em]">
+                    {Array.isArray(category) ? category[0] : category}
+                  </span>
+                </a>
+              </div>
+            )}
+            {/* Title */}
+            <h3
+              className={`text-xl font-bold leading-normal ${
+                isLoading
+                  ? "h-8 bg-neutral-700 rounded-md animate-pulse"
+                  : "text-white"
+              }`}
+            >
+              {!isLoading && title}
+            </h3>
+            {/* Description */}
+            {!isLoading && description && (
+              <p className="text-neutral-400 text-sm line-clamp-2 leading-relaxed">
+                {description}
+              </p>
+            )}
+          </div>
+          {/* Metadata - 固定放在底部 */}
           <div className="flex items-center gap-3 text-sm text-neutral-500 flex-wrap">
             {!isLoading && isHydrated ? (
               <>
@@ -98,12 +117,6 @@ export default function BlogCard({
                   <CalendarDaysIcon size={16} />
                   <time dateTime={pubDate}>{formattedDate}</time>
                 </div>
-
-                {/* 估計閱讀時間 */}
-                {/* <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" />
-                  <span>5 min read</span>
-                </div> */}
 
                 {/* 文章標籤 */}
                 {tags && (
@@ -114,24 +127,6 @@ export default function BlogCard({
                     <Tag size={16} />
                     <Tags tags={tags} />
                   </div>
-                )}
-
-                {/* 文章分類 */}
-                {category && (
-                  <>
-                    <div className="flex items-center gap-1.5">
-                      <BookmarkIcon size={16} />
-                      <a
-                        className="hover:text-white transition-all"
-                        href={`/blog/categories/${(Array.isArray(category) ? category[0] : category).toLowerCase()}`}
-                        onClick={handleCategoryClick}
-                      >
-                        <span>
-                          {Array.isArray(category) ? category[0] : category}
-                        </span>
-                      </a>
-                    </div>
-                  </>
                 )}
               </>
             ) : isLoading ? (
