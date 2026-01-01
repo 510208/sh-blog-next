@@ -63,6 +63,7 @@ export interface Style {
     from: number;
     to: number;
   };
+  defaultHeroImage: string;
   defaultPostImage: string;
   postsPerPage: number;
   titleSeparator: string;
