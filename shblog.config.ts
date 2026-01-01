@@ -47,6 +47,7 @@ const config: ShBlogConfig = {
     postsPerPage: 6, // 首頁每頁顯示的文章數量
     titleSeparator: "-", // 網站標題分隔符號，會用在瀏覽器標籤和 SEO 中，例如 "文章標題 - 網站名稱"
     enableTransitions: false, // 是否啟用頁面轉場動畫
+    enableRecentPosts: false, // 是否在首頁顯示最新文章區塊
   },
 
   // 作者（站長）資訊
@@ -187,6 +188,7 @@ const config: ShBlogConfig = {
   // 其他行為設定
   behavior: {
     enableComment: true, // 是否啟用文章評論功能
+
     // 評論系統設定，當 enableComment 為 true 時生效
     // giscus 評論系統設定說明請參考：https://giscus.app/zh-TW
     // <script src="https://giscus.app/client.js"

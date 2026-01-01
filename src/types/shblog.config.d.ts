@@ -69,6 +69,7 @@ export interface Style {
   postsPerPage: number;
   titleSeparator: string;
   enableTransitions: boolean;
+  enableRecentPosts: boolean;
 }
 
 export interface FooterLink {
