@@ -84,11 +84,8 @@ export default function BlogCard({
         </CardHeader>
 
         <CardContent className="flex flex-col gap-2.5 p-6 pt-0 flex-1 relative z-10">
-          {" "}
-          {/* 新增 flex-1 */}
+          {/* 主要內容區塊（flex-1 撐開空間） */}
           <div className="flex-1">
-            {" "}
-            {/* 主要內容放這裡，會撐開空間 */}
             {/* 文章分類 */}
             {category && (
               <div>
