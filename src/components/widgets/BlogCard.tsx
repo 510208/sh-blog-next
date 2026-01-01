@@ -64,6 +64,7 @@ export default function BlogCard({
             <img
               src={heroImage}
               alt=""
+              role="presentation"
               className="w-full h-full object-cover opacity-10 group-hover:opacity-15 blur-[20px] group-hover:blur-[3px] scale-110 transition-all duration-300"
             />
           </div>
