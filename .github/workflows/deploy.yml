@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on:
+  # 在每次推送到 `main` 分支時觸發部署
+  # 如果你想要在其他分支上觸發部署，請將 `main` 替換成你想要的分支名稱
+  push:
+    branches: [main]
+  # 允許你在 GitHub 上的 Actions 分頁中手動觸發此部署
+  workflow_dispatch:
+
+# 允許這個工作複製儲存庫並建立頁面部署
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+      - name: Install, build, and upload your site
+        uses: withastro/action@v3
+        # with:
+        # path: . # 儲存庫中 Astro 專案的根位置。（可選）
+        node-version: 24 # 用於建置網站的特定 Node.js 版本，預設為 20。（可選）
+        # package-manager: pnpm@latest # 應該使用哪個 Node.js 套件管理器來安裝相依套件和建置網站，會根據儲存庫中的 lockfile 自動檢測。（可選）
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

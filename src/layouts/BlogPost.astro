@@ -21,6 +21,9 @@ import "katex/dist/katex.min.css";
 import Comment from "@/components/comment/Comment.astro";
 import Tags from "@/components/Tags.astro";
 
+import "@/styles/markdown.css";
+import "@/styles/aside.css";
+
 interface Props {
   title: string;
   description: string;
@@ -43,14 +46,6 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
   title={`${title} ${SEPARATOR} ${config.title}`}
   description={description}
 >
-  <!-- 注入 head -->
-  <link
-    type="stylesheet"
-    rel="stylesheet"
-    href="/styles/markdown.css"
-    slot="head"
-  />
-
   <!-- 內容 -->
   <Hero backgroundImage={heroImage || DEFAULT_POST_IMAGE}>
     <!-- Left: Main heading -->

@@ -22,8 +22,9 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
-import rehypeComponents from "rehype-components";
-import { AdmonitionComponent } from "./src/plugins/rehype-components-admonition.mjs";
+
+import { asideAutoImport, astroAsides } from "./src/utils/astro-aside";
+import AutoImport from "astro-auto-import";
 
 import react from "@astrojs/react";
 
@@ -33,11 +34,19 @@ import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://samhacker.xyz",
+  site: "https://510208.github.io",
+  base: "sh-blog-next",
   integrations: [
+    AutoImport({
+      imports: [asideAutoImport],
+    }),
+    astroAsides(),
     expressiveCode(),
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        !page.includes("/categories/") && !page.includes("/tags/"),
+    }),
     react(),
     pagefind(),
     partytown({
@@ -64,7 +73,7 @@ export default defineConfig({
     remarkPlugins: [
       remarkMath,
       remarkReadingTime,
-      remarkGithubAdmonitionsToDirectives,
+      // remarkGithubAdmonitionsToDirectives,
       remarkDirective,
       remarkSectionize,
       remarkSpoiler,
@@ -72,18 +81,6 @@ export default defineConfig({
     rehypePlugins: [
       rehypeKatex,
       rehypeSlug,
-      [
-        rehypeComponents,
-        {
-          components: {
-            note: (x, y) => AdmonitionComponent(x, y, "note"),
-            tip: (x, y) => AdmonitionComponent(x, y, "tip"),
-            important: (x, y) => AdmonitionComponent(x, y, "important"),
-            caution: (x, y) => AdmonitionComponent(x, y, "caution"),
-            warning: (x, y) => AdmonitionComponent(x, y, "warning"),
-          },
-        },
-      ],
       [
         rehypeAutolinkHeadings,
         {
