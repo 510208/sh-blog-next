@@ -34,7 +34,8 @@ import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://samhacker.xyz",
+  site: "https://510208.github.io",
+  base: "sh-blog-next",
   integrations: [
     AutoImport({
       imports: [asideAutoImport],
