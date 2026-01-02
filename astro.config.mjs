@@ -32,6 +32,10 @@ import expressiveCode from "astro-expressive-code";
 
 import pagefind from "astro-pagefind";
 
+import metaTags from "astro-meta-tags";
+
+import devtoolBreakpoints from "astro-devtool-breakpoints";
+
 // https://astro.build/config
 export default defineConfig({
   site: process.env.SITE_URL || "https://sh-blog-next.vercel.app",
@@ -54,6 +58,8 @@ export default defineConfig({
         forward: ["dataLayer.push", "gtag"],
       },
     }),
+    metaTags(),
+    devtoolBreakpoints(),
   ],
 
   vite: {
