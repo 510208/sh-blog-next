@@ -40,7 +40,7 @@ pnpm preview
 - [React](https://react.dev/)
 - [MDX](https://mdxjs.com/)
 - [Vercel](https://vercel.com/) 提供的雲端部署服務（用於部署Demo站）
-- [Stable Diffusion A1111 WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 提供的圖片生成技術與[wainsfwillustrious模型](https://civitai.com/models/827184/wai-illustrious-sdxl)（用於生成部落格關鍵視覺圖）
+- [Stable Diffusion A1111 WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 提供的圖片生成技術與 [wainsfwillustrious模型](https://civitai.com/models/827184/wai-illustrious-sdxl)（用於生成部落格關鍵視覺圖）
 
 此外，也要感謝以下網站提供的設計啟發與靈感：
 
