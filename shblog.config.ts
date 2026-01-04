@@ -183,6 +183,13 @@ const config: ShBlogConfig = {
       siteUrl: "https://ruixue.onrender.com/",
       tags: ["Discord Bot", "技術", "生活"],
     },
+    {
+      title: "三哥",
+      imgUrl: "https://gravatar.com/avatar/f6d0a62624d1d82d90ea3232e3663561",
+      desc: "　",
+      siteUrl: "https://sange.ge/",
+      tags: ["技術", "生活", "託管服務"],
+    },
   ],
 
   // 其他行為設定
