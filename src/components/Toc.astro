@@ -68,7 +68,7 @@ const tocTree = headings.reduce(
               <li class="group">
                 <a
                   href={`#${item.slug}`}
-                  class="toc-link toc-level-2 flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors duration-400 relative"
+                  class={`toc-link toc-level-${minDepth} flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors duration-400 relative`}
                   data-heading-index={index}
                   data-heading-slug={item.slug}
                 >
