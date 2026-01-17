@@ -1,6 +1,5 @@
 import { Newspaper, Handshake, Home, Info, Phone } from "lucide-react";
 import type { ShBlogConfig } from "./src/types/shblog.config.d";
-import { h } from "hastscript";
 
 //
 //    ______ _____  __             __   _  __        _____
