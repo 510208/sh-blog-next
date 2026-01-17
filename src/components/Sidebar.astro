@@ -30,6 +30,9 @@ import DiscordCard from "./widgets/DiscordCard";
     />
   </a>
 
-  <!-- Slot for ToC - will be sticky -->
+  <!-- You can add more widgets here, we suggests add a widget with shadcn Card component like this: -->
+  <!-- <Card className="border border-white/10 rounded-[14px] p-5 relative overflow-hidden" /> -->
+
+  <!-- Never remove this slot, it's for the Table of Contents (ToC) - which will be sticky -->
   <slot />
 </aside>
