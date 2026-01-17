@@ -64,6 +64,10 @@ pnpm preview
 - Node.js v22 以上
 - pnpm v9 以上
 
+## 🤝 協助開發
+
+若您有興趣協助開發此專案，請參考 [CONTRIBUTING.md](/docs/CONTRIBUTING.md)。
+
 ## 鳴謝
 
 特別感謝以下專案與資源的支持：

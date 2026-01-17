@@ -61,6 +61,10 @@ Developers interested in this project are welcome to participate. If you have an
 - Node.js v22 or higher
 - pnpm v9 or higher
 
+## 🤝 Contributing
+
+If you are interested in contributing to this project, please refer to [CONTRIBUTING.md](/docs/CONTRIBUTING.md).
+
 ## Acknowledgments
 
 Special thanks to the following projects and resources for their support：
