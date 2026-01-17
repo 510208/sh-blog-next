@@ -117,14 +117,14 @@ const tocTree = headings.reduce(
   }
 </div>
 
-<script>
-  let currentH2Index: string | null = null;
+<script define:vars={{ minDepth }}>
+  let currentH2Index = null;
 
   // 設置標題的滾動邊距，防止被 TOC 卡住
   document
     .querySelectorAll("article :is(h2,h3,h4,h5,h6)")
     .forEach((heading) => {
-      (heading as HTMLElement).style.scrollMarginTop = "90px";
+      heading.style.scrollMarginTop = "90px";
     });
 
   // 切換子項顯示/隱藏
@@ -182,7 +182,7 @@ const tocTree = headings.reduce(
     });
 
   // 高亮當前閱讀位置並自動展開/關閉父項
-  const setCurrent: IntersectionObserverCallback = (entries) => {
+  const setCurrent = (entries) => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
 
@@ -191,7 +191,7 @@ const tocTree = headings.reduce(
 
       const tocLink = document.querySelector(
         `[data-blog-toc] a[data-heading-slug="${id}"]`,
-      ) as HTMLElement | null;
+      );
       if (!tocLink) continue;
 
       // 高亮
@@ -236,7 +236,7 @@ const tocTree = headings.reduce(
     }
   };
 
-  const observerOption: IntersectionObserverInit = {
+  const observerOption = {
     root: null,
     rootMargin: "0px 0px -50%",
     threshold: 0,
