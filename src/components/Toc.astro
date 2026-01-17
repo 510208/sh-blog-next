@@ -200,8 +200,8 @@ const tocTree = headings.reduce(
         .forEach((e) => e.classList.remove("active"));
       tocLink.classList.add("active");
 
-      const isH2 = tocLink.classList.contains("toc-level-2");
-      if (!isH2) return;
+      const isRootHeading = tocLink.classList.contains(`toc-level-${minDepth}`);
+      if (!isRootHeading) return;
 
       const index = tocLink.getAttribute("data-heading-index");
       if (!index) return;
