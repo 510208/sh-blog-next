@@ -145,7 +145,7 @@ const tocTree = headings.reduce(
         const height = target.scrollHeight;
         target.style.maxHeight = "0px";
         // Force reflow to ensure the transition works
-        target.offsetHeight;
+        void target.offsetHeight;
         target.style.maxHeight = `${height}px`;
       } else {
         target.style.maxHeight = "0px";
@@ -186,7 +186,7 @@ const tocTree = headings.reduce(
                   const height = target.scrollHeight;
                   target.style.maxHeight = "0px";
                   // Force reflow to ensure the transition works
-                  target.offsetHeight;
+                  void target.offsetHeight;
                   target.style.maxHeight = `${height}px`;
                   const chevron = toggleButton.querySelector("svg");
                   if (chevron) chevron.style.transform = "rotate(-180deg)";
@@ -246,7 +246,7 @@ const tocTree = headings.reduce(
         const height = currentChildren.scrollHeight;
         currentChildren.style.maxHeight = "0px";
         // Force reflow to ensure the transition works
-        currentChildren.offsetHeight;
+        void currentChildren.offsetHeight;
         currentChildren.style.maxHeight = `${height}px`;
         const toggle = document.querySelector(
           `[data-toggle-target="toc-children-${index}"]`,
