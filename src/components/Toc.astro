@@ -133,12 +133,12 @@ const tocTree = headings.reduce(
       e.preventDefault();
       const targetId = button.getAttribute("data-toggle-target");
       if (!targetId) return;
-      const target = document.getElementById(targetId);
+      const target = document.getElementById(targetId) as HTMLElement;
       if (!target) return;
 
       const isHidden =
         target.style.maxHeight === "0px" || target.style.maxHeight === "";
-      target.style.maxHeight = isHidden ? "1000px" : "0px";
+      target.style.maxHeight = isHidden ? `${target.scrollHeight}px` : "0px";
 
       // 旋轉箭頭
       const chevron = button.querySelector("svg");
@@ -168,9 +168,9 @@ const tocTree = headings.reduce(
             if (toggleButton) {
               const targetId = toggleButton.getAttribute("data-toggle-target");
               if (targetId) {
-                const target = document.getElementById(targetId);
+                const target = document.getElementById(targetId) as HTMLElement;
                 if (target && target.style.maxHeight === "0px") {
-                  target.style.maxHeight = "1000px";
+                  target.style.maxHeight = `${target.scrollHeight}px`;
                   const chevron = toggleButton.querySelector("svg");
                   if (chevron) chevron.style.transform = "rotate(-180deg)";
                 }
@@ -222,9 +222,9 @@ const tocTree = headings.reduce(
       }
 
       // 展開目前 H2
-      const currentChildren = document.getElementById(`toc-children-${index}`);
+      const currentChildren = document.getElementById(`toc-children-${index}`) as HTMLElement;
       if (currentChildren) {
-        currentChildren.style.maxHeight = "1000px";
+        currentChildren.style.maxHeight = `${currentChildren.scrollHeight}px`;
         const toggle = document.querySelector(
           `[data-toggle-target="toc-children-${index}"]`,
         );
