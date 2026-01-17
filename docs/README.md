@@ -2,6 +2,11 @@
 
 # SamHacker Blog Next
 
+<div align="center" style="display: flex; gap: 10px; justify-content: center; margin-top: 10px; margin-bottom: 10px;">
+  <img src="https://deploy-badge.vercel.app/vercel/sh-blog-next?style=for-the-badge&name=Vercel" alt="Vercel Deploy" />
+  <a href="https://portal.astro.build/themes/shblog-next/"><img src="https://img.shields.io/badge/astro-17191e.svg?style=for-the-badge&logo=astro&logoColor=white" alt="Astro" /></a>
+</div>
+
 這是 SamHacker 的個人技術部落格，使用 [Astro](https://astro.build/) 與 [TailwindCSS](https://tailwindcss.com/) 所打造，搭配 [React](https://reactjs.org/)，結合了 MDX 作為文章內容的撰寫方式。
 
 ## 部署
