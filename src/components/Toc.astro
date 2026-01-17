@@ -138,7 +138,18 @@ const tocTree = headings.reduce(
 
       const isHidden =
         target.style.maxHeight === "0px" || target.style.maxHeight === "";
-      target.style.maxHeight = isHidden ? `${target.scrollHeight}px` : "0px";
+      
+      if (isHidden) {
+        // Temporarily remove max-height to get the correct scrollHeight
+        target.style.maxHeight = "none";
+        const height = target.scrollHeight;
+        target.style.maxHeight = "0px";
+        // Force reflow to ensure the transition works
+        target.offsetHeight;
+        target.style.maxHeight = `${height}px`;
+      } else {
+        target.style.maxHeight = "0px";
+      }
 
       // 旋轉箭頭
       const chevron = button.querySelector("svg");
@@ -170,7 +181,13 @@ const tocTree = headings.reduce(
               if (targetId) {
                 const target = document.getElementById(targetId) as HTMLElement;
                 if (target && target.style.maxHeight === "0px") {
-                  target.style.maxHeight = `${target.scrollHeight}px`;
+                  // Temporarily remove max-height to get the correct scrollHeight
+                  target.style.maxHeight = "none";
+                  const height = target.scrollHeight;
+                  target.style.maxHeight = "0px";
+                  // Force reflow to ensure the transition works
+                  target.offsetHeight;
+                  target.style.maxHeight = `${height}px`;
                   const chevron = toggleButton.querySelector("svg");
                   if (chevron) chevron.style.transform = "rotate(-180deg)";
                 }
@@ -224,7 +241,13 @@ const tocTree = headings.reduce(
       // 展開目前 H2
       const currentChildren = document.getElementById(`toc-children-${index}`) as HTMLElement;
       if (currentChildren) {
-        currentChildren.style.maxHeight = `${currentChildren.scrollHeight}px`;
+        // Temporarily remove max-height to get the correct scrollHeight
+        currentChildren.style.maxHeight = "none";
+        const height = currentChildren.scrollHeight;
+        currentChildren.style.maxHeight = "0px";
+        // Force reflow to ensure the transition works
+        currentChildren.offsetHeight;
+        currentChildren.style.maxHeight = `${height}px`;
         const toggle = document.querySelector(
           `[data-toggle-target="toc-children-${index}"]`,
         );
