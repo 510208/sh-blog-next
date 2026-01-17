@@ -77,11 +77,29 @@ export interface FooterLink {
   url: string;
 }
 
+export interface PagesConfigItem {
+  title: string;
+  subTitle: string;
+  heroImage: string;
+}
+
+export interface PageConfig {
+  home: {
+    title: string;
+    heroImage: string;
+  };
+  other: {
+    [key: string]: PagesConfigItem;
+  };
+}
+
 export interface ShBlogConfig {
   title: string;
   description: string;
   lang: string;
   favicon: string;
+
+  pages: PageConfig;
   style: Style;
   author: Author;
   navBar: NavBar;

@@ -1,5 +1,6 @@
 import { Newspaper, Handshake, Home, Info, Phone } from "lucide-react";
 import type { ShBlogConfig } from "./src/types/shblog.config.d";
+import { h } from "hastscript";
 
 //
 //    ______ _____  __             __   _  __        _____
@@ -33,6 +34,38 @@ const config: ShBlogConfig = {
   //   這個圖示會顯示在瀏覽器標籤和書籤中，提供的路徑應該是相對於網站根目錄的路徑
   //   如 example.com/favicon.ico 則應該填寫 /favicon.ico
   favicon: "/favicon.png",
+
+  // 頁面設定
+  //   這些設定會影響網站各個頁面的標題、副標題和頂部背景圖片
+  pages: {
+    // 首頁設定
+    //   首頁通常是網站的入口頁面，這裡可以設定首頁的標題和頂部背景圖片
+    home: {
+      title: "正因為曾經淋過雨，\n才會想為他人撐一把傘。", // 網站首頁顯示的文字，不一定是標題，也可以是座右銘、標語或口號等
+      heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+    },
+
+    // 靜態頁面設定
+    //   這些頁面的內容通常不會經常變動，適合用來展示關於網站或作者的資訊
+    other: {
+      search: {
+        title: "站內搜尋", // 頁面的標題
+        subTitle: "搜尋你想尋找的內容...", // 頁面副標題
+        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 頁面頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      },
+      friends: {
+        title: "友情連結",
+        subTitle:
+          "這裡是我的一些朋友或推薦的網站清單，歡迎點擊造訪他們的網站，支持他們的創作與努力！",
+        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png",
+      },
+      about: {
+        title: "關於我與這個網站",
+        subTitle: "這裡是關於我與這個網站的介紹頁面。",
+        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png",
+      },
+    },
+  },
 
   // 風格設定
   style: {
