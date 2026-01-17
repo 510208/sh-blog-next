@@ -197,7 +197,8 @@ const config: ShBlogConfig = {
     },
     {
       title: "Zhenyuan 工作室",
-      imgUrl: "https://zhenyuan.dev/avatar.jpg",
+      imgUrl:
+        "https://www.gravatar.com/avatar/07f375105a68074c6b90379762cd1443?s=400&r=g",
       desc: "一個熱愛在網路世界中💫\n探索的大學生🥹",
       siteUrl: "https://zhenyuan.dev/",
       tags: ["設計", "技術"],
