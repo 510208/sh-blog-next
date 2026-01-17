@@ -24,7 +24,11 @@ const featuredPost = posts[0];
 const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  coverImage={config.pages.home.heroImage}
+>
   <!-- Hero Section -->
   <Hero>
     <!-- Left: Main heading -->
