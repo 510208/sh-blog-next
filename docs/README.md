@@ -19,6 +19,9 @@
 
 這是 SamHacker 的個人技術部落格，使用 [Astro](https://astro.build/) 與 [TailwindCSS](https://tailwindcss.com/) 所打造，搭配 [React](https://reactjs.org/)，結合了 MDX 作為文章內容的撰寫方式。
 
+> [!IMPORTANT]
+> This is the Chinese (Traditional) version of the documentation. For the English version, please refer to [README_EN.md](/docs/README_EN.md).
+
 ## 🚀 部署
 
 將專案原始碼下載後，可以透過以下指令在本地端啟動開發伺服器：
