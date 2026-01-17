@@ -99,7 +99,7 @@ const tocTree = headings.reduce(
                         <a
                           href={`#${child.slug}`}
                           class={`toc-link toc-level-${child.depth} block py-1.5 text-xs text-slate-400 hover:text-slate-100 transition-colors duration-400 truncate`}
-                          style={`padding-left: ${1.5 + (child.depth - 3) * 1}rem;`}
+                          style={`padding-left: ${1.5 + (child.depth - minDepth) * 1}rem;`}
                           data-heading-slug={child.slug}
                         >
                           {child.text}
