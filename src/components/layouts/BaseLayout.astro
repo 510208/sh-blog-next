@@ -11,13 +11,17 @@ import "../../styles/global.css";
 
 const LANG = config.lang || "zh-Hant";
 
-const { title, description } = Astro.props;
+const { title, description, coverImage } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={LANG} class="dark">
   <head>
-    <BaseHead title={title} description={description || SITE_DESCRIPTION} />
+    <BaseHead
+      title={title}
+      description={description || SITE_DESCRIPTION}
+      image={coverImage}
+    />
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">

@@ -34,6 +34,38 @@ const config: ShBlogConfig = {
   //   如 example.com/favicon.ico 則應該填寫 /favicon.ico
   favicon: "/favicon.png",
 
+  // 頁面設定
+  //   這些設定會影響網站各個頁面的標題、副標題和頂部背景圖片
+  pages: {
+    // 首頁設定
+    //   首頁通常是網站的入口頁面，這裡可以設定首頁的標題和頂部背景圖片
+    home: {
+      title: "正因為曾經淋過雨，\n才會想為他人撐一把傘。", // 網站首頁顯示的文字，不一定是標題，也可以是座右銘、標語或口號等
+      heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+    },
+
+    // 靜態頁面設定
+    //   這些頁面的內容通常不會經常變動，適合用來展示關於網站或作者的資訊
+    other: {
+      search: {
+        title: "站內搜尋", // 頁面的標題
+        subTitle: "搜尋你想尋找的內容...", // 頁面副標題
+        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 頁面頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      },
+      friends: {
+        title: "友情連結",
+        subTitle:
+          "這裡是我的一些朋友或推薦的網站清單，歡迎點擊造訪他們的網站，支持他們的創作與努力！",
+        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png",
+      },
+      about: {
+        title: "關於我與這個網站",
+        subTitle: "這裡是關於我與這個網站的介紹頁面。",
+        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png",
+      },
+    },
+  },
+
   // 風格設定
   style: {
     heroImage: {
@@ -164,7 +196,8 @@ const config: ShBlogConfig = {
     },
     {
       title: "Zhenyuan 工作室",
-      imgUrl: "https://zhenyuan.dev/avatar.jpg",
+      imgUrl:
+        "https://www.gravatar.com/avatar/07f375105a68074c6b90379762cd1443?s=400&r=g",
       desc: "一個熱愛在網路世界中💫\n探索的大學生🥹",
       siteUrl: "https://zhenyuan.dev/",
       tags: ["設計", "技術"],
@@ -189,6 +222,13 @@ const config: ShBlogConfig = {
       desc: "　",
       siteUrl: "https://sange.ge/",
       tags: ["技術", "生活", "託管服務"],
+    },
+    {
+      title: "毛哥EM",
+      imgUrl: "https://emtech.cc/static/img/EMprofile.png",
+      desc: "　",
+      siteUrl: "https://emtech.cc/",
+      tags: ["技術", "個人網站", "生活"],
     },
   ],
 
@@ -237,6 +277,12 @@ const config: ShBlogConfig = {
 
     // 是否啟用 404 頁面彩蛋，此項目在 CloudFlare Worker 部署時可能不生效
     enable404EasterEgg: true,
+
+    tableOfContents: {
+      enable: true, // 是否在文章頁面顯示目錄
+      minDepth: 2, // 顯示目錄的最小標題深度，例如 2 表示從 h2 開始顯示
+      maxDepth: 4, // 顯示目錄的最大標題深度，例如 4 表示到 h4 結束顯示，-1 表示顯示到最後一層標題
+    },
   },
 
   // 頁尾社交媒體連結設定

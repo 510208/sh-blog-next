@@ -2,30 +2,33 @@
 
 Purpose
 
-- This repo is an Astro v5 blog starter with content collections (Markdown + MDX), responsive images using `astro:assets`, and integrations for sitemap/RSS.
+- This repo is an Astro v5 blog starter with content collections (Markdown + MDX), responsive images using `astro:assets`, React integration for interactivity, shadcn/ui components, and integrations for sitemap/RSS/search.
 - Keep suggestions and edits scoped to `src/` unless explicitly asked to change build config or CI.
 
 Big-picture architecture
 
-- `astro.config.mjs` — Site config and integrations (`@astrojs/mdx`, `@astrojs/sitemap`).
+- `astro.config.mjs` — Site config and integrations (`@astrojs/mdx`, `@astrojs/sitemap`, `@astrojs/react`, `astro-pagefind`, custom remark/rehype plugins).
 - `src/pages/` — Routes and pages. `src/pages/blog/[...slug].astro` uses `getCollection('blog')` and static paths to generate blog pages.
 - `src/layouts/BlogPost.astro` — Blog post layout used by pages and `about.astro` (the about page uses the same layout).
 - `src/content/` — Content Collections: `src/content/blog/*.md` and `.mdx` files. Content frontmatter is validated by `src/content.config.ts` using Zod.
-- `src/components/` — Reusable UI: `BaseHead.astro`, `Header.astro`, `Footer.astro`, etc.
+- `src/components/` — Reusable UI: `BaseHead.astro`, `Header.astro`, `Footer.astro`, etc. Organized into subfolders like `core/`, `ui/`, `content/`, `markdown/`, `widgets/`, `global/`, `search/`.
 - `src/assets/` + `public/` — Static assets and fonts. Use `src/assets` with `astro:assets` for responsive images; `public/` is served as-is.
+- `shblog.config.ts` — Centralized config for site metadata, author info, navigation, styles, and behavior settings.
+- `src/consts.ts` — Re-exports config values for easy importing.
 
 Key developer workflows (build/test/debug)
 
 - Install deps: `pnpm install` (repo has `pnpm-lock.yaml` — prefer `pnpm`).
 - Local dev: `pnpm dev` (starts Astro/Vite dev server, hot reloads).
-- Production build: `pnpm build`.
+- Production build: `pnpm build` (includes Pagefind search index generation).
 - Preview production build locally: `pnpm preview`.
 - Check and diagnose content/schema issues: `pnpm astro check` or `pnpm build` to surface issues.
 - Lint or type-check: project uses TypeScript with strict settings in `tsconfig.json` — dynamic imports and runtime props may still be used.
+- Deploy: `pnpm deploy` (deploys to Cloudflare Pages via Wrangler).
 
 Important conventions & patterns (repo-specific)
 
-- Content collections + schema: `src/content.config.ts` defines the `blog` collection with a `loader` and a Zod schema that enforces the frontmatter fields. If you add a new frontmatter field (e.g., `tags`), update this schema.
+- Content collections + schema: `src/content.config.ts` defines the `blog` collection with a `loader` and a Zod schema that enforces the frontmatter fields (title, description, pubDate, updatedDate?, heroImage?, tags?, category?, draft?). If you add a new frontmatter field (e.g., `tags`), update this schema.
   - The schema uses `image()` for `heroImage` and `z.coerce.date()` for `pubDate`/`updatedDate`.
 - Content file location & IDs: Post files live under `src/content/blog/` and are accessed by id via `getCollection('blog')`. Slugs are `post.id` and are generated from file names by `astro:content`.
 - Relative asset references for heroImage: Frontmatter uses relative imports such as `heroImage: '../../assets/blog-placeholder-3.jpg'` (relative to the content file). These are used by `Image` from `astro:assets` in `BlogPost.astro`.
@@ -34,6 +37,12 @@ Important conventions & patterns (repo-specific)
 - Layout and props: `BlogPost.astro` reads meta with `Astro.props` and `Image` from `astro:assets` handles image sizing. Example props: `title`, `description`, `pubDate`, `updatedDate`, `heroImage`.
 - Public assets and fonts: `BaseHead.astro` preloads fonts from `/fonts/` (under `public/fonts/`), and uses `Astro.url` and `Astro.site` for canonical/Og tags.
 - RSS and sitemap: `src/pages/rss.xml.js` uses `@astrojs/rss` to generate feed from `getCollection('blog')` while `astro.config.mjs` enables `sitemap()`.
+- Search: Implemented with `astro-pagefind` integration, UI in `src/pages/search.astro` using `<AstroSearch>` component.
+- Config centralization: Use `shblog.config.ts` for site-wide settings like title, description, navigation links, author info, styles, and behavior (e.g., enable comments, GTM). Import via `src/consts.ts` for constants.
+- UI components: shadcn/ui in `src/components/ui/`, use `cn()` from `src/lib/utils.ts` for class merging. Add via `pnpm dlx shadcn@latest add [component]`.
+- Markdown processing: Custom remark/rehype plugins in `src/plugins/` for math (KaTeX), reading time, admonitions, spoilers, code blocks. Plugin order in `astro.config.mjs` is critical.
+- Path aliases: `@/*` maps to `./src/*` in `tsconfig.json`.
+- Comments: Codebase includes Chinese comments; maintain this pattern.
 
 Small examples you can use directly
 
@@ -47,6 +56,7 @@ title: "Your Post Title"
 description: "Short desc for listing"
 pubDate: "Nov 01 2025"
 heroImage: "../../assets/blog-placeholder-5.jpg"
+tags: ["tag1", "tag2"]
 ---
 
 Your content here...
@@ -61,12 +71,17 @@ const { Content } = await render(post);
 // In template: <Content />
 ```
 
+- Update site config: Edit `shblog.config.ts` for metadata, navigation, etc., then import via `import config from "shblog.config";`.
+
 Patterns to avoid or be careful with
 
 - Do not assume a different frontmatter schema exists; update `src/content.config.ts` if you need additional typed fields.
-- Don’t hardcode image URLs. Use `astro:assets` Image or reference `src/assets/` with relative path in frontmatter.
-- When adding integrations, modify `astro.config.mjs` and test locally (`pnpm dev`) — the project depends on `@astrojs/mdx` in `astro.config.mjs`.
+- Don't hardcode image URLs. Use `astro:assets` Image or reference `src/assets/` with relative path in frontmatter.
+- When adding integrations, modify `astro.config.mjs` and test locally (`pnpm dev`) — the project depends on multiple integrations.
 - Use `pnpm` instead of `npm` if you need to add or upgrade packages to keep the lockfile consistent.
+- Don't modify plugin order in `astro.config.mjs` without understanding dependencies (remark/rehype pipeline).
+- Prefer Astro components for static content; use React only for interactivity (with `client:*` directives).
+- For security, sanitize user input (e.g., search) with `dompurify` if needed.
 
 Where to look for examples & changes
 
@@ -75,11 +90,17 @@ Where to look for examples & changes
 - Reusable layout: `src/layouts/BlogPost.astro`.
 - Head/meta handling & fonts: `src/components/BaseHead.astro`.
 - Global styling: `src/styles/global.css`.
+- Centralized config: `shblog.config.ts`.
+- Search implementation: `src/pages/search.astro` and `astro-pagefind` integration.
+- UI components: `src/components/ui/` and shadcn setup.
 
 FAQs for AI agents
 
 - Where do I add a new blog post? `src/content/blog/` (create `.md` or `.mdx`).
 - How do I add a new image asset? Save the image under `src/assets/` and reference via a relative path in frontmatter.
 - If a frontmatter field is missing or invalid, the build will fail with a schema error — update the schema in `src/content.config.ts` when adding new fields.
+- How do I update site metadata? Edit `shblog.config.ts` and use constants from `src/consts.ts`.
+- How is search implemented? Via `astro-pagefind` integration with UI in `src/pages/search.astro`.
+- What's the difference between `src/assets` and `public/`? Use `src/assets` for optimized images; `public/` for static files served as-is.
 
 If anything is missing or you want extra details on tests, CI, or deployment target (Vercel/Netlify), say which area to expand and I’ll update these instructions.

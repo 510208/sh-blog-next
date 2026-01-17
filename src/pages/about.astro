@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/BlogPost.astro";
+import config from "shblog.config";
 ---
 
 <Layout
-  title="關於我與這個網站"
-  description="這裡是關於我與這個網站的介紹頁面。"
+  title={config.pages.other.about.title}
+  description={config.pages.other.about.subTitle}
   pubDate={new Date("August 08 2021")}
-  heroImage="/assets/layouts/homepage/samhacker_homepage_background.png"
+  heroImage={config.pages.other.about.heroImage}
   headings={[]}
 >
   <div class="mb-16">

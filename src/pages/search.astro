@@ -9,15 +9,20 @@ import "@/styles/pagefind.css";
 import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
 import Sidebar from "@/components/Sidebar.astro";
 import { Input } from "@/components/ui/input";
+import config from "shblog.config";
 ---
 
-<BaseLayout title="站內搜尋" description="在這裡搜尋本站的內容吧~~">
+<BaseLayout
+  title={config.pages.other.search.title}
+  description={config.pages.other.search.subTitle}
+  coverImage={config.pages.other.search.heroImage}
+>
   <!-- Hero Section -->
   <Hero>
     <!-- Left: Main heading -->
     <div class="lg:col-span-2" slot="left">
-      <HeroTitle> 站內搜尋 </HeroTitle>
-      <HeroSubtitle slot="right">搜尋你想尋找的內容...</HeroSubtitle>
+      <HeroTitle>{config.pages.other.search.title}</HeroTitle>
+      <HeroSubtitle>{config.pages.other.search.subTitle}</HeroSubtitle>
     </div>
   </Hero>
 

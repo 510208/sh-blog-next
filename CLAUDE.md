@@ -12,7 +12,7 @@ This is an Astro v5 blog (sh-blog-next) with content collections, MDX support, R
 
 - `pnpm install` — Install dependencies
 - `pnpm dev` — Start dev server with hot reload
-- `pnpm build` — Production build
+- `pnpm build` — Production build (includes Pagefind search index generation via `postbuild`)
 - `pnpm preview` — Preview production build locally
 - `pnpm astro check` — Check content/schema issues and TypeScript errors
 - `pnpm deploy` — Deploy to Cloudflare Pages (`wrangler deploy --assets=./dist`)
@@ -26,7 +26,7 @@ This is an Astro v5 blog (sh-blog-next) with content collections, MDX support, R
 
 **Schema Definition:** `src/content.config.ts` defines the `blog` collection with:
 - `loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' })`
-- Zod schema enforcing frontmatter fields: `title`, `description`, `pubDate`, `updatedDate` (optional), `heroImage` (optional)
+- Zod schema enforcing frontmatter fields: `title`, `description`, `pubDate`, `updatedDate` (optional), `heroImage` (optional), `tags` (optional array), `category` (optional string or array), `draft` (optional boolean)
 - Uses `z.coerce.date()` for date parsing and `image()` for responsive images
 
 **Content Access Pattern:**
@@ -53,9 +53,9 @@ const { Content, headings } = await render(post);
 **Constants:** `src/consts.ts` re-exports config values for easy importing (e.g., `SITE_TITLE`, `DEFAULT_POST_IMAGE`, `SEPARATOR`).
 
 **Astro Config:** `astro.config.mjs` defines:
-- Integrations: `expressiveCode()`, `mdx()`, `sitemap()`, `react()`
+- Integrations: `AutoImport()` with `astroAsides()`, `expressiveCode()`, `mdx()`, `sitemap()`, `react()`, `pagefind()`, `partytown()`, `metaTags()`, `devtoolBreakpoints()`
 - Custom remark/rehype plugins (see below)
-- Site URL: `https://samhacker.xyz`
+- Site URL: Defaults to `https://sh-blog-next.vercel.app` (can be overridden via `SITE_URL` environment variable)
 
 ### Markdown/MDX Processing Pipeline
 
