@@ -79,6 +79,8 @@ const tocTree = headings.reduce(
                       data-toggle-target={`toc-children-${index}`}
                       type="button"
                       aria-label={`展開 ${item.text} 的子項`}
+                      aria-expanded="false"
+                      aria-controls={`toc-children-${index}`}
                       asChild
                     >
                       <ChevronDown
@@ -93,6 +95,7 @@ const tocTree = headings.reduce(
                     class="toc-children overflow-hidden transition-all duration-400"
                     id={`toc-children-${index}`}
                     style="max-height: 0;"
+                    hidden
                   >
                     {item.children.map((child) => (
                       <li>
@@ -101,6 +104,7 @@ const tocTree = headings.reduce(
                           class={`toc-link toc-level-${child.depth} block py-1.5 text-xs text-slate-400 hover:text-slate-100 transition-colors duration-400 truncate`}
                           style={`padding-left: ${1.5 + (child.depth - minDepth) * 1}rem;`}
                           data-heading-slug={child.slug}
+                          tabindex="-1"
                         >
                           {child.text}
                         </a>
@@ -136,9 +140,29 @@ const tocTree = headings.reduce(
       const target = document.getElementById(targetId);
       if (!target) return;
 
-      const isHidden =
-        target.style.maxHeight === "0px" || target.style.maxHeight === "";
-      target.style.maxHeight = isHidden ? "1000px" : "0px";
+      const isHidden = target.hasAttribute("hidden");
+
+      if (isHidden) {
+        // 展開：先移除 hidden，觸發 reflow 後再設置 max-height
+        target.removeAttribute("hidden");
+        target.querySelectorAll("a").forEach((link) => {
+          link.removeAttribute("tabindex");
+        });
+        // 強制 reflow 讓 display 變化生效
+        void target.offsetHeight;
+        target.style.maxHeight = "1000px";
+        button.setAttribute("aria-expanded", "true");
+      } else {
+        // 收合：先設置 max-height 觸發動畫，結束後再設置 hidden
+        target.style.maxHeight = "0px";
+        button.setAttribute("aria-expanded", "false");
+        setTimeout(() => {
+          target.setAttribute("hidden", "");
+          target.querySelectorAll("a").forEach((link) => {
+            link.setAttribute("tabindex", "-1");
+          });
+        }, 400);
+      }
 
       // 旋轉箭頭
       const chevron = button.querySelector("svg");
@@ -154,13 +178,11 @@ const tocTree = headings.reduce(
     .forEach((heading) => {
       heading.addEventListener("click", () => {
         const slug = heading.id;
-        // 找到這個標題對應的目錄項
         const tocLink = document.querySelector(
           `[data-blog-toc] a[data-heading-slug="${slug}"]`,
         );
 
         if (tocLink) {
-          // 如果是子項，展開其父項
           const parent = tocLink.closest("li");
           if (parent) {
             const toggleButton =
@@ -169,8 +191,14 @@ const tocTree = headings.reduce(
               const targetId = toggleButton.getAttribute("data-toggle-target");
               if (targetId) {
                 const target = document.getElementById(targetId);
-                if (target && target.style.maxHeight === "0px") {
+                if (target && target.hasAttribute("hidden")) {
+                  target.removeAttribute("hidden");
+                  target.querySelectorAll("a").forEach((link) => {
+                    link.removeAttribute("tabindex");
+                  });
+                  void target.offsetHeight;
                   target.style.maxHeight = "1000px";
+                  toggleButton.setAttribute("aria-expanded", "true");
                   const chevron = toggleButton.querySelector("svg");
                   if (chevron) chevron.style.transform = "rotate(-180deg)";
                 }
@@ -211,11 +239,20 @@ const tocTree = headings.reduce(
         const prevChildren = document.getElementById(
           `toc-children-${currentH2Index}`,
         );
-        if (prevChildren) {
+        if (prevChildren && !prevChildren.hasAttribute("hidden")) {
           prevChildren.style.maxHeight = "0px";
           const prevToggle = document.querySelector(
             `[data-toggle-target="toc-children-${currentH2Index}"]`,
           );
+          if (prevToggle) {
+            prevToggle.setAttribute("aria-expanded", "false");
+          }
+          setTimeout(() => {
+            prevChildren.setAttribute("hidden", "");
+            prevChildren.querySelectorAll("a").forEach((link) => {
+              link.setAttribute("tabindex", "-1");
+            });
+          }, 400);
           const chevron = prevToggle?.querySelector("svg");
           if (chevron) chevron.style.transform = "rotate(0deg)";
         }
@@ -223,11 +260,19 @@ const tocTree = headings.reduce(
 
       // 展開目前 H2
       const currentChildren = document.getElementById(`toc-children-${index}`);
-      if (currentChildren) {
+      if (currentChildren && currentChildren.hasAttribute("hidden")) {
+        currentChildren.removeAttribute("hidden");
+        currentChildren.querySelectorAll("a").forEach((link) => {
+          link.removeAttribute("tabindex");
+        });
+        void currentChildren.offsetHeight;
         currentChildren.style.maxHeight = "1000px";
         const toggle = document.querySelector(
           `[data-toggle-target="toc-children-${index}"]`,
         );
+        if (toggle) {
+          toggle.setAttribute("aria-expanded", "true");
+        }
         const chevron = toggle?.querySelector("svg");
         if (chevron) chevron.style.transform = "rotate(-180deg)";
       }
