@@ -56,6 +56,11 @@ export interface Behavior {
     googleTagManagerId: string;
   };
   enable404EasterEgg: boolean;
+  tableOfContents: {
+    enable: boolean;
+    minDepth: number;
+    maxDepth: number;
+  };
 }
 
 export interface Style {

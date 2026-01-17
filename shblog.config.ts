@@ -270,6 +270,12 @@ const config: ShBlogConfig = {
 
     // 是否啟用 404 頁面彩蛋，此項目在 CloudFlare Worker 部署時可能不生效
     enable404EasterEgg: true,
+
+    tableOfContents: {
+      enable: true, // 是否在文章頁面顯示目錄
+      minDepth: 2, // 顯示目錄的最小標題深度，例如 2 表示從 h2 開始顯示
+      maxDepth: 4, // 顯示目錄的最大標題深度，例如 4 表示到 h4 結束顯示，-1 表示顯示到最後一層標題
+    },
   },
 
   // 頁尾社交媒體連結設定
