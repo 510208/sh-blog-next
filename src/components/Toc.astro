@@ -40,7 +40,7 @@ const tocTree = headings.reduce(
     slug: string;
     text: string;
     children: Array<{ depth: number; slug: string; text: string }>;
-  }>
+  }>,
 );
 ---
 
@@ -60,6 +60,7 @@ const tocTree = headings.reduce(
                 <a
                   href={`#${item.slug}`}
                   class="toc-link toc-level-2 flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors duration-200 relative"
+                  data-heading-index={index}
                   data-heading-slug={item.slug}
                 >
                   <span class="flex-1 truncate">{item.text}</span>
@@ -107,6 +108,8 @@ const tocTree = headings.reduce(
 </div>
 
 <script>
+  let currentH2Index: string | null = null;
+
   // 設置標題的滾動邊距，防止被 TOC 卡住
   document
     .querySelectorAll("article :is(h2,h3,h4,h5,h6)")
@@ -142,7 +145,7 @@ const tocTree = headings.reduce(
         const slug = heading.id;
         // 找到這個標題對應的目錄項
         const tocLink = document.querySelector(
-          `[data-blog-toc] a[data-heading-slug="${slug}"]`
+          `[data-blog-toc] a[data-heading-slug="${slug}"]`,
         );
 
         if (tocLink) {
@@ -169,65 +172,56 @@ const tocTree = headings.reduce(
 
   // 高亮當前閱讀位置並自動展開/關閉父項
   const setCurrent: IntersectionObserverCallback = (entries) => {
-    for (let entry of entries) {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+
       const id = entry.target.id;
       if (!id) continue;
 
       const tocLink = document.querySelector(
-        `[data-blog-toc] a[data-heading-slug="${id}"]`
-      );
-
+        `[data-blog-toc] a[data-heading-slug="${id}"]`,
+      ) as HTMLElement | null;
       if (!tocLink) continue;
 
-      const listItem = tocLink.closest("li");
-      if (!listItem) continue;
+      // 高亮
+      document
+        .querySelectorAll("[data-blog-toc] a.active")
+        .forEach((e) => e.classList.remove("active"));
+      tocLink.classList.add("active");
 
-      const hasToggle = listItem.querySelector(".toc-toggle");
+      const isH2 = tocLink.classList.contains("toc-level-2");
+      if (!isH2) return;
 
-      if (entry.isIntersecting) {
-        // 進入視圖：高亮並展開父項（僅限子項）
-        document
-          .querySelectorAll("[data-blog-toc] a.active")
-          .forEach((e) => e.classList.remove("active"));
-        tocLink.classList.add("active");
+      const index = tocLink.getAttribute("data-heading-index");
+      if (!index) return;
 
-        if (!hasToggle) {
-          const parentUl = listItem.closest(".toc-children");
-          if (parentUl) {
-            const parentId = parentUl.id;
-            if (parentId && parentUl.classList.contains("hidden")) {
-              parentUl.classList.remove("hidden");
-              const toggleButton = document.querySelector(
-                `[data-toggle-target="${parentId}"]`
-              );
-              if (toggleButton) {
-                const chevron = toggleButton.querySelector("svg");
-                if (chevron) chevron.style.transform = "rotate(-180deg)";
-              }
-            }
-          }
-        }
-      } else {
-        // 滾出視圖：移除 active 並關閉父項（僅限子項）
-        tocLink.classList.remove("active");
-
-        if (!hasToggle) {
-          const parentUl = listItem.closest(".toc-children");
-          if (parentUl) {
-            const parentId = parentUl.id;
-            if (parentId && !parentUl.classList.contains("hidden")) {
-              parentUl.classList.add("hidden");
-              const toggleButton = document.querySelector(
-                `[data-toggle-target="${parentId}"]`
-              );
-              if (toggleButton) {
-                const chevron = toggleButton.querySelector("svg");
-                if (chevron) chevron.style.transform = "rotate(0deg)";
-              }
-            }
-          }
+      // 收起上一個 H2
+      if (currentH2Index && currentH2Index !== index) {
+        const prevChildren = document.getElementById(
+          `toc-children-${currentH2Index}`,
+        );
+        if (prevChildren) {
+          prevChildren.classList.add("hidden");
+          const prevToggle = document.querySelector(
+            `[data-toggle-target="toc-children-${currentH2Index}"]`,
+          );
+          const chevron = prevToggle?.querySelector("svg");
+          if (chevron) chevron.style.transform = "rotate(0deg)";
         }
       }
+
+      // 展開目前 H2
+      const currentChildren = document.getElementById(`toc-children-${index}`);
+      if (currentChildren) {
+        currentChildren.classList.remove("hidden");
+        const toggle = document.querySelector(
+          `[data-toggle-target="toc-children-${index}"]`,
+        );
+        const chevron = toggle?.querySelector("svg");
+        if (chevron) chevron.style.transform = "rotate(-180deg)";
+      }
+
+      currentH2Index = index;
     }
   };
 
