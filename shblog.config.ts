@@ -223,6 +223,13 @@ const config: ShBlogConfig = {
       siteUrl: "https://sange.ge/",
       tags: ["技術", "生活", "託管服務"],
     },
+    {
+      title: "毛哥EM",
+      imgUrl: "https://emtech.cc/static/img/EMprofile.png",
+      desc: "　",
+      siteUrl: "https://emtech.cc/",
+      tags: ["技術", "個人網站", "生活"],
+    },
   ],
 
   // 其他行為設定
