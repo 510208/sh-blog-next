@@ -45,6 +45,7 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
 <BaseLayout
   title={`${title} ${SEPARATOR} ${config.title}`}
   description={description}
+  coverImage={heroImage}
 >
   <!-- 內容 -->
   <Hero backgroundImage={heroImage || DEFAULT_POST_IMAGE}>
@@ -132,7 +133,7 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
       const preEle = target.closest("pre");
       const codeEle = preEle?.querySelector("code");
       const code = Array.from(
-        codeEle?.querySelectorAll(".code:not(summary *)") ?? []
+        codeEle?.querySelectorAll(".code:not(summary *)") ?? [],
       )
         .map((el) => el.textContent)
         .map((t) => (t === "\n" ? "" : t))
