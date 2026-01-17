@@ -59,7 +59,7 @@ const tocTree = headings.reduce(
               <li class="group">
                 <a
                   href={`#${item.slug}`}
-                  class="toc-link toc-level-2 flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors duration-200 relative"
+                  class="toc-link toc-level-2 flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors duration-400 relative"
                   data-heading-index={index}
                   data-heading-slug={item.slug}
                 >
@@ -74,21 +74,22 @@ const tocTree = headings.reduce(
                     >
                       <ChevronDown
                         size={16}
-                        className="transition-transform duration-200"
+                        className="transition-transform duration-400"
                       />
                     </Button>
                   )}
                 </a>
                 {item.children.length > 0 && (
                   <ul
-                    class="toc-children hidden overflow-hidden transition-all duration-200"
+                    class="toc-children overflow-hidden transition-all duration-400"
                     id={`toc-children-${index}`}
+                    style="max-height: 0;"
                   >
                     {item.children.map((child) => (
                       <li>
                         <a
                           href={`#${child.slug}`}
-                          class={`toc-link toc-level-${child.depth} block py-1.5 text-xs text-slate-400 hover:text-slate-100 transition-colors duration-200 truncate`}
+                          class={`toc-link toc-level-${child.depth} block py-1.5 text-xs text-slate-400 hover:text-slate-100 transition-colors duration-400 truncate`}
                           style={`padding-left: ${1.5 + (child.depth - 3) * 1}rem;`}
                           data-heading-slug={child.slug}
                         >
@@ -126,13 +127,14 @@ const tocTree = headings.reduce(
       const target = document.getElementById(targetId);
       if (!target) return;
 
-      const isHidden = target.classList.contains("hidden");
-      target.classList.toggle("hidden", !isHidden);
+      const isHidden =
+        target.style.maxHeight === "0px" || target.style.maxHeight === "";
+      target.style.maxHeight = isHidden ? "1000px" : "0px";
 
       // 旋轉箭頭
       const chevron = button.querySelector("svg");
       if (chevron) {
-        chevron.style.transform = isHidden ? "rotate(0deg)" : "rotate(-180deg)";
+        chevron.style.transform = isHidden ? "rotate(-180deg)" : "rotate(0deg)";
       }
     });
   });
@@ -158,8 +160,8 @@ const tocTree = headings.reduce(
               const targetId = toggleButton.getAttribute("data-toggle-target");
               if (targetId) {
                 const target = document.getElementById(targetId);
-                if (target && target.classList.contains("hidden")) {
-                  target.classList.remove("hidden");
+                if (target && target.style.maxHeight === "0px") {
+                  target.style.maxHeight = "1000px";
                   const chevron = toggleButton.querySelector("svg");
                   if (chevron) chevron.style.transform = "rotate(-180deg)";
                 }
@@ -201,7 +203,7 @@ const tocTree = headings.reduce(
           `toc-children-${currentH2Index}`,
         );
         if (prevChildren) {
-          prevChildren.classList.add("hidden");
+          prevChildren.style.maxHeight = "0px";
           const prevToggle = document.querySelector(
             `[data-toggle-target="toc-children-${currentH2Index}"]`,
           );
@@ -213,7 +215,7 @@ const tocTree = headings.reduce(
       // 展開目前 H2
       const currentChildren = document.getElementById(`toc-children-${index}`);
       if (currentChildren) {
-        currentChildren.classList.remove("hidden");
+        currentChildren.style.maxHeight = "1000px";
         const toggle = document.querySelector(
           `[data-toggle-target="toc-children-${index}"]`,
         );
