@@ -42,6 +42,41 @@ const config: ShBlogConfig = {
     home: {
       title: "正因為曾經淋過雨，\n才會想為他人撐一把傘。", // 網站首頁顯示的文字，不一定是標題，也可以是座右銘、標語或口號等
       heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      greetings: [
+        {
+          begin: 0,
+          finish: 6,
+          text: "深夜好,該休息了喔!",
+        },
+        {
+          begin: 6,
+          finish: 12,
+          text: "早安!新的一天開始了!",
+        },
+        {
+          begin: 12,
+          finish: 14,
+          text: "午安!記得吃午餐喔!",
+        },
+        {
+          begin: 14,
+          finish: 18,
+          text: "下午好!工作順利嗎?",
+        },
+        {
+          begin: 18,
+          finish: 21,
+          text: "傍晚好!準備迎接夜晚了!",
+        },
+        {
+          begin: 21,
+          finish: 24,
+          text: "晚安!祝你有個好夢!",
+        },
+        {
+          text: "你好!",
+        },
+      ],
     },
 
     // 靜態頁面設定

@@ -2,19 +2,19 @@ import type { LucideIcon } from "lucide-react";
 import type { InputPosition, Mapping } from "@giscus/react";
 import * as SimpleIcons from "simple-icons-astro";
 
-export interface NavLink {
+interface NavLink {
   title: string;
   href: string;
   icon: LucideIcon;
 }
 
-export interface AuthorLink {
+interface AuthorLink {
   icon: keyof typeof SimpleIcons | string;
   to: string;
   label: string;
 }
 
-export interface Author {
+interface Author {
   name: string;
   bio: string;
   email: string;
@@ -22,11 +22,11 @@ export interface Author {
   links: AuthorLink[];
 }
 
-export interface NavBar {
+interface NavBar {
   links: NavLink[];
 }
 
-export interface FriendLink {
+interface FriendLink {
   title: string;
   imgUrl: string;
   desc: string;
@@ -34,7 +34,7 @@ export interface FriendLink {
   tags: string[];
 }
 
-export interface GiscusConfig {
+interface GiscusConfig {
   repo: `${string}/${string}`;
   repoId: string;
   category: string;
@@ -48,7 +48,7 @@ export interface GiscusConfig {
   lang: string;
 }
 
-export interface UtterancesConfig {
+interface UtterancesConfig {
   repo: `${string}/${string}`;
   issueTerm: "pathname" | "url" | "title" | "og:title";
   label: string;
@@ -64,7 +64,7 @@ export interface UtterancesConfig {
     | string;
 }
 
-export interface Behavior {
+interface Behavior {
   enableComment: false | "Giscus" | "Utterances";
   giscusConfig: GiscusConfig;
   utterancesConfig: UtterancesConfig;
@@ -80,7 +80,7 @@ export interface Behavior {
   };
 }
 
-export interface Style {
+interface Style {
   heroImage: {
     src: string;
     from: number;
@@ -94,28 +94,35 @@ export interface Style {
   enableRecentPosts: boolean;
 }
 
-export interface FooterLink {
+interface TimeGreeting {
+  begin?: number;
+  finish?: number;
+  text: string;
+}
+
+interface FooterLink {
   socialMedia: keyof typeof SimpleIcons | string;
   url: string;
 }
 
-export interface PagesConfigItem {
+interface PagesConfigItem {
   title: string;
   subTitle: string;
   heroImage: string;
 }
 
-export interface PageConfig {
+interface PageConfig {
   home: {
     title: string;
     heroImage: string;
+    greetings: TimeGreeting[];
   };
   other: {
     [key: string]: PagesConfigItem;
   };
 }
 
-export interface ShBlogConfig {
+interface ShBlogConfig {
   title: string;
   description: string;
   lang: string;
@@ -131,4 +138,22 @@ export interface ShBlogConfig {
 }
 
 declare const config: ShBlogConfig;
+
+export type {
+  ShBlogConfig,
+  NavLink,
+  Author,
+  AuthorLink,
+  NavBar,
+  FriendLink,
+  GiscusConfig,
+  UtterancesConfig,
+  Behavior,
+  Style,
+  TimeGreeting,
+  FooterLink,
+  PagesConfigItem,
+  PageConfig,
+};
+
 export default config;
