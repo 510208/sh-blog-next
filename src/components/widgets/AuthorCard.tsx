@@ -7,7 +7,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React from "react";
 import { Mail, Rss } from "lucide-react";
-import { Github, X } from "simple-icons-astro";
 
 interface LinksProp {
   icon: string;
