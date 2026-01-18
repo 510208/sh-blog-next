@@ -1,10 +1,6 @@
-import { Card } from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card } from "@ui/card";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
 import React from "react";
 import * as SimpleIcons from "@icons-pack/react-simple-icons";
 

@@ -6,7 +6,7 @@ import Hero from "@/components/content/Home/Hero.astro";
 import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
 import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
 import Sidebar from "@/components/Sidebar.astro";
-import TimelineSinglePost from "@/components/ui/timeline/TimelineSinglePost.astro";
+import TimelineSinglePost from "@ui/timeline/TimelineSinglePost.astro";
 
 const posts = (
   await getCollection("blog", ({ data }) => {
@@ -27,7 +27,7 @@ const postsByYear = posts.reduce((acc: any, post: any) => {
 }, {});
 
 const years = Object.keys(postsByYear).sort(
-  (a, b) => parseInt(b) - parseInt(a)
+  (a, b) => parseInt(b) - parseInt(a),
 );
 ---
 
@@ -159,7 +159,7 @@ const years = Object.keys(postsByYear).sort(
             }, 300);
           }
         },
-        { rootMargin: "200px" }
+        { rootMargin: "200px" },
       );
 
       observer.observe(sentinel);
