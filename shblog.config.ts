@@ -98,12 +98,12 @@ const config: ShBlogConfig = {
       // 如需其他的社交媒體圖標，請在 AuthorCard 元件中添加相應的圖標映射
       {
         icon: "X",
-        to: "https://twitter.com/samhacker",
+        to: "https://twitter.com/xux510208",
         label: "X",
       },
       {
         icon: "Github",
-        to: "https://github.com/samhacker",
+        to: "https://github.com/510208",
         label: "GitHub",
       },
     ],
