@@ -43,10 +43,15 @@ const config: ShBlogConfig = {
       title: "正因為曾經淋過雨，\n才會想為他人撐一把傘。", // 網站首頁顯示的文字，不一定是標題，也可以是座右銘、標語或口號等
       heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
       greetings: [
+        // 根據不同時間顯示不同問候語的設定
+        //   begin: 開始時間（包含），0-24 小時制
+        //   finish: 結束時間（不包含），0-24 小時制，如不提供則表示只匹配 begin 時間
+        //   text: 問候語內容
+        // 🚨 注意，先出現的規則優先級較高
         {
-          begin: 0,
-          finish: 6,
-          text: "深夜好,該休息了喔!",
+          begin: 0, // 開始時間（包含）
+          finish: 6, // 結束時間（不包含）
+          text: "深夜好,該休息了喔!", // 問候語內容
         },
         {
           begin: 6,
