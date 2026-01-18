@@ -48,9 +48,26 @@ export interface GiscusConfig {
   lang: string;
 }
 
+export interface UtterancesConfig {
+  repo: `${string}/${string}`;
+  issueTerm: "pathname" | "url" | "title" | "og:title";
+  label: string;
+  theme:
+    | "boxy-light"
+    | "dark-blue"
+    | "github-dark-orange"
+    | "github-dark"
+    | "github-light"
+    | "gruvbox-dark"
+    | "icy-dark"
+    | "photon-dark"
+    | string;
+}
+
 export interface Behavior {
-  enableComment: boolean;
+  enableComment: false | "Giscus" | "Utterances";
   giscusConfig: GiscusConfig;
+  utterancesConfig: UtterancesConfig;
   enableGTM: boolean;
   gtmConfig: {
     googleTagManagerId: string;

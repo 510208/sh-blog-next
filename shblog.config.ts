@@ -234,7 +234,7 @@ const config: ShBlogConfig = {
 
   // 其他行為設定
   behavior: {
-    enableComment: true, // 是否啟用文章評論功能
+    enableComment: "Giscus", // 是否啟用文章評論功能
 
     // 評論系統設定，當 enableComment 為 true 時生效
     // giscus 評論系統設定說明請參考：https://giscus.app/zh-TW
@@ -266,6 +266,14 @@ const config: ShBlogConfig = {
       inputPosition: "top",
       theme: "transparent_dark",
       lang: "zh-TW",
+    },
+
+    // utterances 評論系統設定說明請參考：https://utteranc.es/
+    utterancesConfig: {
+      repo: "510208/utterances",
+      issueTerm: "pathname",
+      label: "comment",
+      theme: "github-light",
     },
 
     // 是否啟用 Google Tag Manager 以進行網站流量分析
