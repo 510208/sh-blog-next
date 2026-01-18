@@ -10,7 +10,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@shConfig": ["./shblog.config.ts"],
-      "@ui/*": ["./src/components/ui/*"]
+      "@ui/*": ["./src/components/ui/*"],
+      "@components/*": ["./src/components/*"],
+      "@consts": ["./src/consts.ts"]
     }
   }
 }
