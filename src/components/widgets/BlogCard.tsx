@@ -1,11 +1,11 @@
 "use client";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
+import { Card, CardContent, CardHeader } from "@ui/card.tsx";
 import { Tag } from "lucide-react";
-import Tags from "../ui/Tags.tsx";
+import Tags from "@ui/Tags.tsx";
 import { useEffect, useState } from "react";
-import config from "shblog.config";
-import { CalendarDaysIcon } from "../ui/animated/calendar-days.tsx";
+import config from "@shConfig";
+import { CalendarDaysIcon } from "@ui/animated/calendar-days.tsx";
 
 interface BlogCardProps {
   title: string;
@@ -38,7 +38,7 @@ export default function BlogCard({
         year: "numeric",
         month: "long",
         day: "numeric",
-      })
+      }),
     );
     setIsHydrated(true);
   }, [pubDate]);

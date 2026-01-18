@@ -1,7 +1,7 @@
 ---
 import { SITE_TITLE } from "../../consts.ts";
-import config from "../../../shblog.config.ts";
-import { Button } from "@/components/ui/button.tsx";
+import config from "@shConfig";
+import { Button } from "@ui/button.tsx";
 import { Mail, Info } from "lucide-react";
 import { FAVICON_URL } from "../../consts.ts";
 import { SearchDialog } from "../search/SearchDialog";
@@ -59,7 +59,7 @@ const links = config.navBar.links;
             <div class="flex items-center">
               <a
                 href={link.href}
-                class="px-4 h-6 flex items-center text-sm font-medium text-white uppercase hover:text-white/80 transition-colors"
+                class="px-2 h-6 flex items-center text-sm font-medium text-white uppercase hover:text-white/80 transition-colors"
               >
                 <link.icon size={16} />
               </a>
@@ -72,7 +72,7 @@ const links = config.navBar.links;
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex items-center gap-2">
+      <div class="hidden md:flex items-center gap-2">
         <a
           href="mailto:xux510208@gmail.com"
           target="_blank"

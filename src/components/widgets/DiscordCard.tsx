@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card.tsx";
+import { Card, CardContent } from "@ui/card.tsx";
 
 interface DiscordCardProps {
   title?: string;

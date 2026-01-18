@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BlogListClient from "./BlogListClient.tsx";
-import config from "shblog.config";
+import config from "@shConfig";
 
 const postsPerPage = config.style.postsPerPage || 6;
 // `BlogList` now delegates pagination to the client component.

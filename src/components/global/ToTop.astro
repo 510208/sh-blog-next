@@ -1,5 +1,5 @@
 ---
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@ui/button.tsx";
 import { ArrowUp } from "lucide-react";
 
 const className = Astro.props.class;
@@ -21,7 +21,7 @@ const className = Astro.props.class;
 <!-- Client-side JavaScript: Handles interaction -->
 <script>
   const scrollToTopBtn = document.getElementById(
-    "to-top-button"
+    "to-top-button",
   ) as HTMLButtonElement;
 
   // Show/hide button based on scroll position

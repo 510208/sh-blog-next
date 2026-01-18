@@ -42,6 +42,46 @@ const config: ShBlogConfig = {
     home: {
       title: "正因為曾經淋過雨，\n才會想為他人撐一把傘。", // 網站首頁顯示的文字，不一定是標題，也可以是座右銘、標語或口號等
       heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      greetings: [
+        // 根據不同時間顯示不同問候語的設定
+        //   begin: 開始時間（包含），0-24 小時制
+        //   finish: 結束時間（不包含），0-24 小時制，如不提供則表示只匹配 begin 時間
+        //   text: 問候語內容
+        // 🚨 注意，先出現的規則優先級較高
+        {
+          begin: 0, // 開始時間（包含）
+          finish: 6, // 結束時間（不包含）
+          text: "深夜好,該休息了喔!", // 問候語內容
+        },
+        {
+          begin: 6,
+          finish: 12,
+          text: "早安!新的一天開始了!",
+        },
+        {
+          begin: 12,
+          finish: 14,
+          text: "午安!記得吃午餐喔!",
+        },
+        {
+          begin: 14,
+          finish: 18,
+          text: "下午好!工作順利嗎?",
+        },
+        {
+          begin: 18,
+          finish: 21,
+          text: "傍晚好!準備迎接夜晚了!",
+        },
+        {
+          begin: 21,
+          finish: 24,
+          text: "晚安!祝你有個好夢!",
+        },
+        {
+          text: "你好!",
+        },
+      ],
     },
 
     // 靜態頁面設定
@@ -97,13 +137,13 @@ const config: ShBlogConfig = {
     links: [
       // 如需其他的社交媒體圖標，請在 AuthorCard 元件中添加相應的圖標映射
       {
-        icon: "Twitter",
-        to: "https://twitter.com/samhacker",
-        label: "Twitter",
+        icon: "X",
+        to: "https://twitter.com/xux510208",
+        label: "X",
       },
       {
         icon: "Github",
-        to: "https://github.com/samhacker",
+        to: "https://github.com/510208",
         label: "GitHub",
       },
     ],
@@ -234,7 +274,7 @@ const config: ShBlogConfig = {
 
   // 其他行為設定
   behavior: {
-    enableComment: true, // 是否啟用文章評論功能
+    enableComment: "Giscus", // 是否啟用文章評論功能
 
     // 評論系統設定，當 enableComment 為 true 時生效
     // giscus 評論系統設定說明請參考：https://giscus.app/zh-TW
@@ -266,6 +306,14 @@ const config: ShBlogConfig = {
       inputPosition: "top",
       theme: "transparent_dark",
       lang: "zh-TW",
+    },
+
+    // utterances 評論系統設定說明請參考：https://utteranc.es/
+    utterancesConfig: {
+      repo: "510208/utterances",
+      issueTerm: "pathname",
+      label: "comment",
+      theme: "github-light",
     },
 
     // 是否啟用 Google Tag Manager 以進行網站流量分析

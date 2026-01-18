@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationPrevious,
   PaginationNext,
-} from "../ui/pagination.tsx";
+} from "@ui/pagination.tsx";
 import { DEFAULT_POST_IMAGE } from "@/consts.ts";
 
 type Post = {

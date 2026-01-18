@@ -3,7 +3,7 @@ const { backgroundImage = DEFAULT_POST_IMAGE } = Astro.props;
 
 import { DEFAULT_POST_IMAGE } from "@/consts";
 import { Image } from "astro:assets";
-import config from "shblog.config";
+import config from "@shConfig";
 ---
 
 <!-- Hero Section -->
@@ -17,15 +17,11 @@ import config from "shblog.config";
       src={backgroundImage ?? config.style.heroImage.src}
       inferSize={true}
       alt=""
-      class={
-        "w-full h-full object-cover bg-fixed" +
-        (config.style.heroImage.method === "mask" ? " bg-linear-to-b" : " z-0")
-      }
-      style={
-        config.style.heroImage.method === "mask"
-          ? `-webkit-mask-image: linear-gradient(to bottom, transparent ${config.style.heroImage.from}%, black ${config.style.heroImage.to}%); mask-image: linear-gradient(to bottom, transparent ${config.style.heroImage.from}%, black ${config.style.heroImage.to}%);`
-          : undefined
-      }
+      class={"w-full h-full object-cover bg-fixed" +
+        (config.style.heroImage.method === "mask" ? " bg-linear-to-b" : " z-0")}
+      style={config.style.heroImage.method === "mask"
+        ? `-webkit-mask-image: linear-gradient(to bottom, transparent ${config.style.heroImage.from}%, black ${config.style.heroImage.to}%); mask-image: linear-gradient(to bottom, transparent ${config.style.heroImage.from}%, black ${config.style.heroImage.to}%);`
+        : undefined}
       width={1920}
       height={700}
     />

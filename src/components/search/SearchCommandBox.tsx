@@ -5,7 +5,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@ui/command";
 import { useEffect, useRef, useState } from "react";
 
 type SearchEntry = {
@@ -90,7 +90,7 @@ export function SearchCommandBox() {
               console.error("解析搜尋結果失敗:", err);
               return null;
             }
-          })
+          }),
         );
 
         setResults(formattedResults.filter(Boolean) as SearchEntry[]);

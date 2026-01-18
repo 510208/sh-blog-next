@@ -1,16 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import { sortByDate } from "../../../lib/sortByDate";
-import BaseLayout from "@/components/layouts/BaseLayout.astro";
+import BaseLayout from "@components/layouts/BaseLayout.astro";
 import { SITE_TITLE } from "@/consts";
-import config from "shblog.config";
-import Hero from "@/components/content/Home/Hero.astro";
-import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
-import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
-import Sidebar from "@/components/Sidebar.astro";
+import config from "@shConfig";
+import Hero from "@components/content/Home/Hero.astro";
+import { HeroTitle, HeroSubtitle } from "@components/content/Home/HeroItems";
+import BaseMainContent from "@components/layouts/BaseMainContent.astro";
+import Sidebar from "@components/Sidebar.astro";
 import { Hash } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import TimelineSinglePost from "@/components/ui/timeline/TimelineSinglePost.astro";
+import { Badge } from "@ui/badge";
+import TimelineSinglePost from "@ui/timeline/TimelineSinglePost.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => {
@@ -44,7 +44,7 @@ export async function getStaticPaths() {
             return p.data.tags
               ?.map((tag: any) => tag.toLowerCase())
               .includes(t.toLowerCase());
-          })
+          }),
         ),
       },
     };
@@ -66,7 +66,7 @@ const postsByYear = posts.reduce((acc: any, post: any) => {
 }, {});
 
 const years = Object.keys(postsByYear).sort(
-  (a, b) => parseInt(b) - parseInt(a)
+  (a, b) => parseInt(b) - parseInt(a),
 );
 ---
 
