@@ -1,11 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "@/components/layouts/BaseLayout.astro";
+import BaseLayout from "@components/layouts/BaseLayout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
-import Hero from "@/components/content/Home/Hero.astro";
-import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
-import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
-import Sidebar from "@/components/Sidebar.astro";
+import Hero from "@components/content/Home/Hero.astro";
+import { HeroTitle, HeroSubtitle } from "@components/content/Home/HeroItems";
+import BaseMainContent from "@components/layouts/BaseMainContent.astro";
+import Sidebar from "@components/Sidebar.astro";
 import TimelineSinglePost from "@ui/timeline/TimelineSinglePost.astro";
 
 const posts = (

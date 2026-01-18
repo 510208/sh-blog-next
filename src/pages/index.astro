@@ -1,13 +1,13 @@
 ---
 import { getCollection } from "astro:content";
-import BlogList from "../components/content/BlogList.astro";
-import Greeting from "@/components/content/Greeting.astro";
-import BaseLayout from "@/components/layouts/BaseLayout.astro";
-import Hero from "@/components/content/Home/Hero.astro";
-import Sidebar from "@/components/Sidebar.astro";
-import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
-import { HeroSubtitle, HeroTitle } from "@/components/content/Home/HeroItems";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+import BlogList from "@components/content/BlogList.astro";
+import Greeting from "@components/content/Greeting.astro";
+import BaseLayout from "@components/layouts/BaseLayout.astro";
+import Hero from "@components/content/Home/Hero.astro";
+import Sidebar from "@components/Sidebar.astro";
+import BaseMainContent from "@components/layouts/BaseMainContent.astro";
+import { HeroSubtitle, HeroTitle } from "@components/content/Home/HeroItems";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@consts";
 import config from "@shConfig";
 
 const posts = (
