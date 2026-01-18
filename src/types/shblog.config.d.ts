@@ -9,7 +9,7 @@ export interface NavLink {
 }
 
 export interface AuthorLink {
-  icon: string;
+  icon: keyof typeof SimpleIcons | string;
   to: string;
   label: string;
 }

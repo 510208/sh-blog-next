@@ -97,9 +97,9 @@ const config: ShBlogConfig = {
     links: [
       // 如需其他的社交媒體圖標，請在 AuthorCard 元件中添加相應的圖標映射
       {
-        icon: "Twitter",
+        icon: "X",
         to: "https://twitter.com/samhacker",
-        label: "Twitter",
+        label: "X",
       },
       {
         icon: "Github",
