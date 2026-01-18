@@ -3,8 +3,11 @@ import Giscus from "@giscus/react";
 
 import config from "@shConfig";
 
-const GISCUS_ENABLED = config.behavior.enableComment || false;
+const GISCUS_ENABLED = config.behavior.enableComment == "Giscus" || false;
 const GISCUS_CONFIG = config.behavior.giscusConfig;
+const UTTERANCES_ENABLED =
+  config.behavior.enableComment == "Utterances" || false;
+const UTTERANCES_CONFIG = config.behavior.utterancesConfig;
 ---
 
 {
@@ -25,5 +28,27 @@ const GISCUS_CONFIG = config.behavior.giscusConfig;
       loading="lazy"
       client:only="react"
     />
+  )
+}
+
+{UTTERANCES_ENABLED && (
+    <div id="comments utterances-container" />
+
+    <script define:vars={{ UTTERANCES_CONFIG }}>
+      const script = document.createElement("script");
+
+      script.type = "text/javascript";
+      script.src = "https://utteranc.es/client.js";
+
+      script.setAttribute("repo", UTTERANCES_CONFIG.repo);
+      script.setAttribute("issue-term", UTTERANCES_CONFIG.issueTerm);
+      script.setAttribute("label", UTTERANCES_CONFIG.label);
+      script.setAttribute("theme", UTTERANCES_CONFIG.theme);
+      script.setAttribute("crossorigin", "anonymous");
+
+      script.async = true;
+
+      document.querySelector("#comments")?.appendChild(script);
+    </script>
   )
 }
