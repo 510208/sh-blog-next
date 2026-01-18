@@ -1,6 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
+  "include": [".astro/types.d.ts", "**/*", "./shblog.config.ts"],
   "exclude": ["dist"],
   "compilerOptions": {
     "strictNullChecks": true,
@@ -8,7 +8,8 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@shConfig": ["./shblog.config.ts"]
     }
   }
 }
