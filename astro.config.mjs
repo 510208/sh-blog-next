@@ -74,6 +74,7 @@ export default defineConfig({
         "@components": path.resolve(__dirname, "./src/components"),
         "@ui": path.resolve(__dirname, "./src/components/ui"),
         "@consts": path.resolve(__dirname, "./src/consts.ts"),
+        "@lib": path.resolve(__dirname, "./src/lib"),
       },
     },
   },
