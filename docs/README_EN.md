@@ -4,7 +4,7 @@
 
 <center><img src="/docs/assets/key_visual.png" alt="Screenshot" width="full" /></center>
 
-# SamHacker Blog Next
+# SamHacker Blog Next (SHBlog Next)
 
 <div align="center" style="letter-spacing: 2px;">A personal tech blog theme built with Astro and TailwindCSS</div>
 

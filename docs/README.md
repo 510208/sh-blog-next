@@ -4,7 +4,7 @@
 
 <center><img src="/docs/assets/key_visual.png" alt="Screenshot" width="full" /></center>
 
-# SamHacker Blog Next
+# SamHacker Blog Next（SHBlog Next）
 
 <div align="center" style="letter-spacing: 2px;">一個基於 Astro 與 TailwindCSS 所打造的個人技術部落格主題</div>
 
