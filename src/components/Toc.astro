@@ -1,6 +1,6 @@
 ---
-import { Button } from "./ui/button";
-import { CardTitle } from "./ui/card";
+import { Button } from "@ui/button";
+import { CardTitle } from "@ui/card";
 import { ChevronDown } from "lucide-react";
 
 interface Props {
@@ -18,7 +18,7 @@ const cleanHeadingText = (text: string): string => {
   return text.replace("#", "").trim();
 };
 
-import config from "shblog.config";
+import config from "@shConfig";
 
 // 構建樹形結構，根據 config 設定最小與最大深度
 const minDepth = config.behavior.tableOfContents.minDepth;

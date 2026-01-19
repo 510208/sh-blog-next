@@ -61,6 +61,10 @@ Developers interested in this project are welcome to participate. If you have an
 - Node.js v22 or higher
 - pnpm v9 or higher
 
+## 🔧 Config File Translation
+
+The configuration file `shblog.config.ts` is written in Chinese (Traditional). For users who prefer English, a translated version is provided in [CONFIG_TRANSLATION.md](/docs/config/config_translation.md).
+
 ## 🤝 Contributing
 
 If you are interested in contributing to this project, please refer to [CONTRIBUTING.md](/docs/CONTRIBUTING.md).

@@ -1,13 +1,8 @@
-import { Card } from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card } from "@ui/card";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
 import React from "react";
-import { Mail, Rss } from "lucide-react";
-import { Github, X } from "simple-icons-astro";
+import * as SimpleIcons from "@icons-pack/react-simple-icons";
 
 interface LinksProp {
   icon: string;
@@ -23,16 +18,15 @@ interface AuthorCardProps {
   links: LinksProp[];
 }
 
-const getIconComponent = (iconName: string) => {
-  // 需要其他圖標時，在此函數中添加相應的映射
-  switch (iconName.toLowerCase()) {
-    case "mail":
-      return Mail;
-    case "rss":
-      return Rss;
-    default:
-      return null;
-  }
+const isImageUrl = (str: string): boolean => {
+  return /^\/.*\.(png|jpg|jpeg|gif|svg|webp)$/i.test(str);
+};
+
+// 將 SimpleIcon 名稱轉換為 @icons-pack/react-simple-icons 的元件名稱
+// 注意：iconName 應該已經是符合套件匯出格式的 PascalCase，例如 "Github"、"X"、"Linkedin"
+const getSimpleIconComponentName = (iconName: string): string => {
+  // 直接加上 "Si" 前綴，使用傳入的名稱，不再嘗試變更大小寫
+  return `Si${iconName}`;
 };
 
 function AuthorCard({
@@ -71,9 +65,19 @@ function AuthorCard({
           <h3 className="text-lg font-bold">{name}</h3>
           <h4 className="text-sm font-semibold opacity-30">@{slug}</h4>
           <p className="text-sm">{description}</p>
-          <div className="text-xs gap-2 flex flex-wrap">
+          <div className="text-xs gap-2 flex flex-wrap mt-2">
             {links.map((link) => {
-              const IconComponent = getIconComponent(link.icon);
+              const isUrl = isImageUrl(link.icon);
+              let IconComponent:
+                | (React.ComponentType<{ size: number }>)
+                | undefined;
+
+              if (!isUrl) {
+                const iconComponentName = getSimpleIconComponentName(link.icon);
+                IconComponent = SimpleIcons[
+                  iconComponentName as keyof typeof SimpleIcons
+                ] as React.ComponentType<{ size: number }> | undefined;
+              }
               return (
                 <Tooltip key={link.label}>
                   <TooltipTrigger asChild>
@@ -82,9 +86,17 @@ function AuthorCard({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.label}
-                      className="inline-flex items-center justify-center p-1 rounded hover:bg-gray-700 transition-colors"
+                      className="inline-flex items-center justify-center p-1 rounded transition-colors"
                     >
-                      {IconComponent && <IconComponent />}
+                      {isUrl ? (
+                        <img
+                          src={link.icon}
+                          alt=""
+                          className="w-5 h-5 object-contain"
+                        />
+                      ) : IconComponent ? (
+                        <IconComponent size={20} />
+                      ) : null}
                     </a>
                   </TooltipTrigger>
                   <TooltipContent>

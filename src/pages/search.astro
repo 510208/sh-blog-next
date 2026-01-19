@@ -1,15 +1,15 @@
 ---
-import BaseLayout from "@/components/layouts/BaseLayout.astro";
-import Hero from "@/components/content/Home/Hero.astro";
-import { HeroSubtitle, HeroTitle } from "@/components/content/Home/HeroItems";
+import BaseLayout from "@components/layouts/BaseLayout.astro";
+import Hero from "@components/content/Home/Hero.astro";
+import { HeroSubtitle, HeroTitle } from "@components/content/Home/HeroItems";
 
 import { default as AstroSearch } from "astro-pagefind/components/Search";
 
 import "@/styles/pagefind.css";
-import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
-import Sidebar from "@/components/Sidebar.astro";
-import { Input } from "@/components/ui/input";
-import config from "shblog.config";
+import BaseMainContent from "@components/layouts/BaseMainContent.astro";
+import Sidebar from "@components/Sidebar.astro";
+import { Input } from "@ui/input";
+import config from "@shConfig";
 ---
 
 <BaseLayout

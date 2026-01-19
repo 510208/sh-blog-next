@@ -1,6 +1,6 @@
-import { MessageCircleMoreIcon } from "../ui/animated/message-circle-more";
-import { Button } from "../ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { MessageCircleMoreIcon } from "@ui/animated/message-circle-more";
+import { Button } from "@ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
 
 export const ToCommentButton = ({ className }: { className?: string }) => {
   return (

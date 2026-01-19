@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { SearchIcon } from "@/components/ui/animated/search";
-// import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
+import { Button } from "@ui/button";
+import { SearchIcon } from "@ui/animated/search";
+// import { Dialog, DialogTrigger, DialogContent } from "@ui/dialog";
 // import { SearchCommandBox } from "./SearchCommandBox";
 // import SearchComponent from "astro-pagefind/components/Search";
 

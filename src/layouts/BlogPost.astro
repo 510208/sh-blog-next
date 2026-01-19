@@ -2,24 +2,24 @@
 import "@/styles/markdown.css";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import FormattedDate from "@/components/content/FormattedDate.astro";
-import BaseLayout from "@/components/layouts/BaseLayout.astro";
-import BaseMainContent from "@/components/layouts/BaseMainContent.astro";
-import Hero from "@/components/content/Home/Hero.astro";
-import { HeroTitle, HeroSubtitle } from "@/components/content/Home/HeroItems";
+import FormattedDate from "@components/content/FormattedDate.astro";
+import BaseLayout from "@components/layouts/BaseLayout.astro";
+import BaseMainContent from "@components/layouts/BaseMainContent.astro";
+import Hero from "@components/content/Home/Hero.astro";
+import { HeroTitle, HeroSubtitle } from "@components/content/Home/HeroItems";
 
 // @ts-ignore
-import Sidebar from "@/components/Sidebar.astro";
+import Sidebar from "@components/Sidebar.astro";
 
 import { CalendarDays, Tag, User } from "lucide-react";
-import config from "shblog.config";
-import { Separator } from "@/components/ui/separator";
-import { DEFAULT_POST_IMAGE, SEPARATOR } from "@/consts";
+import config from "@shConfig";
+import { Separator } from "@components/ui/separator";
+import { DEFAULT_POST_IMAGE, SEPARATOR } from "@consts";
 
-import Toc from "../components/Toc.astro";
+import Toc from "@components/Toc.astro";
 import "katex/dist/katex.min.css";
-import Comment from "@/components/comment/Comment.astro";
-import Tags from "@/components/Tags.astro";
+import Comment from "@components/comment/Comment.astro";
+import Tags from "@components/Tags.astro";
 
 import "@/styles/markdown.css";
 import "@/styles/aside.css";
@@ -112,9 +112,6 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
         <slot />
       </div>
 
-      <div id="comment-sep" class="my-10">
-        <Separator client:only="react" />
-      </div>
       <Comment />
     </article>
 

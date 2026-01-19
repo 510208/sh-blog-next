@@ -36,6 +36,10 @@ import metaTags from "astro-meta-tags";
 
 import devtoolBreakpoints from "astro-devtool-breakpoints";
 
+import path from "path";
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 // https://astro.build/config
 export default defineConfig({
   site: process.env.SITE_URL || "https://sh-blog-next.vercel.app",
@@ -64,6 +68,15 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "@shConfig": path.resolve(__dirname, "./shblog.config.ts"),
+        "@components": path.resolve(__dirname, "./src/components"),
+        "@ui": path.resolve(__dirname, "./src/components/ui"),
+        "@consts": path.resolve(__dirname, "./src/consts.ts"),
+        "@lib": path.resolve(__dirname, "./src/lib"),
+      },
+    },
   },
 
   experimental: {
