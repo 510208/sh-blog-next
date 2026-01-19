@@ -2,6 +2,8 @@
 
 The configuration file `shblog.config.ts` is originally written in Chinese (Traditional). Below is an English translation of the configuration options for your reference:
 
+<!-- BEGIN:CONFIG_TRANSLATION -->
+
 ```ts
 import { Newspaper, Handshake, Home, Info, Phone } from "lucide-react";
 import type { ShBlogConfig } from "./src/types/shblog.config.d";
@@ -272,3 +274,5 @@ const config: ShBlogConfig = {
 
 export default config; // 匯出設定
 ```
+
+<!-- END:CONFIG_TRANSLATION -->
