@@ -68,13 +68,16 @@ function AuthorCard({
           <div className="text-xs gap-2 flex flex-wrap mt-2">
             {links.map((link) => {
               const isUrl = isImageUrl(link.icon);
-              const iconComponentName = getSimpleIconComponentName(link.icon);
-              const IconComponent = !isUrl
-                ? (SimpleIcons[
-                    iconComponentName as keyof typeof SimpleIcons
-                  ] as React.ComponentType<{ size: number }> | undefined)
-                : null;
+              let IconComponent:
+                | (React.ComponentType<{ size: number }>)
+                | undefined;
 
+              if (!isUrl) {
+                const iconComponentName = getSimpleIconComponentName(link.icon);
+                IconComponent = SimpleIcons[
+                  iconComponentName as keyof typeof SimpleIcons
+                ] as React.ComponentType<{ size: number }> | undefined;
+              }
               return (
                 <Tooltip key={link.label}>
                   <TooltipTrigger asChild>
