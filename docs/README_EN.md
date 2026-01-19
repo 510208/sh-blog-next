@@ -6,7 +6,9 @@
 
 # SamHacker Blog Next
 
-<div align="center">A personal tech blog theme built with Astro and TailwindCSS</div>
+<div align="center" style="letter-spacing: 2px;">A personal tech blog theme built with Astro and TailwindCSS</div>
+
+<br />
 
 <div align="center" style="display: flex; gap: 10px; justify-content: center; margin-top: 10px; margin-bottom: 10px;">
   <img src="https://deploy-badge.vercel.app/vercel/sh-blog-next?style=for-the-badge&name=Vercel" alt="Vercel Deploy" />

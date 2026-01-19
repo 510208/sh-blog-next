@@ -6,7 +6,9 @@
 
 # SamHacker Blog Next
 
-<div align="center">一個基於 Astro 與 TailwindCSS 所打造的個人技術部落格主題</div>
+<div align="center" style="letter-spacing: 2px;">一個基於 Astro 與 TailwindCSS 所打造的個人技術部落格主題</div>
+
+<br />
 
 <div align="center" style="display: flex; gap: 10px; justify-content: center; margin-top: 10px; margin-bottom: 10px;">
   <img src="https://deploy-badge.vercel.app/vercel/sh-blog-next?style=for-the-badge&name=Vercel" alt="Vercel Deploy" />
