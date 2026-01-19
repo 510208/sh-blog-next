@@ -134,7 +134,16 @@ interface ShBlogConfig {
   navBar: NavBar;
   friendLinks: FriendLink[];
   behavior: Behavior;
-  footer: Array<FooterLink>;
+  footer: {
+    description: string;
+    links: FooterLink[];
+    copyright: {
+      text: string;
+      url?: string;
+      yearUpdateStrategy: "fixed" | "auto" | number;
+    };
+    countryEmoji: string;
+  };
 }
 
 declare const config: ShBlogConfig;

@@ -337,46 +337,56 @@ const config: ShBlogConfig = {
   },
 
   // 頁尾社交媒體連結設定
-  footer: [
-    // socialMedia 的名稱請前往 https://simpleicons.org/ 上尋找，大小寫須完全吻合
-    // 如需使用自訂圖標，請提供圖標的完整 URL 或針對網站根目錄的相對路徑
-    // {
-    //   socialMedia: "Twitter",  // 社交媒體名稱
-    //   url: "https://twitter.com/johndoe",  // 連結網址
-    // },
-    {
-      socialMedia: "Threads",
-      url: "https://www.threads.com/@samhacker.xyz",
+  footer: {
+    description:
+      "你好！歡迎來到我的部落格\n這裡是我分享自己的生活與 Coding 日常的地方\n我是個自學程式語言的高中生，有時也會寫寫文章什麼的\n如果你也對這些東西有些興趣，歡迎關注我喔！",
+    links: [
+      // socialMedia 的名稱請前往 https://simpleicons.org/ 上尋找，大小寫須完全吻合
+      // 如需使用自訂圖標，請提供圖標的完整 URL 或針對網站根目錄的相對路徑
+      // {
+      //   socialMedia: "Twitter",  // 社交媒體名稱
+      //   url: "https://twitter.com/johndoe",  // 連結網址
+      // },
+      {
+        socialMedia: "Threads",
+        url: "https://www.threads.com/@samhacker.xyz",
+      },
+      {
+        socialMedia: "Instagram",
+        url: "https://www.instagram.com/samhacker.xyz/",
+      },
+      {
+        socialMedia: "Github",
+        url: "https://github.com/510208",
+      },
+      {
+        socialMedia: "Bento",
+        url: "https://bento.me/510208",
+      },
+      {
+        socialMedia: "Githubpages",
+        url: "https://510208.github.io",
+      },
+      {
+        socialMedia: "Discord",
+        url: "https://discord.gg/R2eFtXgsRg",
+      },
+      {
+        socialMedia: "Figma",
+        url: "https://www.figma.com/@samhacker",
+      },
+      {
+        socialMedia: "/assets/logo/social_media/penana_symbol.svg", // 自訂圖標範例
+        url: "https://www.penana.com/user/234799/samhacker", // 連結網址
+      },
+    ],
+    copyright: {
+      text: "CC BY-NC 4.0",
+      url: "https://creativecommons.org/licenses/by-nc/4.0/",
+      yearUpdateStrategy: "auto", // 版權年份更新策略，auto 表示自動更新為當前年份、fixed 表示編譯網站時的年份，固定年份請直接填寫年份數字，例如 2023
     },
-    {
-      socialMedia: "Instagram",
-      url: "https://www.instagram.com/samhacker.xyz/",
-    },
-    {
-      socialMedia: "Github",
-      url: "https://github.com/510208",
-    },
-    {
-      socialMedia: "Bento",
-      url: "https://bento.me/510208",
-    },
-    {
-      socialMedia: "Githubpages",
-      url: "https://510208.github.io",
-    },
-    {
-      socialMedia: "Discord",
-      url: "https://discord.gg/R2eFtXgsRg",
-    },
-    {
-      socialMedia: "Figma",
-      url: "https://www.figma.com/@samhacker",
-    },
-    {
-      socialMedia: "/assets/logo/social_media/penana_symbol.svg", // 自訂圖標範例
-      url: "https://www.penana.com/user/234799/samhacker", // 連結網址
-    },
-  ],
+    countryEmoji: "🇹🇼",
+  },
 };
 
 export default config; // 匯出設定
