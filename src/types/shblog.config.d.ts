@@ -65,7 +65,7 @@ interface UtterancesConfig {
 }
 
 interface Behavior {
-  enableComment: false | "Giscus" | "Utterances";
+  enableComment: "None" | "Giscus" | "Utterances";
   giscusConfig: GiscusConfig;
   utterancesConfig: UtterancesConfig;
   enableGTM: boolean;

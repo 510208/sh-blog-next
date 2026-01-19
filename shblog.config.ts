@@ -313,7 +313,7 @@ const config: ShBlogConfig = {
       repo: "510208/utterances",
       issueTerm: "pathname",
       label: "comment",
-      theme: "github-light",
+      theme: "github-",
     },
 
     // 是否啟用 Google Tag Manager 以進行網站流量分析
