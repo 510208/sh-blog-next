@@ -6,9 +6,8 @@ import config from "@shConfig";
 const hour = new Date().getHours();
 const TIME_GREETING: TimeGreeting[] = config.pages.home.greetings;
 
-// 正規化時間：將 24 轉換為 0
+// 正規化設定檔中的時間：將 24 轉換為 0 (表示午夜結束)
 const normalizeHour = (h: number | undefined) => (h === 24 ? 0 : h);
-console.log("Current hour:", hour);
 
 const greeting =
   TIME_GREETING.find((item) => {
