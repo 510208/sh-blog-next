@@ -41,7 +41,7 @@ const config: ShBlogConfig = {
     //   首頁通常是網站的入口頁面，這裡可以設定首頁的標題和頂部背景圖片
     home: {
       title: "正因為曾經淋過雨，\n才會想為他人撐一把傘。", // 網站首頁顯示的文字，不一定是標題，也可以是座右銘、標語或口號等
-      heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      heroImage: "/assets/layouts/homepage/samhacker_homepage_background.webp", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
       greetings: [
         // 根據不同時間顯示不同問候語的設定
         //   begin: 開始時間（包含），0-24 小時制
@@ -90,18 +90,21 @@ const config: ShBlogConfig = {
       search: {
         title: "站內搜尋", // 頁面的標題
         subTitle: "搜尋你想尋找的內容...", // 頁面副標題
-        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 頁面頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+        heroImage:
+          "/assets/layouts/homepage/samhacker_homepage_background.webp", // 頁面頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
       },
       friends: {
         title: "友情連結",
         subTitle:
           "這裡是我的一些朋友或推薦的網站清單，歡迎點擊造訪他們的網站，支持他們的創作與努力！",
-        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png",
+        heroImage:
+          "/assets/layouts/homepage/samhacker_homepage_background.webp",
       },
       about: {
         title: "關於我與這個網站",
         subTitle: "這裡是關於我與這個網站的介紹頁面。",
-        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png",
+        heroImage:
+          "/assets/layouts/homepage/samhacker_homepage_background.webp",
       },
     },
   },
@@ -111,11 +114,11 @@ const config: ShBlogConfig = {
     heroImage: {
       from: 80, // 背景圖淡入起始透明度，數值越大透明度越低
       to: 100, // 背景圖淡入結束透明度，數值越大透明度越低
-      src: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      src: "/assets/layouts/homepage/samhacker_homepage_background.webp", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
       method: "overlay", // 背景圖顯示方式，可選值有 "mask"（使用 CSS mask 屬性實現原生遮罩效果，實驗性功能）和 "overlay"（使用帶透明度的 div 疊加遮罩，透過半透明漸層柔化背景，建議）
     },
     defaultPostImage:
-      "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設文章圖片，如果文章沒有指定封面就使用它
+      "/assets/layouts/homepage/samhacker_homepage_background.webp", // 預設文章圖片，如果文章沒有指定封面就使用它
     postsPerPage: 6, // 首頁每頁顯示的文章數量
     titleSeparator: "-", // 網站標題分隔符號，會用在瀏覽器標籤和 SEO 中，例如 "文章標題 - 網站名稱"
     enableTransitions: false, // 是否啟用頁面轉場動畫
