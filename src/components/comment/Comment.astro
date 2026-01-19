@@ -3,13 +3,41 @@ import Giscus from "@giscus/react";
 
 import config from "@shConfig";
 import { Skeleton } from "@ui/skeleton";
+import { Separator } from "@ui/separator";
 
 const GISCUS_ENABLED = config.behavior.enableComment === "Giscus";
 const GISCUS_CONFIG = config.behavior.giscusConfig;
 const UTTERANCES_ENABLED =
   config.behavior.enableComment === "Utterances";
 const UTTERANCES_CONFIG = config.behavior.utterancesConfig;
+const COMMENT_DISABLED = config.behavior.enableComment === "None";
+
+// 開發階段檢查 Utterances repo 是否存在
+let UTTERANCES_REPO_EXISTS = true;
+if (import.meta.env.DEV && UTTERANCES_ENABLED) {
+  const repo = UTTERANCES_CONFIG.repo;
+  try {
+    const response = await fetch(`https://api.github.com/repos/${repo}`, {
+      headers: {
+        'Accept': 'application/vnd.github+json',
+      },
+    });
+    if (!response.ok) {
+      console.warn(
+        `⚠️ Utterances 設定警告: GitHub repo "${repo}" 不存在或無法存取 (狀態碼: ${response.status})`,
+      );
+      UTTERANCES_REPO_EXISTS = false;
+    }
+  } catch (error) {
+    console.warn(
+      `⚠️ Utterances 設定警告: 無法驗證 GitHub repo "${repo}"`,
+      error,
+    );
+  }
+}
 ---
+
+{ !COMMENT_DISABLED && (<div id="comment-sep" class="my-10"><Separator client:load /></div>) }
 
 {
   GISCUS_ENABLED && (
@@ -30,7 +58,6 @@ const UTTERANCES_CONFIG = config.behavior.utterancesConfig;
       client:only="react"
     >
       <div slot="fallback">
-        {/* 使用Skeleton元件 */}
         <Skeleton />
       </div>
     </Giscus>
@@ -38,8 +65,14 @@ const UTTERANCES_CONFIG = config.behavior.utterancesConfig;
 }
 
 {
-  UTTERANCES_ENABLED && (
+  UTTERANCES_ENABLED && UTTERANCES_REPO_EXISTS && (
     <div id="comments" />
+
+    <style>
+      .utterances {
+        max-width: none;
+      }
+    </style>
 
     <script define:vars={{ UTTERANCES_CONFIG }}>
       const script = document.createElement("script");
@@ -57,5 +90,5 @@ const UTTERANCES_CONFIG = config.behavior.utterancesConfig;
 
       document.querySelector("#comments")?.appendChild(script);
     </script>
-  )
+  ) || ( <p class="text-red-600"><strong>警告！</strong> Utterances 的 GitHub repo 不存在或無法存取。</p> )
 }
