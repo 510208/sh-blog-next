@@ -23,9 +23,10 @@ const isImageUrl = (str: string): boolean => {
 };
 
 // 將 SimpleIcon 名稱轉換為 @icons-pack/react-simple-icons 的元件名稱
-// 例如: "Github" -> "SiGithub"
+// 注意：iconName 應該已經是符合套件匯出格式的 PascalCase，例如 "Github"、"X"、"Linkedin"
 const getSimpleIconComponentName = (iconName: string): string => {
-  return `Si${iconName.charAt(0).toUpperCase()}${iconName.slice(1)}`;
+  // 直接加上 "Si" 前綴，使用傳入的名稱，不再嘗試變更大小寫
+  return `Si${iconName}`;
 };
 
 function AuthorCard({
