@@ -71,6 +71,9 @@ export default defineConfig({
     resolve: {
       alias: {
         "@shConfig": path.resolve(__dirname, "./shblog.config.ts"),
+        "@components": path.resolve(__dirname, "./src/components"),
+        "@ui": path.resolve(__dirname, "./src/components/ui"),
+        "@consts": path.resolve(__dirname, "./src/consts.ts"),
       },
     },
   },
