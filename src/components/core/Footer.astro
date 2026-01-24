@@ -107,7 +107,7 @@ if (config.footer.copyright.yearUpdateStrategy === "fixed") {
           </div>
 
           <p class="text-white/40 text-[10px] leading-normal">
-            {config.footer.countryEmoji} © <span class="sh-footer-year">{year}</span>
+            {config.footer.countryEmoji} © <span class="sh-footer-year">{year ? year : ""}</span>
             {config.author.name}
           </p>
 
