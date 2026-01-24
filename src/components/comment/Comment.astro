@@ -5,12 +5,12 @@ import config from "@shConfig";
 import { Skeleton } from "@ui/skeleton";
 import { Separator } from "@ui/separator";
 
-const GISCUS_ENABLED = config.behavior.enableComment === "Giscus";
-const GISCUS_CONFIG = config.behavior.giscusConfig;
+const GISCUS_ENABLED = config.behavior.commentConfig.enableComment === "Giscus";
+const GISCUS_CONFIG = config.behavior.commentConfig.giscusConfig;
 const UTTERANCES_ENABLED =
-  config.behavior.enableComment === "Utterances";
-const UTTERANCES_CONFIG = config.behavior.utterancesConfig;
-const COMMENT_DISABLED = config.behavior.enableComment === "None";
+  config.behavior.commentConfig.enableComment === "Utterances";
+const UTTERANCES_CONFIG = config.behavior.commentConfig.utterancesConfig;
+const COMMENT_DISABLED = config.behavior.commentConfig.enableComment === "None";
 
 // 開發階段檢查 Utterances repo 是否存在
 let UTTERANCES_REPO_EXISTS = true;
