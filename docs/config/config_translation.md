@@ -276,7 +276,7 @@ const config: ShBlogConfig = {
       "Hello! I am a tech enthusiast blogger focusing on Minecraft server setup, web development, open-source software, and more. Welcome to my blog!",
     // Find socialMedia names on https://simpleicons.org/ (case sensitive)
     // For custom icons, provide a full URL or a relative path from the root.
-    socialMediaLinks: [
+    links: [
       {
         socialMedia: "Threads",
         url: "https://www.threads.com/@samhacker.xyz",
