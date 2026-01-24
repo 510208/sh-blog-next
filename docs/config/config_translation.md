@@ -2,6 +2,8 @@
 
 The configuration file `shblog.config.ts` is originally written in Chinese (Traditional). Below is an English translation of the configuration options for your reference:
 
+<!-- BEGIN:CONFIG_TRANSLATION -->
+
 ```ts
 import { Newspaper, Handshake, Home, Info, Phone } from "lucide-react";
 import type { ShBlogConfig } from "./src/types/shblog.config.d";
@@ -130,14 +132,13 @@ const config: ShBlogConfig = {
 
   // Author (Webmaster) Information
   author: {
-    name: "SamHacker", // Author's name
-    bio: "I am a tech enthusiast blogger, focusing on Minecraft server setup, website construction, open-source software, and more.", // Short bio
+    name: "John Doe", // Author's name
+    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", // Short bio
     // For a detailed bio, please edit src/pages/about.astro
 
-    email: "xux510208@gmail.com", // Contact email
+    email: "johndoe@example.com", // Contact email
     // Full URL or relative path for the avatar image
-    avatarUrl:
-      "https://gravatar.com/avatar/f7598bd8d4aba38d7219341f81a162fc842376b3b556b1995cbb97271d9e2915?v=1753291388000&size=256&d=initials",
+    avatarUrl: "https://placehold.jp/128x128.png",
 
     // Social Media Links
     links: [
@@ -215,31 +216,33 @@ const config: ShBlogConfig = {
 
   // Behavior Settings
   behavior: {
-    enableComment: "Giscus", // Whether to enable article comments
+    commentConfig: {
+      enableComment: "Giscus", // Whether to enable article comments
 
-    // Comment system settings, effective when enableComment is true
-    // For Giscus configuration, refer to: https://giscus.app/
-    // The following settings correspond to data- attributes in the giscus script tag.
-    giscusConfig: {
-      repo: "510208/utterances",
-      repoId: "R_kgDOKOthQw",
-      category: "Announcements",
-      categoryId: "DIC_kwDOKOthQ84Czwi8",
-      mapping: "og:title",
-      strict: "0",
-      reactionsEnabled: "1",
-      emitMetadata: "1",
-      inputPosition: "top",
-      theme: "transparent_dark",
-      lang: "en", // Changed to English for consistency
-    },
+      // Comment system settings, effective when enableComment is true
+      // For Giscus configuration, refer to: https://giscus.app/
+      // The following settings correspond to data- attributes in the giscus script tag.
+      giscusConfig: {
+        repo: "510208/utterances",
+        repoId: "R_kgDOKOthQw",
+        category: "Announcements",
+        categoryId: "DIC_kwDOKOthQ84Czwi8",
+        mapping: "og:title",
+        strict: "0",
+        reactionsEnabled: "1",
+        emitMetadata: "1",
+        inputPosition: "top",
+        theme: "transparent_dark",
+        lang: "en", // Changed to English for consistency
+      },
 
-    // For Utterances configuration, refer to: https://utteranc.es/
-    utterancesConfig: {
-      repo: "510208/utterances",
-      issueTerm: "pathname",
-      label: "comment",
-      theme: "github-light",
+      // For Utterances configuration, refer to: https://utteranc.es/
+      utterancesConfig: {
+        repo: "510208/utterances",
+        issueTerm: "pathname",
+        label: "comment",
+        theme: "github-light",
+      },
     },
 
     // Whether to enable Google Tag Manager for traffic analysis
@@ -257,18 +260,40 @@ const config: ShBlogConfig = {
       minDepth: 2, // Minimum heading depth to display (e.g., 2 for h2)
       maxDepth: 4, // Maximum heading depth to display (e.g., 4 for h4). -1 for all levels.
     },
+
+    // Pangu.js Chinese Auto-spacing Settings
+    //   If the site content contains a lot of mixed Asian and English text, this feature can improve readability.
+    //   However, it increases build time, so use it judiciously.
+    //   Note: Modifying these settings may require restarting the development server (or rebuilding the site) to take effect.
+    //   Please modify the settings in src/plugins/rehype-pangu.mjs
+    // panguJs: {};
   },
 
   // Footer Social Media Settings
-  footer: [
+  footer: {
+    // Footer Description
+    description:
+      "Hello! I am a tech enthusiast blogger focusing on Minecraft server setup, web development, open-source software, and more. Welcome to my blog!",
     // Find socialMedia names on https://simpleicons.org/ (case sensitive)
     // For custom icons, provide a full URL or a relative path from the root.
-    {
-      socialMedia: "Threads",
-      url: "https://www.threads.com/@samhacker.xyz",
+    links: [
+      {
+        socialMedia: "Threads",
+        url: "https://www.threads.com/@samhacker.xyz",
+      },
+    ],
+
+    // Website Copyright Information Settings
+    copyright: {
+      text: "CC BY-NC 4.0", // Copyright usage description text
+      url: "https://creativecommons.org/licenses/by-nc/4.0/", // Copyright usage description link URL (e.g., Creative Commons, MIT, GPL, etc.)
+      yearUpdateStrategy: "auto", // Copyright year update strategy, "auto" means automatically update to the current year, "fixed" means the year when the site was compiled. For a fixed year, directly fill in the year number, e.g., 2023
     },
-  ],
+    countryEmoji: "🇹🇼", // Country flag emoji, e.g., Taiwan flag 🇹🇼
+  },
 };
 
-export default config; // 匯出設定
+export default config; // Export the configuration object
 ```
+
+<!-- END:CONFIG_TRANSLATION -->

@@ -2,7 +2,16 @@
 import SiteRuntime from "../widgets/SiteRuntime.astro";
 import SocialLinks from "./SocialLinks.astro";
 
-const today = new Date();
+import config from "@shConfig";
+
+let year: number | null = null;
+
+if (config.footer.copyright.yearUpdateStrategy === "fixed") {
+  year = new Date().getFullYear();
+} else if (typeof config.footer.copyright.yearUpdateStrategy === "number") {
+  // 如果是固定的時間（number）
+  year = config.footer.copyright.yearUpdateStrategy;
+}
 ---
 
 <footer
@@ -12,7 +21,7 @@ const today = new Date();
   <!-- Background gradients -->
   <div class="absolute inset-0 pointer-events-none">
     <img
-      src="/assets/layouts/footer/footer_background_gradient.png"
+      src="/assets/layouts/footer/footer_background_gradient.webp"
       alt=""
       class="w-full h-full object-cover"
     />
@@ -27,7 +36,7 @@ const today = new Date();
     >
       DESIGNED BY
       <br />
-      SAMHACKER
+      {config.author.name.toUpperCase()}
     </h2>
   </div>
 
@@ -41,7 +50,7 @@ const today = new Date();
         <!-- Logo -->
         <div class="mb-4">
           <h3 class="text-white font-display text-xl font-black">
-            SamHacker Blog
+            {config.title}
           </h3>
         </div>
 
@@ -49,10 +58,7 @@ const today = new Date();
 
         <!-- Description -->
         <div class="text-white/60 text-sm leading-6 tracking-[0.7px] mb-6">
-          <p>你好！歡迎來到我的部落格</p>
-          <p>這裡是我分享自己的生活與 Coding 日常的地方</p>
-          <p>我是個自學程式語言的高中生，有時也會寫寫文章什麼的</p>
-          <p>如果你也對這些東西有些興趣，歡迎關注我喔！</p>
+          <p class="whitespace-pre-line">{config.footer.description}</p>
         </div>
         <SiteRuntime />
       </div>
@@ -68,7 +74,7 @@ const today = new Date();
             <br />
             如需商業合作授權,請來信洽談：
             <span class="underline decoration-solid">
-              samhacker@samhacker.xyz
+              {config.author.email}
             </span>
           </p>
         </div>
@@ -78,30 +84,31 @@ const today = new Date();
           <div class="text-white text-[10px] leading-normal">
             <p>
               <a
-                href="https://samhacker.xyz/"
+                href="/"
                 class="underline decoration-solid hover:text-white/80 transition-colors"
               >
-                SamHacker Blog
+                {config.title}
               </a>
-              © {today.getFullYear()} by
+              © <span class="sh-footer-year">{year ? year : ""}</span> by
               <a
-                href="https://510208.github.io/"
+                href="/"
                 class="underline decoration-solid hover:text-white/80 transition-colors"
               >
-                SamHacker
+                {config.author.name}
               </a>
               is licensed under
               <a
-                href="https://creativecommons.org/licenses/by-nc/4.0/"
+                href={config.footer.copyright.url ?? "#"}
                 class="underline decoration-solid hover:text-white/80 transition-colors"
               >
-                CC BY-NC 4.0
+                {config.footer.copyright.text}
               </a>
             </p>
           </div>
 
           <p class="text-white/40 text-[10px] leading-normal">
-            🇹🇼 © {today.getFullYear()} SamHacker
+            {config.footer.countryEmoji} © <span class="sh-footer-year">{year ? year : ""}</span>
+            {config.author.name}
           </p>
 
           <!-- Social links -->
@@ -113,3 +120,15 @@ const today = new Date();
     </div>
   </div>
 </footer>
+
+{
+  year === null && (
+    <script>
+      const yearElements = document.querySelectorAll(".sh-footer-year");
+      const currentYear = new Date().getFullYear();
+      yearElements.forEach((el) => {
+        el.textContent = currentYear.toString();
+      });
+    </script>
+  )
+}

@@ -34,11 +34,6 @@
           "type": "tags"
         },
         {
-          "title": "pubDate",
-          "name": "pubDate",
-          "type": "datetime"
-        },
-        {
           "title": "category",
           "name": "category",
           "type": "categories"

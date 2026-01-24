@@ -22,6 +22,7 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
+import rehypePangu from "./src/plugins/rehype-pangu.mjs";
 
 import { asideAutoImport, astroAsides } from "./src/utils/astro-aside";
 import AutoImport from "astro-auto-import";
@@ -124,6 +125,7 @@ export default defineConfig({
       ],
       rehypeCodeTitles,
       rehypeCodeBlock,
+      rehypePangu,
     ],
   },
 });

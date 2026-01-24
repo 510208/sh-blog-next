@@ -41,7 +41,7 @@ const config: ShBlogConfig = {
     //   首頁通常是網站的入口頁面，這裡可以設定首頁的標題和頂部背景圖片
     home: {
       title: "正因為曾經淋過雨，\n才會想為他人撐一把傘。", // 網站首頁顯示的文字，不一定是標題，也可以是座右銘、標語或口號等
-      heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      heroImage: "/assets/layouts/homepage/samhacker_homepage_background.webp", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
       greetings: [
         // 根據不同時間顯示不同問候語的設定
         //   begin: 開始時間（包含），0-24 小時制
@@ -90,18 +90,21 @@ const config: ShBlogConfig = {
       search: {
         title: "站內搜尋", // 頁面的標題
         subTitle: "搜尋你想尋找的內容...", // 頁面副標題
-        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png", // 頁面頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+        heroImage:
+          "/assets/layouts/homepage/samhacker_homepage_background.webp", // 頁面頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
       },
       friends: {
         title: "友情連結",
         subTitle:
           "這裡是我的一些朋友或推薦的網站清單，歡迎點擊造訪他們的網站，支持他們的創作與努力！",
-        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png",
+        heroImage:
+          "/assets/layouts/homepage/samhacker_homepage_background.webp",
       },
       about: {
         title: "關於我與這個網站",
         subTitle: "這裡是關於我與這個網站的介紹頁面。",
-        heroImage: "/assets/layouts/homepage/samhacker_homepage_background.png",
+        heroImage:
+          "/assets/layouts/homepage/samhacker_homepage_background.webp",
       },
     },
   },
@@ -111,11 +114,11 @@ const config: ShBlogConfig = {
     heroImage: {
       from: 80, // 背景圖淡入起始透明度，數值越大透明度越低
       to: 100, // 背景圖淡入結束透明度，數值越大透明度越低
-      src: "/assets/layouts/homepage/samhacker_homepage_background.png", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+      src: "/assets/layouts/homepage/samhacker_homepage_background.webp", // 首頁頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
       method: "overlay", // 背景圖顯示方式，可選值有 "mask"（使用 CSS mask 屬性實現原生遮罩效果，實驗性功能）和 "overlay"（使用帶透明度的 div 疊加遮罩，透過半透明漸層柔化背景，建議）
     },
     defaultPostImage:
-      "/assets/layouts/homepage/samhacker_homepage_background.png", // 預設文章圖片，如果文章沒有指定封面就使用它
+      "/assets/layouts/homepage/samhacker_homepage_background.webp", // 預設文章圖片，如果文章沒有指定封面就使用它
     postsPerPage: 6, // 首頁每頁顯示的文章數量
     titleSeparator: "-", // 網站標題分隔符號，會用在瀏覽器標籤和 SEO 中，例如 "文章標題 - 網站名稱"
     enableTransitions: false, // 是否啟用頁面轉場動畫
@@ -274,46 +277,49 @@ const config: ShBlogConfig = {
 
   // 其他行為設定
   behavior: {
-    enableComment: "Giscus", // 是否啟用文章評論功能
+    // 文章評論功能設定
+    commentConfig: {
+      enableComment: "Giscus", // 是否啟用文章評論功能
 
-    // 評論系統設定，當 enableComment 為 true 時生效
-    // giscus 評論系統設定說明請參考：https://giscus.app/zh-TW
-    // <script src="https://giscus.app/client.js"
-    //     data-repo="[在此輸入儲存庫名稱]"
-    //     data-repo-id="[在此輸入儲存庫 ID]"
-    //     data-category="[在此輸入分類名稱]"
-    //     data-category-id="[在此輸入分類 ID]"
-    //     data-mapping="pathname"
-    //     data-strict="0"
-    //     data-reactions-enabled="1"
-    //     data-emit-metadata="0"
-    //     data-input-position="bottom"
-    //     data-theme="preferred_color_scheme"
-    //     data-lang="zh-TW"
-    //     crossorigin="anonymous"
-    //     async>
-    // </script>
-    // 設定與上述 script 標籤中的 data- 屬性對應，可以直接用官網提供的產生器來取得對應的值
-    giscusConfig: {
-      repo: "510208/utterances",
-      repoId: "R_kgDOKOthQw",
-      category: "Announcements",
-      categoryId: "DIC_kwDOKOthQ84Czwi8",
-      mapping: "og:title",
-      strict: "0",
-      reactionsEnabled: "1",
-      emitMetadata: "1",
-      inputPosition: "top",
-      theme: "transparent_dark",
-      lang: "zh-TW",
-    },
+      // 評論系統設定，當 enableComment 為 true 時生效
+      // giscus 評論系統設定說明請參考：https://giscus.app/zh-TW
+      // <script src="https://giscus.app/client.js"
+      //     data-repo="[在此輸入儲存庫名稱]"
+      //     data-repo-id="[在此輸入儲存庫 ID]"
+      //     data-category="[在此輸入分類名稱]"
+      //     data-category-id="[在此輸入分類 ID]"
+      //     data-mapping="pathname"
+      //     data-strict="0"
+      //     data-reactions-enabled="1"
+      //     data-emit-metadata="0"
+      //     data-input-position="bottom"
+      //     data-theme="preferred_color_scheme"
+      //     data-lang="zh-TW"
+      //     crossorigin="anonymous"
+      //     async>
+      // </script>
+      // 設定與上述 script 標籤中的 data- 屬性對應，可以直接用官網提供的產生器來取得對應的值
+      giscusConfig: {
+        repo: "510208/utterances",
+        repoId: "R_kgDOKOthQw",
+        category: "Announcements",
+        categoryId: "DIC_kwDOKOthQ84Czwi8",
+        mapping: "og:title",
+        strict: "0",
+        reactionsEnabled: "1",
+        emitMetadata: "1",
+        inputPosition: "top",
+        theme: "transparent_dark",
+        lang: "zh-TW",
+      },
 
-    // utterances 評論系統設定說明請參考：https://utteranc.es/
-    utterancesConfig: {
-      repo: "510208/utterances",
-      issueTerm: "pathname",
-      label: "comment",
-      theme: "github-",
+      // utterances 評論系統設定說明請參考：https://utteranc.es/
+      utterancesConfig: {
+        repo: "510208/utterances",
+        issueTerm: "pathname",
+        label: "comment",
+        theme: "github-",
+      },
     },
 
     // 是否啟用 Google Tag Manager 以進行網站流量分析
@@ -326,54 +332,75 @@ const config: ShBlogConfig = {
     // 是否啟用 404 頁面彩蛋，此項目在 CloudFlare Worker 部署時可能不生效
     enable404EasterEgg: true,
 
+    // 文章目錄設定
     tableOfContents: {
       enable: true, // 是否在文章頁面顯示目錄
       minDepth: 2, // 顯示目錄的最小標題深度，例如 2 表示從 h2 開始顯示
       maxDepth: 4, // 顯示目錄的最大標題深度，例如 4 表示到 h4 結束顯示，-1 表示顯示到最後一層標題
     },
+
+    // Pangu.js 中文自動空格設定
+    //   若網站內容中包含大量亞洲語系和英文的混排文字，此功能可提升訪客閱讀體驗
+    //   但會增加網站編譯時間，請酌量使用
+    //   注意：修改這些設定可能需要重新啟動開發伺服器（或重新建置網站）以生效
+    //   請前往 src/plugins/rehype-pangu.mjs 中修改設定
+    // panguJs: {};
   },
 
-  // 頁尾社交媒體連結設定
-  footer: [
-    // socialMedia 的名稱請前往 https://simpleicons.org/ 上尋找，大小寫須完全吻合
-    // 如需使用自訂圖標，請提供圖標的完整 URL 或針對網站根目錄的相對路徑
-    // {
-    //   socialMedia: "Twitter",  // 社交媒體名稱
-    //   url: "https://twitter.com/johndoe",  // 連結網址
-    // },
-    {
-      socialMedia: "Threads",
-      url: "https://www.threads.com/@samhacker.xyz",
+  // 頁尾設定
+  footer: {
+    // 頁尾描述文字，支持多行
+    description:
+      "你好！歡迎來到我的部落格\n這裡是我分享自己的生活與 Coding 日常的地方\n我是個自學程式語言的高中生，有時也會寫寫文章什麼的\n如果你也對這些東西有些興趣，歡迎關注我喔！",
+    // 社交媒體連結
+    links: [
+      // socialMedia 的名稱請前往 https://simpleicons.org/ 上尋找，大小寫須完全吻合
+      // 如需使用自訂圖標，請提供圖標的完整 URL 或針對網站根目錄的相對路徑
+      // {
+      //   socialMedia: "Twitter",  // 社交媒體名稱
+      //   url: "https://twitter.com/johndoe",  // 連結網址
+      // },
+      {
+        socialMedia: "Threads",
+        url: "https://www.threads.com/@samhacker.xyz",
+      },
+      {
+        socialMedia: "Instagram",
+        url: "https://www.instagram.com/samhacker.xyz/",
+      },
+      {
+        socialMedia: "Github",
+        url: "https://github.com/510208",
+      },
+      {
+        socialMedia: "Bento",
+        url: "https://bento.me/510208",
+      },
+      {
+        socialMedia: "Githubpages",
+        url: "https://510208.github.io",
+      },
+      {
+        socialMedia: "Discord",
+        url: "https://discord.gg/R2eFtXgsRg",
+      },
+      {
+        socialMedia: "Figma",
+        url: "https://www.figma.com/@samhacker",
+      },
+      {
+        socialMedia: "/assets/logo/social_media/penana_symbol.svg", // 自訂圖標範例
+        url: "https://www.penana.com/user/234799/samhacker", // 連結網址
+      },
+    ],
+    // 網站版權資訊設定
+    copyright: {
+      text: "CC BY-NC 4.0", // 版權使用說明文字
+      url: "https://creativecommons.org/licenses/by-nc/4.0/", // 版權使用說明連結網址（e.g. 創用CC、MIT、GPL 等等）
+      yearUpdateStrategy: "auto", // 版權年份更新策略，auto 表示自動更新為當前年份、fixed 表示編譯網站時的年份，固定年份請直接填寫年份數字，例如 2023
     },
-    {
-      socialMedia: "Instagram",
-      url: "https://www.instagram.com/samhacker.xyz/",
-    },
-    {
-      socialMedia: "Github",
-      url: "https://github.com/510208",
-    },
-    {
-      socialMedia: "Bento",
-      url: "https://bento.me/510208",
-    },
-    {
-      socialMedia: "Githubpages",
-      url: "https://510208.github.io",
-    },
-    {
-      socialMedia: "Discord",
-      url: "https://discord.gg/R2eFtXgsRg",
-    },
-    {
-      socialMedia: "Figma",
-      url: "https://www.figma.com/@samhacker",
-    },
-    {
-      socialMedia: "/assets/logo/social_media/penana_symbol.svg", // 自訂圖標範例
-      url: "https://www.penana.com/user/234799/samhacker", // 連結網址
-    },
-  ],
+    countryEmoji: "🇹🇼", // 所屬國家國旗Emoji，如台灣國旗🇹🇼等
+  },
 };
 
 export default config; // 匯出設定

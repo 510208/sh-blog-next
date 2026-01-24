@@ -12,7 +12,7 @@ const isImageUrl = (str: string): boolean => {
 
 <div class="flex items-center justify-start md:justify-end gap-4 flex-wrap">
   {
-    config.footer.map((link) => {
+    config.footer.links.map((link) => {
       const isUrl = isImageUrl(link.socialMedia);
       const IconComponent = !isUrl
         ? SimpleIcons[link.socialMedia as IconName]
