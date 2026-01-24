@@ -65,30 +65,32 @@ if (import.meta.env.DEV && UTTERANCES_ENABLED) {
 }
 
 {
-  UTTERANCES_ENABLED && UTTERANCES_REPO_EXISTS && (
-    <div id="comments" />
+  UTTERANCES_ENABLED && (
+    UTTERANCES_REPO_EXISTS && (
+      <div id="comments" />
 
-    <style>
-      .utterances {
-        max-width: none;
-      }
-    </style>
+      <style>
+        .utterances {
+          max-width: none;
+        }
+      </style>
 
-    <script define:vars={{ UTTERANCES_CONFIG }}>
-      const script = document.createElement("script");
+      <script define:vars={{ UTTERANCES_CONFIG }}>
+        const script = document.createElement("script");
 
-      script.type = "text/javascript";
-      script.src = "https://utteranc.es/client.js";
+        script.type = "text/javascript";
+        script.src = "https://utteranc.es/client.js";
 
-      script.setAttribute("repo", UTTERANCES_CONFIG.repo);
-      script.setAttribute("issue-term", UTTERANCES_CONFIG.issueTerm);
-      script.setAttribute("label", UTTERANCES_CONFIG.label);
-      script.setAttribute("theme", UTTERANCES_CONFIG.theme);
-      script.setAttribute("crossorigin", "anonymous");
+        script.setAttribute("repo", UTTERANCES_CONFIG.repo);
+        script.setAttribute("issue-term", UTTERANCES_CONFIG.issueTerm);
+        script.setAttribute("label", UTTERANCES_CONFIG.label);
+        script.setAttribute("theme", UTTERANCES_CONFIG.theme);
+        script.setAttribute("crossorigin", "anonymous");
 
-      script.async = true;
+        script.async = true;
 
-      document.querySelector("#comments")?.appendChild(script);
-    </script>
-  ) || ( <p class="text-red-600"><strong>警告！</strong> Utterances 的 GitHub repo 不存在或無法存取。</p> )
+        document.querySelector("#comments")?.appendChild(script);
+      </script>
+    ) || ( <p class="text-red-600"><strong>警告！</strong> Utterances 的 GitHub repo 不存在或無法存取。</p> )
+  )
 }
