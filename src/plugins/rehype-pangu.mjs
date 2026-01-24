@@ -1,7 +1,7 @@
 import { visit } from "unist-util-visit";
 import pangu from "pangu";
 
-const excludeHtmlTags = ["code", "pre", "kbd"]; // 排除特定標籤不進行處理
+const excludeHtmlTags = ["code", "pre", "kbd", "samp", "var", "tt"]; // 排除特定標籤不進行處理
 
 /**
  * rehype-pangu 插件
