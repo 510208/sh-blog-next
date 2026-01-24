@@ -65,9 +65,11 @@ interface UtterancesConfig {
 }
 
 interface Behavior {
-  enableComment: "None" | "Giscus" | "Utterances";
-  giscusConfig: GiscusConfig;
-  utterancesConfig: UtterancesConfig;
+  commentConfig: {
+    enableComment: "None" | "Giscus" | "Utterances";
+    giscusConfig: GiscusConfig;
+    utterancesConfig: UtterancesConfig;
+  };
   enableGTM: boolean;
   gtmConfig: {
     googleTagManagerId: string;
@@ -78,6 +80,10 @@ interface Behavior {
     minDepth: number;
     maxDepth: number;
   };
+  // panguConfig: {
+  //   enable: boolean;
+  //   excludeHtmlTags: string[];
+  // };
 }
 
 interface Style {
