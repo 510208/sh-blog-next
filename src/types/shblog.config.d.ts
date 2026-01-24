@@ -2,6 +2,9 @@ import type { LucideIcon } from "lucide-react";
 import type { InputPosition, Mapping } from "@giscus/react";
 import * as SimpleIcons from "simple-icons-astro";
 
+// 定義支援的語言類型
+type SupportedLanguage = "en" | "zh_tw";
+
 interface NavLink {
   title: string;
   href: string;
@@ -132,6 +135,7 @@ interface ShBlogConfig {
   title: string;
   description: string;
   lang: string;
+  siteLang: SupportedLanguage;
   favicon: string;
 
   pages: PageConfig;
@@ -169,6 +173,7 @@ export type {
   FooterLink,
   PagesConfigItem,
   PageConfig,
+  SupportedLanguage,
 };
 
 export default config;
