@@ -277,46 +277,49 @@ const config: ShBlogConfig = {
 
   // 其他行為設定
   behavior: {
-    enableComment: "Giscus", // 是否啟用文章評論功能
+    // 文章評論功能設定
+    commentConfig: {
+      enableComment: "Giscus", // 是否啟用文章評論功能
 
-    // 評論系統設定，當 enableComment 為 true 時生效
-    // giscus 評論系統設定說明請參考：https://giscus.app/zh-TW
-    // <script src="https://giscus.app/client.js"
-    //     data-repo="[在此輸入儲存庫名稱]"
-    //     data-repo-id="[在此輸入儲存庫 ID]"
-    //     data-category="[在此輸入分類名稱]"
-    //     data-category-id="[在此輸入分類 ID]"
-    //     data-mapping="pathname"
-    //     data-strict="0"
-    //     data-reactions-enabled="1"
-    //     data-emit-metadata="0"
-    //     data-input-position="bottom"
-    //     data-theme="preferred_color_scheme"
-    //     data-lang="zh-TW"
-    //     crossorigin="anonymous"
-    //     async>
-    // </script>
-    // 設定與上述 script 標籤中的 data- 屬性對應，可以直接用官網提供的產生器來取得對應的值
-    giscusConfig: {
-      repo: "510208/utterances",
-      repoId: "R_kgDOKOthQw",
-      category: "Announcements",
-      categoryId: "DIC_kwDOKOthQ84Czwi8",
-      mapping: "og:title",
-      strict: "0",
-      reactionsEnabled: "1",
-      emitMetadata: "1",
-      inputPosition: "top",
-      theme: "transparent_dark",
-      lang: "zh-TW",
-    },
+      // 評論系統設定，當 enableComment 為 true 時生效
+      // giscus 評論系統設定說明請參考：https://giscus.app/zh-TW
+      // <script src="https://giscus.app/client.js"
+      //     data-repo="[在此輸入儲存庫名稱]"
+      //     data-repo-id="[在此輸入儲存庫 ID]"
+      //     data-category="[在此輸入分類名稱]"
+      //     data-category-id="[在此輸入分類 ID]"
+      //     data-mapping="pathname"
+      //     data-strict="0"
+      //     data-reactions-enabled="1"
+      //     data-emit-metadata="0"
+      //     data-input-position="bottom"
+      //     data-theme="preferred_color_scheme"
+      //     data-lang="zh-TW"
+      //     crossorigin="anonymous"
+      //     async>
+      // </script>
+      // 設定與上述 script 標籤中的 data- 屬性對應，可以直接用官網提供的產生器來取得對應的值
+      giscusConfig: {
+        repo: "510208/utterances",
+        repoId: "R_kgDOKOthQw",
+        category: "Announcements",
+        categoryId: "DIC_kwDOKOthQ84Czwi8",
+        mapping: "og:title",
+        strict: "0",
+        reactionsEnabled: "1",
+        emitMetadata: "1",
+        inputPosition: "top",
+        theme: "transparent_dark",
+        lang: "zh-TW",
+      },
 
-    // utterances 評論系統設定說明請參考：https://utteranc.es/
-    utterancesConfig: {
-      repo: "510208/utterances",
-      issueTerm: "pathname",
-      label: "comment",
-      theme: "github-",
+      // utterances 評論系統設定說明請參考：https://utteranc.es/
+      utterancesConfig: {
+        repo: "510208/utterances",
+        issueTerm: "pathname",
+        label: "comment",
+        theme: "github-",
+      },
     },
 
     // 是否啟用 Google Tag Manager 以進行網站流量分析
@@ -329,11 +332,19 @@ const config: ShBlogConfig = {
     // 是否啟用 404 頁面彩蛋，此項目在 CloudFlare Worker 部署時可能不生效
     enable404EasterEgg: true,
 
+    // 文章目錄設定
     tableOfContents: {
       enable: true, // 是否在文章頁面顯示目錄
       minDepth: 2, // 顯示目錄的最小標題深度，例如 2 表示從 h2 開始顯示
       maxDepth: 4, // 顯示目錄的最大標題深度，例如 4 表示到 h4 結束顯示，-1 表示顯示到最後一層標題
     },
+
+    // Pangu.js 中文自動空格設定
+    //   若網站內容中包含大量亞洲語系和英文的混排文字，此功能可提升訪客閱讀體驗
+    //   但會增加網站編譯時間，請酌量使用
+    //   注意：修改這些設定可能需要重新啟動開發伺服器（或重新建置網站）以生效
+    //   請前往 src/plugins/rehype-pangu.mjs 中修改設定
+    // panguJs: {};
   },
 
   // 頁尾設定
