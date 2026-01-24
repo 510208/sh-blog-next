@@ -7,6 +7,9 @@ import { SEPARATOR, SITE_TITLE } from "@/consts";
 import { Kbd, KbdGroup } from "@ui/kbd";
 import config from "@shConfig";
 
+import i18n from "@i18n/translation";
+import I18nKey from "@i18n/i18nKey";
+
 // 取得使用者想前往的路徑
 const { url } = Astro.request;
 
@@ -15,13 +18,15 @@ const random = Math.random();
 
 let qr_img = "/assets/layouts/404/404_qr.svg";
 let description =
-  "如需此問題與可能修正的詳細資訊，請回去 https://samhacker.xyz";
+  i18n(I18nKey.notfound_please_go_back_normal) ||
+  "如需此問題與可能修正的詳細資訊，請前往 https://api.samhacker.xyz/404 觀看詳細資訊。";
 
 // 彩蛋
 if (config.behavior.enable404EasterEgg) {
   if (url.toLocaleLowerCase().includes("rick") || random < 0.1) {
     qr_img = "/assets/layouts/404/404_rickroll.svg";
     description =
+      i18n(I18nKey.notfound_please_go_back_rickroll) ||
       "如需此問題與可能修正的詳細資訊，請前往 https://api.samhacker.xyz/rick 觀看驚喜影片";
   } else if (
     url.toLocaleLowerCase().includes("114514") ||
@@ -29,12 +34,17 @@ if (config.behavior.enable404EasterEgg) {
     random < 0.2
   ) {
     qr_img = "/assets/layouts/404/404_yajyuusenpai.png";
-    description = "如需此問題與可能修正的詳細資訊，請先重新看一遍銀夢（確信";
+    description =
+      i18n(I18nKey.notfound_please_go_back_homo) ||
+      "如需此問題與可能修正的詳細資訊，請先重新看一遍銀夢（確信";
   } else if (url.toLocaleLowerCase().includes("uwu") || random < 0.3) {
     qr_img = "/assets/layouts/404/404_uwu.png";
   }
 }
 
+const FINISHED_PERCENT_DESCRIPTION = i18n(
+  I18nKey.notfound_finished_percent_description,
+);
 const locale = config.lang || "zh-Hant";
 ---
 
@@ -49,8 +59,8 @@ const locale = config.lang || "zh-Hant";
   -->
   <head>
     <BaseHead
-      title={`要找的東西不在這！ ${SEPARATOR} ${SITE_TITLE}`}
-      description="找不到目標的頁面，請查明後再開..."
+      title={`${i18n(I18nKey.notfound_title)} ${SEPARATOR} ${SITE_TITLE}`}
+      description={i18n(I18nKey.notfound_description)}
     />
   </head>
   <body>
@@ -65,14 +75,14 @@ const locale = config.lang || "zh-Hant";
         <h2
           class="text-xl sm:text-3xl lg:text-5xl/16 font-thin mt-6 ml-1 sm:ml-2"
         >
-          您的裝置發生問題，但我們不可能重新啟動。<br />
-          我們根本不會收集任何錯誤資訊，所以你也別期待會為你重新啟動。
+          {i18n(I18nKey.notfound_bsod_title_line_1)}<br />
+          {i18n(I18nKey.notfound_bsod_title_line_2)}
         </h2>
         <h2
           id="progress"
           class="text-xl sm:text-3xl lg:text-5xl/16 font-thin ml-2 sm:ml-4 mt-4 sm:mt-6"
         >
-          已完成 0%
+          {i18n(I18nKey.notfound_finished_percent_description)} 0%
         </h2>
       </div>
       <div
@@ -89,10 +99,12 @@ const locale = config.lang || "zh-Hant";
           <p class="wrap-break-word">
             {description}
           </p>
-          <p class="mt-4 sm:mt-10">上網公審站長時，請提供此資訊：</p>
-          <p>停止代碼：THERE_IS_NOTHING</p>
+          <p class="mt-4 sm:mt-10">
+            {i18n(I18nKey.notfound_bsod_description_1)}
+          </p>
+          <p>{i18n(I18nKey.notfound_bsod_description_2)}</p>
           <p class="break-all">
-            失敗的項目：{
+            {i18n(I18nKey.notfound_bsod_failed_item)}: {
               `${url.toLocaleLowerCase().replace(/^https?:\/\//, "")}　.lnk`
             }
           </p>
@@ -104,12 +116,18 @@ const locale = config.lang || "zh-Hant";
       hidden
       class="fixed bottom-4 sm:bottom-10 left-1/2 -translate-x-1/2 sm:left-4/9 sm:translate-x-0 bg-blue-600/60 px-3 sm:px-4 py-2 rounded-xl text-sm sm:text-base max-w-[90vw] sm:max-w-none text-center sm:text-left"
     >
-      按下<KbdGroup><Kbd>任意鍵</Kbd></KbdGroup>以返回首頁...
+      {i18n(I18nKey.notfound_press_any_key_1)}
+      <KbdGroup><Kbd>{i18n(I18nKey.notfound_press_any_key_2)}</Kbd></KbdGroup>
+      {i18n(I18nKey.notfound_press_any_key_3)}
     </div>
   </body>
 </html>
 
-<script>
+<script
+  define:vars={{
+    notfound_finished_percent_description: FINISHED_PERCENT_DESCRIPTION,
+  }}
+>
   // 模擬進度條
   let progress = 0;
   const progressElement = document.getElementById("progress");
@@ -132,7 +150,8 @@ const locale = config.lang || "zh-Hant";
           window.location.href = "/";
         });
       }
-      if (progressElement) progressElement.textContent = `已完成 ${progress}%`;
+      if (progressElement)
+        progressElement.textContent = `${notfound_finished_percent_description} ${progress}%`;
     } else {
       window.clearInterval(intervalId);
     }

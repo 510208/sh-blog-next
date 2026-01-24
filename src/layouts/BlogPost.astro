@@ -24,6 +24,9 @@ import Tags from "@components/Tags.astro";
 import "@/styles/markdown.css";
 import "@/styles/aside.css";
 
+import i18n from "@i18n/translation";
+import I18nKey from "@i18n/i18nKey";
+
 interface Props {
   title: string;
   description: string;
@@ -66,13 +69,14 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
         <div class="flex mb-4 gap-2">
           <!-- 文章日期 -->
           <time class="text-sm text-gray-500 flex items-center gap-1">
-            <CalendarDays size={20} />文章發布時間<FormattedDate
-              date={pubDate}
-            />
+            <CalendarDays size={20} />{
+              i18n(I18nKey.post_released)
+            }<FormattedDate date={pubDate} />
             {
               updatedDate && (
                 <>
-                  <Separator orientation="vertical" /> 更新時間：
+                  <Separator orientation="vertical" />{" "}
+                  {i18n(I18nKey.post_last_edited)}
                   <FormattedDate date={updatedDate} />
                 </>
               )
@@ -81,13 +85,15 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
           <Separator orientation="vertical" client:only="react" />
           <!-- 文章作者 -->
           <div class="text-sm text-gray-500 flex items-center gap-1">
-            <User size={20} />作者 {config.author.name}
+            <User size={20} />{i18n(I18nKey.post_author)}
+            {config.author.name}
           </div>
         </div>
         <div class="flex mb-4 gap-2">
           <!-- 文章標籤 -->
           <div class="text-sm text-gray-500 flex items-center gap-1">
-            <Tag size={20} />標籤 <Tags tags={tags} />
+            <Tag size={20} />{i18n(I18nKey.post_tags)}
+            <Tags tags={tags} />
           </div>
         </div>
       </div>
@@ -96,13 +102,18 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
       <div class="overflow-hidden rounded-xl">
         {
           (heroImage && (
-            <Image width={1020} height={574} src={heroImage} alt="文章封面" />
+            <Image
+              width={1020}
+              height={574}
+              src={heroImage}
+              alt={`${i18n(I18nKey.post_alt_cover_image)}: ${title}`}
+            />
           )) || (
             <Image
               width={1020}
               height={340}
               src={DEFAULT_POST_IMAGE}
-              alt="預設文章封面"
+              alt={`${i18n(I18nKey.post_alt_default_cover_image)}: ${title}`}
             />
           )
         }
