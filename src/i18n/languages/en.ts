@@ -16,6 +16,9 @@ export const en: Translation = {
   [Key.post_tags]: "Tags",
   [Key.post_toc_title]: "Table of Contents",
 
+  [Key.post_alt_cover_image]: "Cover image",
+  [Key.post_alt_default_cover_image]: "Default cover image",
+
   // 404頁面
   [Key.notfound_title]: "The page you visited does not exist",
   [Key.notfound_description]:
@@ -32,4 +35,10 @@ export const en: Translation = {
   [Key.notfound_press_any_key_1]: "Press",
   [Key.notfound_press_any_key_2]: "any key",
   [Key.notfound_press_any_key_3]: "to come back to the homepage...",
+  [Key.notfound_please_go_back_normal]:
+    "For more information about this issue and possible fixes, visit our homepage.",
+  [Key.notfound_please_go_back_rickroll]:
+    "For more information about this issue and possible fixes, visit https://reurl.cc/jmEY8Z.",
+  [Key.notfound_please_go_back_homo]:
+    "For detailed information on this issue and possible fixes, please review Silver Dream again. (surely",
 };
