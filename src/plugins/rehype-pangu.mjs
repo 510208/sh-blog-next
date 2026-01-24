@@ -11,11 +11,12 @@ export default function rehypePangu() {
   return (tree) => {
     // 遍歷所有節點，僅處理 'text' 類型的節點
     visit(tree, "text", (node, index, parent) => {
-      console.log("rehype-pangu processing text node:", node.value);
+      // console.log("rehype-pangu processing text node:", node.value);
 
       // 避免在特定標籤內處理文本，如 <code>、<pre>、<kbd>
       if (parent && excludeHtmlTags.includes(parent.tagName)) {
-        console.log(`Skipping Pangu for tag: ${parent.tagName}`);
+        // console.log(`Skipping Pangu for tag: ${parent.tagName}`);
+        return;
       }
 
       if (node.value && typeof node.value === "string") {
