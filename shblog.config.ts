@@ -27,7 +27,8 @@ const config: ShBlogConfig = {
 
   // 網站語言 (使用 IETF 語言標籤)
   //  這個語言設定會影響搜尋引擎優化 (SEO) 和無障礙功能，除非有需要，否則請設定成網站主要的語言即可，不須多做變動
-  lang: "zh-tw",
+  lang: "zh-TW",
+  siteLang: "zh_tw", // 支援的語言請參考 src/types/shblog.config.d.ts 中的 SupportedLanguage 類型定義
 
   // 網站圖示 (favicon) 的路徑
   //   這個圖示會顯示在瀏覽器標籤和書籤中，提供的路徑應該是相對於網站根目錄的路徑
@@ -82,6 +83,12 @@ const config: ShBlogConfig = {
           text: "你好!",
         },
       ],
+    },
+
+    blog: {
+      title: "文章列表", // 頁面的標題
+      subTitle: "我會把自己的所思所想記錄在這裡，\n希望能對你有所幫助。", // 頁面副標題
+      heroImage: "/assets/layouts/homepage/samhacker_homepage_background.webp", // 頁面頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
     },
 
     // 靜態頁面設定

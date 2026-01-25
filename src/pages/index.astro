@@ -9,6 +9,8 @@ import BaseMainContent from "@components/layouts/BaseMainContent.astro";
 import { HeroSubtitle, HeroTitle } from "@components/content/Home/HeroItems";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@consts";
 import config from "@shConfig";
+import i18n from "@i18n/translation";
+import I18nKey from "@i18n/i18nKey";
 
 const posts = (
   await getCollection("blog", ({ data }) => {
@@ -34,7 +36,7 @@ const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
     <!-- Left: Main heading -->
     <div class="lg:col-span-2" slot="left">
       <HeroTitle>
-        正因為曾經淋過雨，<br />才會想為他人撐一把傘。
+        <span class="whitespace-pre-line">{config.pages.home.title}</span>
       </HeroTitle>
       <HeroSubtitle slot="right">
         <Greeting />
@@ -57,7 +59,7 @@ const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
               }}
             >
               <p class="text-white/60 text-xl tracking-[4px] mb-2.5">
-                最近更新
+                {i18n(I18nKey.home_recent_posts)}
               </p>
               <h2 class="text-white text-4xl font-bold group-hover:text-white/90 transition-colors">
                 {featuredPost.data.title}
