@@ -126,6 +126,7 @@ interface PageConfig {
     heroImage: string;
     greetings: TimeGreeting[];
   };
+  blog: PagesConfigItem;
   other: {
     [key: string]: PagesConfigItem;
   };

@@ -85,6 +85,12 @@ const config: ShBlogConfig = {
       ],
     },
 
+    blog: {
+      title: "文章列表", // 頁面的標題
+      subTitle: "我會把自己的所思所想記錄在這裡，\n希望能對你有所幫助。", // 頁面副標題
+      heroImage: "/assets/layouts/homepage/samhacker_homepage_background.webp", // 頁面頂部背景圖片路徑，建議使用高解析度圖片以確保在大螢幕上顯示良好
+    },
+
     // 靜態頁面設定
     //   這些頁面的內容通常不會經常變動，適合用來展示關於網站或作者的資訊
     other: {
