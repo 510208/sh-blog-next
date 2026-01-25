@@ -9,6 +9,7 @@ import Sidebar from "@components/Sidebar.astro";
 import TimelineSinglePost from "@ui/timeline/TimelineSinglePost.astro";
 import I18nKey from "@i18n/i18nKey";
 import i18n from "@i18n/translation";
+import config from "@shConfig";
 
 const posts = (
   await getCollection("blog", ({ data }) => {
@@ -35,11 +36,14 @@ const years = Object.keys(postsByYear).sort(
 
 <BaseLayout title={`文章列表 - ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
   <!-- Hero Section -->
-  <Hero>
+  <Hero heroImage={config.pages.blog.heroImage}>
     <div class="lg:col-span-2" slot="left">
-      <HeroTitle>文章列表</HeroTitle>
+      <HeroTitle
+        ><span class="whitespace-pre-line">{config.pages.blog.title}</span
+        ></HeroTitle
+      >
       <HeroSubtitle slot="right">
-        我會把自己的所思所想記錄在這裡，<br />希望能對你有所幫助。
+        <span class="whitespace-pre-line">{config.pages.blog.subTitle}</span>
       </HeroSubtitle>
     </div>
   </Hero>
