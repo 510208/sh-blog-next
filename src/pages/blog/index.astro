@@ -34,14 +34,16 @@ const years = Object.keys(postsByYear).sort(
 );
 ---
 
-<BaseLayout title={`文章列表 - ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+<BaseLayout
+  title={`${config.pages.blog.title} - ${SITE_TITLE}`}
+  description={SITE_DESCRIPTION}
+>
   <!-- Hero Section -->
   <Hero heroImage={config.pages.blog.heroImage}>
     <div class="lg:col-span-2" slot="left">
-      <HeroTitle
-        ><span class="whitespace-pre-line">{config.pages.blog.title}</span
-        ></HeroTitle
-      >
+      <HeroTitle>
+        <span class="whitespace-pre-line">{config.pages.blog.title}</span>
+      </HeroTitle>
       <HeroSubtitle slot="right">
         <span class="whitespace-pre-line">{config.pages.blog.subTitle}</span>
       </HeroSubtitle>
