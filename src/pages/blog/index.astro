@@ -67,7 +67,7 @@ const years = Object.keys(postsByYear).sort(
                     <div class="w-3 h-3 rounded-full bg-green-500" />
                     <span class="text-sm text-gray-500 dark:text-gray-400">
                       {yearPosts.length}{" "}
-                      {yearPosts.length <= 1
+                      {yearPosts.length === 1
                         ? i18n(I18nKey.posts_timeline_year_post_count_single)
                         : i18n(I18nKey.posts_timeline_year_post_count_plural)}
                     </span>
