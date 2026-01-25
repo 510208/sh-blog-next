@@ -74,8 +74,8 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
             {
               updatedDate && (
                 <>
-                  <Separator orientation="vertical" />{" "}
-                  {i18n(I18nKey.post_last_edited)}
+                  <Separator orientation="vertical" />
+                  {i18n(I18nKey.post_last_edited)}{" "}
                   <FormattedDate date={updatedDate} />
                 </>
               )
