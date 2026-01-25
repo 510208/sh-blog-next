@@ -36,7 +36,7 @@ const currentPage = Number(Astro.url.searchParams.get("page")) || 1;
     <!-- Left: Main heading -->
     <div class="lg:col-span-2" slot="left">
       <HeroTitle>
-        {config.pages.home.title}
+        <span class="whitespace-pre-line">{config.pages.home.title}</span>
       </HeroTitle>
       <HeroSubtitle slot="right">
         <Greeting />
