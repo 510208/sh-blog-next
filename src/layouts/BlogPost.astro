@@ -69,9 +69,8 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
         <div class="flex mb-4 gap-2">
           <!-- 文章日期 -->
           <time class="text-sm text-gray-500 flex items-center gap-1">
-            <CalendarDays size={20} />{
-              i18n(I18nKey.post_released)
-            }<FormattedDate date={pubDate} />
+            <CalendarDays size={20} />{i18n(I18nKey.post_released)}{" "}
+            <FormattedDate date={pubDate} />
             {
               updatedDate && (
                 <>
@@ -85,14 +84,14 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
           <Separator orientation="vertical" client:only="react" />
           <!-- 文章作者 -->
           <div class="text-sm text-gray-500 flex items-center gap-1">
-            <User size={20} />{i18n(I18nKey.post_author)}
+            <User size={20} />{i18n(I18nKey.post_author)}{" "}
             {config.author.name}
           </div>
         </div>
         <div class="flex mb-4 gap-2">
           <!-- 文章標籤 -->
           <div class="text-sm text-gray-500 flex items-center gap-1">
-            <Tag size={20} />{i18n(I18nKey.post_tags)}
+            <Tag size={20} />{i18n(I18nKey.post_tags)}{" "}
             <Tags tags={tags} />
           </div>
         </div>
