@@ -40,7 +40,7 @@ Please ensure your issue is not a duplicate by searching existing issues before 
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [GNU GPL v3 License](LICENSE).
 
 ---
 
