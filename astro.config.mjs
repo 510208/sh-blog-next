@@ -78,11 +78,6 @@ export default defineConfig({
     },
   },
 
-  experimental: {
-    svgo: true,
-    // rustCompiler: true,    // 啟用 Rust 編譯器以提升構建性能（需要安裝 @astrojs/compiler-rs 包）
-  },
-
   markdown: {
     shikiConfig: {
       // 添加 Shiki transformer 來處理代碼區塊的 metadata
