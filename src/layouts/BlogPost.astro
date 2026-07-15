@@ -1,5 +1,7 @@
 ---
 import "@/styles/markdown.css";
+import "@/styles/aside.css";
+
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "@components/content/FormattedDate.astro";
@@ -15,8 +17,6 @@ import { CalendarDays, Tag, User } from "lucide-react";
 import config from "@shConfig";
 import { Separator } from "@components/ui/separator";
 import { DEFAULT_POST_IMAGE, SEPARATOR } from "@consts";
-
-import "@/styles/aside.css";
 
 import Toc from "@components/Toc.astro";
 import "katex/dist/katex.min.css";
