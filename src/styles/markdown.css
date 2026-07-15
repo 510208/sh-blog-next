@@ -17,7 +17,7 @@
 @layer markdown-content {
   #post-content {
     /* 預設 */
-    & section > * {
+    & > * {
       @apply mb-4;
     }
 
