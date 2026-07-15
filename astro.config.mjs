@@ -15,9 +15,6 @@ import { satteriMdastPangu } from "./src/plugins/satteri-mdast-pangu.mjs";
 
 import shikiCodeMetadata from "./src/plugins/shiki-code-metadata.mjs";
 
-import { asideAutoImport, astroAsides } from "./src/utils/astro-aside";
-import AutoImport from "astro-auto-import";
-
 import react from "@astrojs/react";
 
 import expressiveCode from "astro-expressive-code";
@@ -38,10 +35,6 @@ loadEnv();
 export default defineConfig({
   site: process.env.SITE_URL || "https://sh-blog-next.vercel.app",
   integrations: [
-    AutoImport({
-      imports: [asideAutoImport],
-    }),
-    astroAsides(),
     expressiveCode(),
     mdx(),
     sitemap({
