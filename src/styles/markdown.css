@@ -268,17 +268,18 @@
 
     /* #region 防雷內容 */
     & .spoiler {
-      @apply bg-neutral-800;
+      background-color: var(--color-neutral-600);
       color: transparent;
       border-radius: 4px;
       padding: 0 4px;
       cursor: pointer;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
       /* 圖層模糊 */
       filter: blur(4px);
 
       &:hover {
-        color: #fff;
+        color: var(--color-gray-500);
+        background-color: transparent;
         filter: blur(0px);
       }
     }
