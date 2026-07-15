@@ -8,10 +8,9 @@ import { defineConfig } from "astro/config";
 import { satteri } from "@astrojs/markdown-satteri";
 
 import { satteriCitation } from "./src/plugins/satteri-citation.mjs";
-import { testKatex } from "./src/plugins/satteri-katex-test.mjs";
 import { admonitionPlugin } from "./src/plugins/satteri-admonition.mjs";
 import { mdastSpoiler } from "./src/plugins/satteri-spoiler.mjs";
-import { katex } from "@nullpinter/satteri-katex";
+import { satteriReadingTime } from "./src/plugins/satteri-reading-time.mjs";
 
 import shikiCodeMetadata from "./src/plugins/shiki-code-metadata.mjs";
 
@@ -76,7 +75,7 @@ export default defineConfig({
     },
     processor: satteri({
       features: { directive: true, math: true },
-      mdastPlugins: [admonitionPlugin, mdastSpoiler],
+      mdastPlugins: [admonitionPlugin, mdastSpoiler, satteriReadingTime],
       hastPlugins: [satteriCitation],
     }),
   },
