@@ -7,11 +7,11 @@ import { defineConfig } from "astro/config";
 
 import { satteri } from "@astrojs/markdown-satteri";
 
-import { satteriHastCitation } from "./src/plugins/satteri-citation.mjs";
-import { satteriMdastAdmonition } from "./src/plugins/satteri-admonition.mjs";
-import { satteriMdastSpoiler } from "./src/plugins/satteri-spoiler.mjs";
-import { satteriMdastReadingTime } from "./src/plugins/satteri-reading-time.mjs";
-import { satteriMdastPangu } from "./src/plugins/satteri-pangu.mjs";
+import { satteriHastCitation } from "./src/plugins/satteri-hast-citation.mjs";
+import { satteriMdastAdmonition } from "./src/plugins/satteri-mdast-admonition.mjs";
+import { satteriMdastSpoiler } from "./src/plugins/satteri-mdast-spoiler.mjs";
+import { satteriMdastReadingTime } from "./src/plugins/satteri-mdast-reading-time.mjs";
+import { satteriMdastPangu } from "./src/plugins/satteri-mdast-pangu.mjs";
 
 import shikiCodeMetadata from "./src/plugins/shiki-code-metadata.mjs";
 
