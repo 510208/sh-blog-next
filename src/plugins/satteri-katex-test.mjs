@@ -9,8 +9,8 @@ export function testKatex() {
         throwOnError: false,
         displayMode: false,
       });
-      console.log("inlineMath node:", node);
-      console.log("inlineMath html:", html);
+      // console.log("inlineMath node:", node);
+      // console.log("inlineMath html:", html);
       return { type: "html", value: html };
     },
     math(node) {
@@ -18,8 +18,8 @@ export function testKatex() {
         throwOnError: false,
         displayMode: true,
       });
-      console.log("math node:", node);
-      console.log("math html:", html);
+      // console.log("math node:", node);
+      // console.log("math html:", html);
       return { type: "html", value: html };
     },
   });
