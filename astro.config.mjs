@@ -5,24 +5,13 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
-import remarkDirective from "remark-directive"; /* Handle directives */
-import remarkMath from "remark-math";
-import remarkSectionize from "remark-sectionize";
-import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
-import remarkSpoiler from "./src/plugins/remark-spoiler.js";
-import { remarkCitation } from "./src/plugins/remark-citation.mjs";
-import { remarkZoomableImage } from "./src/plugins/remark-zoomable-image.mjs";
+import { satteri } from "@astrojs/markdown-satteri";
 
-// @ts-ignore
-import rehypeCodeBlock from "./src/plugins/rehype-code-block.mjs";
-// @ts-ignore
+import { satteriCitation } from "./src/plugins/satteri-citation.mjs";
+import { testKatex } from "./src/plugins/satteri-katex-test.mjs";
+import { katex } from "@nullpinter/satteri-katex";
+
 import shikiCodeMetadata from "./src/plugins/shiki-code-metadata.mjs";
-import rehypeCodeTitles from "rehype-code-titles";
-// @ts-ignore
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
-import rehypeKatex from "rehype-katex";
-import rehypePangu from "./src/plugins/rehype-pangu.mjs";
 
 import { asideAutoImport, astroAsides } from "./src/utils/astro-aside";
 import AutoImport from "astro-auto-import";
@@ -83,45 +72,10 @@ export default defineConfig({
       // 添加 Shiki transformer 來處理代碼區塊的 metadata
       transformers: [shikiCodeMetadata()],
     },
-    remarkPlugins: [
-      remarkMath,
-      remarkReadingTime,
-      // remarkGithubAdmonitionsToDirectives,
-      remarkDirective,
-      remarkSectionize,
-      remarkSpoiler,
-      remarkCitation,
-      remarkZoomableImage,
-    ],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "prepend",
-          properties: {
-            className: ["anchor"],
-          },
-          content: {
-            type: "element",
-            tagName: "span",
-            properties: {
-              className: ["anchor-icon"],
-              "data-pagefind-ignore": true,
-            },
-            children: [
-              {
-                type: "text",
-                value: "#",
-              },
-            ],
-          },
-        },
-      ],
-      rehypeCodeTitles,
-      rehypeCodeBlock,
-      rehypePangu,
-      rehypeKatex,
-    ],
+    processor: satteri({
+      features: { directive: true, math: true },
+      mdastPlugins: [testKatex],
+      hastPlugins: [satteriCitation],
+    }),
   },
 });
