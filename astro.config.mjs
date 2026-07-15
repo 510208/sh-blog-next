@@ -8,7 +8,7 @@ import { defineConfig } from "astro/config";
 import { satteri } from "@astrojs/markdown-satteri";
 
 import { satteriHastCitation } from "./src/plugins/satteri-citation.mjs";
-import { satteriAdmonition } from "./src/plugins/satteri-admonition.mjs";
+import { satteriMdastAdmonition } from "./src/plugins/satteri-admonition.mjs";
 import { satteriMdastSpoiler } from "./src/plugins/satteri-spoiler.mjs";
 import { satteriMdastReadingTime } from "./src/plugins/satteri-reading-time.mjs";
 import { satteriMdastPangu } from "./src/plugins/satteri-pangu.mjs";
@@ -77,7 +77,7 @@ export default defineConfig({
     processor: satteri({
       features: { directive: true, math: true },
       mdastPlugins: [
-        satteriAdmonition,
+        satteriMdastAdmonition,
         satteriMdastSpoiler,
         satteriMdastReadingTime,
         satteriMdastPangu,

@@ -6,7 +6,7 @@ import { defineMdastPlugin } from "satteri";
 
 const ADMONITION_TYPES = ["tip", "note", "important", "caution", "warning"];
 
-export const satteriAdmonition = defineMdastPlugin({
+export const satteriMdastAdmonition = defineMdastPlugin({
   name: "admonition",
 
   containerDirective(node, ctx) {
