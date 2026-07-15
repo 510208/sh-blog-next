@@ -8,13 +8,17 @@ export const satteriMdastPangu = defineMdastPlugin({
   name: "pangu",
 
   text(node, ctx) {
-    // 檢查節點值是否為合法的非空字串
     if (!node.value || typeof node.value !== "string") return;
 
-    // 使用 pangu 處理文字內容，自動在中文與英數字之間插入空格
-    node.value = pangu.spacingText(node.value);
+    // 1. 計算出加上空格後的文字
+    const spacedText = pangu.spacingText(node.value);
 
-    // 回傳修改後的節點以更新語法樹
-    return node;
+    // 2. 只有在文字真的有變更時才執行修改，避免不必要的 AST 更新
+    if (spacedText !== node.value) {
+      // console.log(`Applying Pangu spacing: "${node.value}" -> "${spacedText}"`);
+
+      // 3. 關鍵：必須使用 ctx.setProperty 更新節點屬性
+      ctx.setProperty(node, "value", spacedText);
+    }
   },
 });
