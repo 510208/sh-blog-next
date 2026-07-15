@@ -41,11 +41,9 @@ pnpm build
 pnpm preview
 ```
 
-詳細部署資訊請參考 [DEPLOYMENT.md](DEPLOYMENT.md)。
-
 ## ✨ 功能特色
 
-- [x] 基於 Astro v5 打造
+- [x] 基於 Astro v7 打造
 - [x] 支援 Markdown 與 MDX 內容撰寫
 - [x] 完全面向深色主題設計
 - [x] 響應式圖片處理
@@ -62,6 +60,8 @@ pnpm preview
 - [x] 內建對 `Pangu.js` 的支援以自動處理中文排版
 - [x] 提供如 GitHub 卡片、資料夾結構、步驟指示器等多種內建組件以豐富內容呈現
 - [x] 支援多國語系
+- [x] 完全移植 unified 生態系統的功能至 Satteri
+- [x] 支援 Astro v7 的最新特性
 
 > [!NOTE]
 > Pangu是一個自動調整中英文、數字與符號間距的工具，在文章中出現中英文交雜的情況下，會在中英文間加入適當的空格以提升閱讀體驗。
