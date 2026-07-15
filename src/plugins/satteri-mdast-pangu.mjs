@@ -2,7 +2,8 @@ import { defineMdastPlugin } from "satteri";
 import pangu from "pangu";
 
 /**
- * 盤古（Pangu）中英文自動加空格外掛
+ * Pangu.js
+ * IMPORTANT: If you need to disable this plugin, you can remove it from the `mdastPlugins` array in the Astro configuration.
  */
 export const satteriMdastPangu = defineMdastPlugin({
   name: "pangu",

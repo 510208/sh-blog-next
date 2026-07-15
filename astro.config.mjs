@@ -80,7 +80,7 @@ export default defineConfig({
         satteriMdastAdmonition,
         satteriMdastSpoiler,
         satteriMdastReadingTime,
-        satteriMdastPangu,
+        satteriMdastPangu, // You can disable Pangu.js plugin there by removing it from this array or commenting it out if you needed
       ],
       hastPlugins: [satteriHastCitation],
     }),
