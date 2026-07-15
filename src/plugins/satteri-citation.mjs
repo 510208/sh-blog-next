@@ -1,6 +1,6 @@
 import { defineHastPlugin } from "satteri";
 
-export function satteriCitation() {
+export function satteriHastCitation() {
   return defineHastPlugin({
     name: "citation",
     element: {

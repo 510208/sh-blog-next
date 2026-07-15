@@ -3,7 +3,7 @@ import { defineMdastPlugin } from "satteri";
 /**
  * 黑幕（Spoiler）語法解析外掛
  */
-export const mdastSpoiler = defineMdastPlugin({
+export const satteriMdastSpoiler = defineMdastPlugin({
   name: "spoiler",
 
   text(node, ctx) {

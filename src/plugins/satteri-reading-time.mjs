@@ -5,7 +5,7 @@ import { toString } from "mdast-util-to-string";
 /**
  * 文章閱讀時間計算外掛
  */
-export const satteriReadingTime = defineMdastPlugin({
+export const satteriMdastReadingTime = defineMdastPlugin({
   name: "reading-time",
 
   root(tree, ctx) {
