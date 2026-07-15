@@ -76,7 +76,7 @@ export default defineConfig({
     },
     processor: satteri({
       features: { directive: true, math: true },
-      mdastPlugins: [testKatex, admonitionPlugin, mdastSpoiler],
+      mdastPlugins: [admonitionPlugin, mdastSpoiler],
       hastPlugins: [satteriCitation],
     }),
   },

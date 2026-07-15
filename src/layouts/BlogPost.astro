@@ -1,6 +1,7 @@
 ---
 import "@/styles/markdown.css";
 import "@/styles/aside.css";
+import "katex/dist/katex.min.css";
 
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
@@ -19,7 +20,6 @@ import { Separator } from "@components/ui/separator";
 import { DEFAULT_POST_IMAGE, SEPARATOR } from "@consts";
 
 import Toc from "@components/Toc.astro";
-import "katex/dist/katex.min.css";
 import Comment from "@components/comment/Comment.astro";
 import Tags from "@components/Tags.astro";
 
@@ -207,4 +207,53 @@ import "katex/dist/katex.min.css";
   // 首次完整加载时立即初始化
   attachMediumZoom();
   // console.log("[Medium Zoom] ImagePacked component loaded");
+</script>
+
+<script>
+  import katex from "katex";
+
+  function renderSatteriMath() {
+    // 搜尋所有被 Sätteri 標記為 language-math 的元素
+    const mathElements = document.querySelectorAll("code.language-math");
+
+    mathElements.forEach((el) => {
+      // 關鍵：textContent 會自動把被 Sätteri 錯誤逸出的字元還原成乾淨的原始 LaTeX 字串（例如 \frac）
+      const rawMath = el.textContent || "";
+
+      // 判斷是行內公式還是獨立區塊公式
+      const isDisplayMode =
+        el.classList.contains("math-display") ||
+        el.parentElement?.tagName === "PRE";
+
+      // 建立一個乾淨的容器，避免 KaTeX 的樣式與原生的 code/pre 樣式衝突
+      const container = document.createElement(isDisplayMode ? "div" : "span");
+      container.className = isDisplayMode
+        ? "katex-display-block"
+        : "katex-inline-block";
+
+      try {
+        // 呼叫 KaTeX 進行瀏覽器前端渲染
+        katex.render(rawMath, container, {
+          displayMode: isDisplayMode,
+          throwOnError: false, // 遇到錯的語法不崩潰，直接顯示紅字
+        });
+
+        // 取代原本的code標籤
+        // 如果是 display 區塊，連同外層的 pre 一起換掉，畫面才會乾淨
+        const targetToReplace =
+          isDisplayMode && el.parentElement?.tagName === "PRE"
+            ? el.parentElement
+            : el;
+        targetToReplace.replaceWith(container);
+      } catch (err) {
+        console.error("KaTeX 渲染失敗:", err);
+      }
+    });
+  }
+
+  // 網頁首頁載入完成時執行
+  document.addEventListener("DOMContentLoaded", renderSatteriMath);
+
+  // 核心：若您在 Astro 7 有啟用 View Transitions（微調轉場），切換頁面時必須重新觸發渲染
+  document.addEventListener("astro:after-swap", renderSatteriMath);
 </script>
