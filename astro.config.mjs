@@ -10,6 +10,7 @@ import { satteri } from "@astrojs/markdown-satteri";
 import { satteriCitation } from "./src/plugins/satteri-citation.mjs";
 import { testKatex } from "./src/plugins/satteri-katex-test.mjs";
 import { admonitionPlugin } from "./src/plugins/satteri-admonition.mjs";
+import { mdastSpoiler } from "./src/plugins/satteri-spoiler.mjs";
 import { katex } from "@nullpinter/satteri-katex";
 
 import shikiCodeMetadata from "./src/plugins/shiki-code-metadata.mjs";
@@ -75,7 +76,7 @@ export default defineConfig({
     },
     processor: satteri({
       features: { directive: true, math: true },
-      mdastPlugins: [testKatex, admonitionPlugin],
+      mdastPlugins: [testKatex, admonitionPlugin, mdastSpoiler],
       hastPlugins: [satteriCitation],
     }),
   },
