@@ -450,34 +450,3 @@ Serious and/or dangerous situations.
 :::caution[小心]
 Negative potential consequences of an action.
 :::
-
-## Mermaid流程圖
-
-### OSI七層模型
-
-```mermaid
-graph TD
-    subgraph "Host Layers (Upper Layers)"
-        L7[7. Application - Network processes to application]
-        L6[6. Presentation - Data representation, encryption, and compression]
-        L5[5. Session - Interhost communication, sessions, or connections]
-    end
-
-    subgraph "Media Layers (Lower Layers)"
-        L4[4. Transport - End-to-end connections and reliability]
-        L3[3. Network - Path determination and logical addressing IP]
-        L2[2. Data Link - Physical addressing MAC and frames]
-        L1[1. Physical - Media, signal, and binary transmission]
-    end
-
-    L7 --> L6 --> L5 --> L4 --> L3 --> L2 --> L1
-    L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
-
-    style L7 fill:#e8f5e9,stroke:#2e7d32
-    style L6 fill:#e8f5e9,stroke:#2e7d32
-    style L5 fill:#e8f5e9,stroke:#2e7d32
-    style L4 fill:#e8f5e9,stroke:#2e7d32
-    style L3 fill:#e3f2fd,stroke:#1565c0
-    style L2 fill:#e3f2fd,stroke:#1565c0
-    style L1 fill:#e3f2fd,stroke:#1565c0
-```
