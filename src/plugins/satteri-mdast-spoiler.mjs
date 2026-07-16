@@ -1,10 +1,14 @@
-import { defineMdastPlugin } from "satteri";
+import { defineHastPlugin } from "satteri";
 
-export const satteriMdastSpoiler = defineMdastPlugin({
+/**
+ * 黑幕（Spoiler）語法解析外掛 — HAST 階段
+ */
+export const satteriHastSpoiler = defineHastPlugin({
   name: "spoiler",
-  text(node, ctx) {
+  text(node, _ctx) {
     const regex = /\|\|(.+?)\|\|/g;
 
+    // 如果沒有匹配，直接返回
     if (!regex.test(node.value)) return;
     regex.lastIndex = 0;
 
@@ -17,33 +21,44 @@ export const satteriMdastSpoiler = defineMdastPlugin({
       const matchStart = match.index;
       const matchEnd = matchStart + fullMatch.length;
 
-      // 處理匹配項之前的純文字
+      // 匹配項之前的純文字
       if (matchStart > lastIndex) {
-        newChildren.push(
-          ctx.createText(node.value.slice(lastIndex, matchStart)),
-        );
+        newChildren.push({
+          type: "text",
+          value: node.value.slice(lastIndex, matchStart),
+        });
       }
 
-      // 使用 ctx.createInline() 建立行內元素
-      newChildren.push(
-        ctx.createInline("span", { className: ["spoiler"] }, [
-          ctx.createText(spoilerText),
-        ]),
-      );
+      // 建立黑幕 span 元素
+      newChildren.push({
+        type: "element",
+        tagName: "span",
+        properties: { className: ["spoiler"] },
+        children: [
+          {
+            type: "text",
+            value: spoilerText,
+          },
+        ],
+      });
 
       lastIndex = matchEnd;
     }
 
-    // 處理剩餘的純文字
+    // 剩餘的純文字
     if (lastIndex < node.value.length) {
-      newChildren.push(ctx.createText(node.value.slice(lastIndex)));
+      newChildren.push({
+        type: "text",
+        value: node.value.slice(lastIndex),
+      });
     }
 
-    // 使用 ctx.createContainer() 或 ctx.createInline() 包裝結果
-    return ctx.createInline(
-      "span",
-      { className: ["spoiler-container"] },
-      newChildren,
-    );
+    // 用 span 容器包裝所有子節點
+    return {
+      type: "element",
+      tagName: "span",
+      properties: { className: ["spoiler-container"] },
+      children: newChildren,
+    };
   },
 });

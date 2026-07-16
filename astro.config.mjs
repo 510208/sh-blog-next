@@ -8,8 +8,8 @@ import { defineConfig } from "astro/config";
 import { satteri } from "@astrojs/markdown-satteri";
 
 import { satteriHastCitation } from "./src/plugins/satteri-hast-citation.mjs";
+import { satteriHastSpoiler } from "./src/plugins/satteri-mdast-spoiler.mjs";
 import { satteriMdastAdmonition } from "./src/plugins/satteri-mdast-admonition.mjs";
-import { satteriMdastSpoiler } from "./src/plugins/satteri-mdast-spoiler.mjs";
 import { satteriMdastReadingTime } from "./src/plugins/satteri-mdast-reading-time.mjs";
 import { satteriMdastPangu } from "./src/plugins/satteri-mdast-pangu.mjs";
 
@@ -71,11 +71,10 @@ export default defineConfig({
       features: { directive: true, math: true },
       mdastPlugins: [
         satteriMdastAdmonition,
-        satteriMdastSpoiler,
         satteriMdastReadingTime,
         satteriMdastPangu, // You can disable Pangu.js plugin there by removing it from this array or commenting it out if you needed
       ],
-      hastPlugins: [satteriHastCitation],
+      hastPlugins: [satteriHastCitation, satteriHastSpoiler],
     }),
   },
 });
