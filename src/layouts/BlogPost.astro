@@ -95,7 +95,7 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
           <Separator orientation="vertical" />
 
           <!-- 預計閱讀時間 -->
-          <div
+          <!-- <div
             class="flex items-center gap-1 text-sm text-gray-500"
             data-pagefind-ignore
           >
@@ -108,10 +108,10 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
               <CalendarDays size={20} />{
                 i18n(I18nKey.post_estimated_reading_time)
               }{" "}
-              {Math.ceil(description.split(" ").length / 200)}{" "}
+              {minutesRead}{" "}
               {i18n(I18nKey.post_estimated_reading_time_unit)}
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- 文章標籤 -->
