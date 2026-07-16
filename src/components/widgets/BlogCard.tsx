@@ -46,11 +46,7 @@ export default function BlogCard({
   }, [pubDate]);
 
   const handleCardClick = () => {
-    if (config.style.enableTransitions) {
-      navigate(href);
-    } else {
-      window.location.href = href;
-    }
+    navigate(href);
   };
 
   const handleCategoryClick = (e: React.MouseEvent) => {

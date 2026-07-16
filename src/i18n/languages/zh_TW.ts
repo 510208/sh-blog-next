@@ -15,6 +15,8 @@ export const zh_TW: Translation = {
   [Key.post_author]: "作者",
   [Key.post_tags]: "標籤",
   [Key.post_toc_title]: "目錄",
+  [Key.post_estimated_reading_time]: "閱讀時間",
+  [Key.post_estimated_reading_time_unit]: "分鐘",
 
   [Key.post_alt_cover_image]: "封面圖片",
   [Key.post_alt_default_cover_image]: "預設封面圖片",

@@ -15,6 +15,8 @@ export const en: Translation = {
   [Key.post_author]: "Author",
   [Key.post_tags]: "Tags",
   [Key.post_toc_title]: "Table of Contents",
+  [Key.post_estimated_reading_time]: "Reading time",
+  [Key.post_estimated_reading_time_unit]: "min",
 
   [Key.post_alt_cover_image]: "Cover image",
   [Key.post_alt_default_cover_image]: "Default cover image",

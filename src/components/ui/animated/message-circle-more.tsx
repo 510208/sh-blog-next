@@ -7,7 +7,7 @@ import { motion, useAnimation } from "motion/react";
 
 import { cn } from "@lib/utils";
 
-export interface MessageCircleMoreIconHandle {
+interface MessageCircleMoreIconHandle {
   startAnimation: () => void;
   stopAnimation: () => void;
 }

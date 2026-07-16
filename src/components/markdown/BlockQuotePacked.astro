@@ -1,3 +1,10 @@
-<blockquote class="group">
+---
+const { class: classFromProps, className, ...props } = Astro.props;
+
+// 如果沒有傳入 className，則使用預設的 class
+const finalClass = classFromProps || className || "group";
+---
+
+<blockquote class={finalClass} {...props}>
   <slot />
 </blockquote>

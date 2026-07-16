@@ -41,7 +41,7 @@ For detailed deployment information, refer to [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## ✨ Features
 
-- [x] Built on Astro v5
+- [x] Built on Astro v7
 - [x] Supports Markdown and MDX content writing
 - [x] Fully designed for dark theme
 - [x] Responsive image processing

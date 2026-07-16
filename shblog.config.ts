@@ -1,4 +1,3 @@
-import { Newspaper, Handshake, Home, Info, Phone } from "lucide-react";
 import { defineConfig } from "@/utils/define-config";
 
 //

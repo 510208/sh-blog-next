@@ -5,27 +5,15 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
-import remarkDirective from "remark-directive"; /* Handle directives */
-import remarkMath from "remark-math";
-import remarkSectionize from "remark-sectionize";
-import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
-import remarkSpoiler from "./src/plugins/remark-spoiler.js";
-import { remarkCitation } from "./src/plugins/remark-citation.mjs";
-import { remarkZoomableImage } from "./src/plugins/remark-zoomable-image.mjs";
+import { satteri } from "@astrojs/markdown-satteri";
 
-// @ts-ignore
-import rehypeCodeBlock from "./src/plugins/rehype-code-block.mjs";
-// @ts-ignore
+import { satteriHastCitation } from "./src/plugins/satteri-hast-citation.mjs";
+import { satteriHastSpoiler } from "./src/plugins/satteri-mdast-spoiler.mjs";
+import { satteriMdastAdmonition } from "./src/plugins/satteri-mdast-admonition.mjs";
+import { satteriMdastReadingTime } from "./src/plugins/satteri-mdast-reading-time.mjs";
+import { satteriMdastPangu } from "./src/plugins/satteri-mdast-pangu.mjs";
+
 import shikiCodeMetadata from "./src/plugins/shiki-code-metadata.mjs";
-import rehypeCodeTitles from "rehype-code-titles";
-// @ts-ignore
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
-import rehypeKatex from "rehype-katex";
-import rehypePangu from "./src/plugins/rehype-pangu.mjs";
-
-import { asideAutoImport, astroAsides } from "./src/utils/astro-aside";
-import AutoImport from "astro-auto-import";
 
 import react from "@astrojs/react";
 
@@ -47,10 +35,6 @@ loadEnv();
 export default defineConfig({
   site: process.env.SITE_URL || "https://sh-blog-next.vercel.app",
   integrations: [
-    AutoImport({
-      imports: [asideAutoImport],
-    }),
-    astroAsides(),
     expressiveCode(),
     mdx(),
     sitemap({
@@ -78,55 +62,19 @@ export default defineConfig({
     },
   },
 
-  experimental: {
-    svgo: true,
-    // rustCompiler: true,    // 啟用 Rust 編譯器以提升構建性能（需要安裝 @astrojs/compiler-rs 包）
-  },
-
   markdown: {
     shikiConfig: {
       // 添加 Shiki transformer 來處理代碼區塊的 metadata
       transformers: [shikiCodeMetadata()],
     },
-    remarkPlugins: [
-      remarkMath,
-      remarkReadingTime,
-      // remarkGithubAdmonitionsToDirectives,
-      remarkDirective,
-      remarkSectionize,
-      remarkSpoiler,
-      remarkCitation,
-      remarkZoomableImage,
-    ],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "prepend",
-          properties: {
-            className: ["anchor"],
-          },
-          content: {
-            type: "element",
-            tagName: "span",
-            properties: {
-              className: ["anchor-icon"],
-              "data-pagefind-ignore": true,
-            },
-            children: [
-              {
-                type: "text",
-                value: "#",
-              },
-            ],
-          },
-        },
+    processor: satteri({
+      features: { directive: true, math: true },
+      mdastPlugins: [
+        satteriMdastAdmonition,
+        satteriMdastReadingTime,
+        satteriMdastPangu, // You can disable Pangu.js plugin there by removing it from this array or commenting it out if you needed
       ],
-      rehypeCodeTitles,
-      rehypeCodeBlock,
-      rehypePangu,
-      rehypeKatex,
-    ],
+      hastPlugins: [satteriHastCitation, satteriHastSpoiler],
+    }),
   },
 });

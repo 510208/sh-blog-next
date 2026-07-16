@@ -2,7 +2,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./global.css";
-/* @import "./markdown-extended.css"; */
+@import "./markdown-extended.css";
 
 /* Import fonts from FontSource */
 @import "@fontsource-variable/noto-serif-tc";
@@ -16,20 +16,22 @@
 
 @layer markdown-content {
   #post-content {
-    /* 預設 */
-    & section > * {
+    /* #region 預設 */
+    & > * {
       @apply mb-4;
     }
+    /* #endregion */
 
-    /* 段落樣式 */
+    /* #region 段落樣式 */
     & p:not(.content p, .sh-builtin-components p, .katex, .katex *),
     & li,
     & ol,
     & ul {
       @apply text-lg leading-relaxed text-neutral-400 transition-colors duration-300;
     }
+    /* #endregion */
 
-    /* 標題樣式 */
+    /* #region 標題樣式 */
     & h1,
     & h2,
     & h3,
@@ -62,8 +64,9 @@
     & h6 {
       @apply text-lg md:text-lg lg:text-xl;
     }
+    /* #endregion */
 
-    /* 基礎列表定義 */
+    /* #region 基礎列表定義 */
     & ul,
     & ol {
       @apply list-outside pl-[30px] marker:text-white/30;
@@ -77,8 +80,9 @@
         }
       }
     }
+    /* #endregion */
 
-    /* 項目定義 */
+    /* #region 項目定義 */
     & li {
       @apply my-1 mb-2;
 
@@ -93,17 +97,20 @@
         @apply text-green-500/70;
       }
     }
+    /* #endregion */
 
-    /* 針對不同類型的符號定義 */
+    /* #region 針對不同類型的符號定義 */
     & ul {
       @apply list-disc;
     }
+
     & ol {
       @apply list-decimal;
     }
+    /* #endregion */
 
-    /* 引言樣式 */
-    & blockquote {
+    /* #region 引言樣式 */
+    & blockquote:not(.admonition) {
       @apply ml-4 border-l-2 border-neutral-700 pl-4 font-serif text-neutral-400 italic transition-colors duration-300 hover:border-green-500/95;
 
       & p {
@@ -126,13 +133,15 @@
         }
       }
     }
+    /* #endregion */
 
-    /* 程式碼區塊樣式 */
+    /* #region 程式碼區塊樣式 */
     .ec-line {
       @apply font-mono!;
     }
+    /* #endregion */
 
-    /* 表格樣式 */
+    /* #region 表格樣式 */
     & table {
       @apply block w-fit max-w-full border-collapse overflow-x-auto rounded-lg border border-white/10 whitespace-nowrap;
     }
@@ -175,13 +184,15 @@
     & thead tr {
       @apply bg-neutral-800;
     }
+    /* #endregion */
 
-    /* 分隔線樣式 */
+    /* #region 分隔線樣式 */
     & hr {
-      @apply mx-auto my-8 max-w-2xl justify-center border-2 border-t border-neutral-700;
+      @apply mx-auto my-8 max-w-2xl justify-center border border-t border-neutral-700;
     }
+    /* #endregion */
 
-    /* 行內元素樣式 */
+    /* #region 行內元素樣式 */
     & a,
     & strong,
     & em,
@@ -217,8 +228,9 @@
     & strong {
       @apply font-semibold text-white/80;
     }
+    /* #endregion */
 
-    /* 行內 code */
+    /* #region 行內 code */
     & :not(pre) > code {
       @apply rounded bg-neutral-800 px-1.5 py-0.5 font-mono text-sm break-all transition-colors duration-300;
     }
@@ -226,20 +238,23 @@
     & :not(pre) > code:hover {
       @apply bg-neutral-700;
     }
+    /* #endregion */
 
-    /* 圖片樣式 */
+    /* #region 圖片樣式 */
     & img {
       @apply my-6 rounded-lg;
     }
+    /* #endregion */
 
-    /* 圖片置中 */
+    /* #region 圖片置中 */
     & img {
       display: block;
       margin-left: auto;
       margin-right: auto;
     }
+    /* #endregion */
 
-    /* 音頻和視頻樣式 */
+    /* #region 音頻和視頻樣式 */
     & audio,
     & video {
       @apply my-6 rounded-lg;
@@ -249,25 +264,28 @@
     & video:hover {
       @apply scale-105 transition-transform duration-300;
     }
+    /* #endregion */
 
-    /* 防雷內容 */
+    /* #region 防雷內容 */
     & .spoiler {
       @apply bg-neutral-800;
       color: transparent;
       border-radius: 4px;
       padding: 0 4px;
       cursor: pointer;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
       /* 圖層模糊 */
       filter: blur(4px);
 
       &:hover {
-        color: #fff;
+        color: var(--color-gray-500);
+        background-color: transparent;
         filter: blur(0px);
       }
     }
+    /* #endregion */
 
-    /* 锚點樣式 */
+    /* #region 錨點樣式 */
     .anchor-icon {
       @apply opacity-30 transition-opacity duration-300;
     }
@@ -275,8 +293,159 @@
     .anchor-icon:hover {
       @apply opacity-100;
     }
+    /* #endregion */
 
-    /* 自訂 scrollbar */
+    /* #region 提示區塊 */
+
+    /* 基礎容器樣式 */
+    blockquote.admonition {
+      position: relative;
+
+      margin: 1.5rem 0;
+      padding: 0.75rem 1rem 0.75rem 2rem; /* 上、右、下、左內距 */
+      border-radius: 0.75rem;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0.75rem;
+        top: 0.75rem;
+        bottom: 0.75rem;
+        width: 4px;
+        border-radius: 2px;
+        background-color: transparent;
+      }
+
+      /* 確保內部段落與元素正常排列 */
+      & > p {
+        margin-top: 0.5rem;
+        margin-bottom: 0;
+        color: var(--post-text-color, #e2e8f0); /* 調整內文顏色 */
+      }
+    }
+
+    /* 標題基礎樣式 */
+    blockquote.admonition .bdm-title {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* 標題前面的 SVG 圖示 */
+    blockquote.admonition .bdm-title:before {
+      content: " ";
+      display: inline-block;
+      font-size: inherit;
+      overflow: visible;
+      margin-right: 0.6rem;
+      height: 1em;
+      width: 1em;
+      vertical-align: -0.126em;
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+      transform: translateY(-0.0625rem);
+    }
+
+    /* TIP */
+    blockquote.bdm-tip {
+      background-color: var(--admonitions-bg-tip, rgba(16, 185, 129, 0.1));
+
+      &:before {
+        background-color: var(--admonitions-color-tip); /* 指定圓角邊線顏色 */
+      }
+
+      .bdm-title {
+        color: var(--admonitions-color-tip);
+
+        &:before {
+          background: var(--admonitions-color-tip);
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath d='M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z'%3E%3C/path%3E%3C/svg%3E");
+        }
+      }
+    }
+
+    /* NOTE */
+    blockquote.admonition.bdm-note {
+      background-color: var(--admonitions-bg-note, rgba(59, 130, 246, 0.1));
+
+      &:before {
+        background-color: var(--admonitions-color-note);
+      }
+
+      .bdm-title {
+        color: var(--admonitions-color-note);
+
+        &:before {
+          background: var(--admonitions-color-note);
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath fill='var(--admonitions-color-tip)' d='M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z'%3E%3C/path%3E%3C/svg%3E");
+        }
+      }
+    }
+
+    /* IMPORTANT */
+    blockquote.admonition.bdm-important {
+      background-color: var(
+        --admonitions-bg-important,
+        rgba(139, 92, 246, 0.1)
+      );
+
+      &:before {
+        background-color: var(--admonitions-color-important);
+      }
+
+      .bdm-title {
+        color: var(--admonitions-color-important);
+
+        &:before {
+          background: var(--admonitions-color-important);
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath d='M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z'%3E%3C/path%3E%3C/svg%3E");
+        }
+      }
+    }
+
+    /* WARNING */
+    blockquote.admonition.bdm-warning {
+      background-color: var(--admonitions-bg-warning, rgba(245, 158, 11, 0.1));
+
+      &:before {
+        background-color: var(--admonitions-color-warning);
+      }
+
+      .bdm-title {
+        color: var(--admonitions-color-warning);
+
+        &:before {
+          background: var(--admonitions-color-warning);
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath d='M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z'%3E%3C/path%3E%3C/svg%3E");
+        }
+      }
+    }
+
+    /* CAUTION */
+    blockquote.admonition.bdm-caution,
+    blockquote.admonition.bdm-danger {
+      background-color: var(--admonitions-bg-caution, rgba(239, 68, 68, 0.1));
+
+      &:before {
+        background-color: var(--admonitions-color-caution);
+      }
+
+      .bdm-title {
+        color: var(--admonitions-color-caution);
+
+        &:before {
+          background: var(--admonitions-color-caution);
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath d='M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z'%3E%3C/path%3E%3C/svg%3E");
+        }
+      }
+    }
+    /* #endregion */
+
+    /* #region 自訂 scrollbar */
     & *::-webkit-scrollbar {
       @apply h-1 min-w-2;
     }
@@ -292,9 +461,10 @@
     & *::-webkit-scrollbar-track {
       @apply rounded-full bg-neutral-900;
     }
+    /* #endregion */
   }
 
-  /* medium-zoom的樣式 */
+  /* #region medium-zoom的樣式 */
   .medium-zoom-overlay {
     @apply z-60 bg-white/5! backdrop-blur-lg;
   }
@@ -302,4 +472,5 @@
   .medium-zoom-image--opened {
     @apply z-61 rounded border-none;
   }
+  /* #endregion */
 }

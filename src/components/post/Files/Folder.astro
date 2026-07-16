@@ -14,7 +14,7 @@ interface Props {
 }
 const { name, defaultOpen = false, highlighted = false } = Astro.props;
 // 產生唯一 ID 以供腳本控管
-const folderId = `folder-${Math.random().toString(36).substr(2, 9)}`;
+const folderId = `folder-${Math.random().toString(36).slice(2, 11)}`;
 ---
 
 <div

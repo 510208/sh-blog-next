@@ -12,6 +12,8 @@ enum I18nKey {
   post_author = "Author",
   post_tags = "Tags",
   post_toc_title = "Table of Contents",
+  post_estimated_reading_time = "Reading time",
+  post_estimated_reading_time_unit = "min",
 
   post_alt_cover_image = "Cover image",
   post_alt_default_cover_image = "Default cover image",
