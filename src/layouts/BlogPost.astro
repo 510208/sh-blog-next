@@ -278,5 +278,5 @@ import "katex/dist/katex.min.css";
   document.addEventListener("DOMContentLoaded", renderSatteriMath);
 
   // 核心：若您在 Astro 7 有啟用 View Transitions（微調轉場），切換頁面時必須重新觸發渲染
-  document.addEventListener("astro:after-swap", renderSatteriMath);
+  document.addEventListener("astro:page-load", renderSatteriMath);
 </script>

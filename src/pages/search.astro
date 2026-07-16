@@ -25,15 +25,19 @@ const isProd = import.meta.env.PROD;
           href="/pagefind/pagefind-component-ui.css"
           rel="stylesheet"
         />
-        <script
-          slot="head"
-          src="/pagefind/pagefind-component-ui.js"
-          type="module"
-        />
+        <Fragment slot="head">
+          <script
+            is:inline
+            src="/pagefind/pagefind-component-ui.js"
+            type="module"
+          />
+        </Fragment>
       </>
     ) : (
       <>
-        <script slot="head">import('@pagefind/component-ui');</script>
+        <Fragment slot="head">
+          <script>import('@pagefind/component-ui');</script>
+        </Fragment>
         <pagefind-config bundle-path="/pagefind/" />
       </>
     )

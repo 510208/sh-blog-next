@@ -104,7 +104,7 @@ export function SearchCommandBox() {
   return (
     <div>
       <Command
-        filter={(value, search, keywords) => {
+        filter={(value: string, search: string, keywords?: string[]) => {
           handleSearchChange(search);
           const extendValue = value + " " + (keywords?.join(" ") || "");
           if (extendValue.toLowerCase().includes(search.toLowerCase())) {
