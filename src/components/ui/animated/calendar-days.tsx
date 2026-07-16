@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useAnimation } from "motion/react";
 
 import { cn } from "@lib/utils";
 
-export interface CalendarDaysIconHandle {
+interface CalendarDaysIconHandle {
   startAnimation: () => void;
   stopAnimation: () => void;
 }
