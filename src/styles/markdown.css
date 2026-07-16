@@ -188,7 +188,7 @@
 
     /* #region 分隔線樣式 */
     & hr {
-      @apply mx-auto my-8 max-w-2xl justify-center border-1 border-t border-neutral-700;
+      @apply mx-auto my-8 max-w-2xl justify-center border border-t border-neutral-700;
     }
     /* #endregion */
 
