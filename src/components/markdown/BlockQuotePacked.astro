@@ -5,6 +5,6 @@ const { class: classFromProps, className, ...props } = Astro.props;
 const finalClass = classFromProps || className || "group";
 ---
 
-<blockquote class:list={finalClass} {...props}>
+<blockquote class={finalClass} {...props}>
   <slot />
 </blockquote>
