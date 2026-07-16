@@ -4,7 +4,14 @@ import { defineMdastPlugin } from "satteri";
  * Admonition 容器指令外掛
  */
 
-const ADMONITION_TYPES = ["tip", "note", "important", "caution", "warning"];
+const ADMONITION_TYPES = [
+  "tip",
+  "note",
+  "important",
+  "caution",
+  "warning",
+  "danger",
+];
 
 export const satteriMdastAdmonition = defineMdastPlugin({
   name: "admonition",

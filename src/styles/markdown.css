@@ -426,7 +426,8 @@
     }
 
     /* CAUTION */
-    blockquote.admonition.bdm-caution {
+    blockquote.admonition.bdm-caution,
+    blockquote.admonition.bdm-danger {
       background-color: var(--admonitions-bg-caution, rgba(239, 68, 68, 0.1));
 
       &:before {
