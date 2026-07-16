@@ -16,11 +16,8 @@ import { satteriMdastPangu } from "./src/plugins/satteri-mdast-pangu.mjs";
 import shikiCodeMetadata from "./src/plugins/shiki-code-metadata.mjs";
 
 import react from "@astrojs/react";
-
 import expressiveCode from "astro-expressive-code";
-
 import pagefind from "astro-pagefind";
-
 import metaTags from "astro-meta-tags";
 
 import path from "path";
