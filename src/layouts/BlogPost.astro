@@ -231,36 +231,58 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
 </script>
 
 <script>
-  import katex from "katex";
+  // 只在頁面上真的有公式時才載入
+  let katexLoaded = false;
+  let katexLib: typeof import("katex") | null = null;
 
-  function renderSatteriMath() {
-    // 搜尋所有被 Sätteri 標記為 language-math 的元素
+  async function loadKaTeX() {
+    console.log("[KaTeX] 嘗試載入 KaTeX 套件...");
+
+    if (katexLoaded) return;
+    katexLoaded = true;
+
+    try {
+      // 動態載入 KaTeX 套件（只在需要時才載入 400KB 的套件）
+      katexLib = await import("katex");
+    } catch (err) {
+      console.error("KaTeX 載入失敗:", err);
+    }
+  }
+
+  async function renderSatteriMath() {
     const mathElements = document.querySelectorAll("code.language-math");
 
-    mathElements.forEach((el) => {
-      // 關鍵：textContent 會自動把被 Sätteri 錯誤逸出的字元還原成乾淨的原始 LaTeX 字串（例如 \frac）
-      const rawMath = el.textContent || "";
+    // 若沒有公式元素，就不用載入 KaTeX（空白頁面或純文章就省掉 400KB）
+    if (mathElements.length === 0) {
+      console.log("[KaTeX] 沒有公式元素，跳過 KaTeX 載入");
+      return;
+    }
 
-      // 判斷是行內公式還是獨立區塊公式
+    // 只在第一次發現公式時才載入 KaTeX（後續複用同一個 lib instance）
+    await loadKaTeX();
+
+    if (!katexLib) {
+      console.warn("KaTeX 未能成功載入");
+      return;
+    }
+
+    mathElements.forEach((el) => {
+      const rawMath = el.textContent || "";
       const isDisplayMode =
         el.classList.contains("math-display") ||
         el.parentElement?.tagName === "PRE";
 
-      // 建立一個乾淨的容器，避免 KaTeX 的樣式與原生的 code/pre 樣式衝突
       const container = document.createElement(isDisplayMode ? "div" : "span");
       container.className = isDisplayMode
         ? "katex-display-block"
         : "katex-inline-block";
 
       try {
-        // 呼叫 KaTeX 進行瀏覽器前端渲染
-        katex.render(rawMath, container, {
+        katexLib!.render(rawMath, container, {
           displayMode: isDisplayMode,
-          throwOnError: false, // 遇到錯的語法不崩潰，直接顯示紅字
+          throwOnError: false,
         });
 
-        // 取代原本的code標籤
-        // 如果是 display 區塊，連同外層的 pre 一起換掉，畫面才會乾淨
         const targetToReplace =
           isDisplayMode && el.parentElement?.tagName === "PRE"
             ? el.parentElement
@@ -272,9 +294,9 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
     });
   }
 
-  // 網頁首頁載入完成時執行
+  // 網頁初次載入時執行
   document.addEventListener("DOMContentLoaded", renderSatteriMath);
 
-  // 核心：若您在 Astro 7 有啟用 View Transitions（微調轉場），切換頁面時必須重新觸發渲染
+  // View Transitions 轉場時執行（Astro 7 的 navigation event）
   document.addEventListener("astro:page-load", renderSatteriMath);
 </script>
